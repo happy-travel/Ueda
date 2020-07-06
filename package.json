@@ -25,7 +25,8 @@
     "react-table": "7.0.0-rc.15",
     "uuid": "3.3.2",
     "yup": "0.29.1",
-    "react-infinite-scroll-component": "5.0.4"
+    "react-infinite-scroll-component": "5.0.4",
+    "decorating": "1.2.2"
   },
   "devDependencies": {
     "dotenv": "6.2.0",
@@ -61,7 +62,8 @@
   },
   "scripts": {
     "start": "node config/scripts/start.js",
-    "build": "node config/scripts/build.js"
+    "build": "node config/scripts/build.js",
+    "clear": "node config/scripts/clear.js"
   },
   "browserslist": {
     "production": [

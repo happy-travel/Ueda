@@ -14,7 +14,7 @@ import Header    from "parts/header";
 import Footer    from "parts/footer";
 import TopAlert  from "parts/top-alert";
 import Modal     from "parts/modal";
-import Search    from "parts/search";
+import Search    from "parts/search/search";
 
 import Routes, {
     routesWithHeaderAndFooter,
@@ -23,12 +23,10 @@ import Routes, {
 } from "core/routes";
 
 import { Loader } from "simple";
-import { isRedirectNeeded } from "core";
-
-import authStore from "stores/auth-store";
+import { Authorized } from "core/auth";
 
 const App = () => {
-    var canShowContent = !isRedirectNeeded() || authStore.userCache?.access_token;
+    var canShowContent = Authorized();
     return (
         <I18nextProvider i18n={internationalization}>
             <BrowserRouter>
