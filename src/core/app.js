@@ -14,37 +14,30 @@ import Header    from "parts/header";
 import Footer    from "parts/footer";
 import TopAlert  from "parts/top-alert";
 import Modal     from "parts/modal";
-import Search    from "parts/search/search";
 
-import Routes, {
-    routesWithHeaderAndFooter,
-    routesWithSearch,
-    routesWithFooter
-} from "core/routes";
+import Routes from "core/routes";
 
 import { Loader } from "simple";
-import { Authorized } from "core/auth";
+import { Authorized, isPageAvailableAuthorizedOnly} from "core/auth";
 
 const App = () => {
-    var canShowContent = Authorized();
+    var canShowContent = !isPageAvailableAuthorizedOnly() || Authorized();
     return (
         <I18nextProvider i18n={internationalization}>
             <BrowserRouter>
                 <div class="body-wrapper">
                     <Switch>
-                        123
                         <Route exact path="/auth/callback" component={ AuthCallback } />
                         <Route exact path="/auth/silent" component={ AuthSilent } />
                         <Route>
                             <Route component={ AuthDefault } />
                             { canShowContent ? <React.Fragment>
                                 <div class="block-wrapper">
-                                    <Route exact path={ routesWithHeaderAndFooter } component={ Header } />
+                                    <Route component={ Header } />
                                     <TopAlert />
-                                    <Route exact path={ routesWithSearch } component={ Search } />
                                     <Routes />
                                 </div>
-                                <Route exact path={ routesWithFooter } component={ Footer } />
+                                <Route component={ Footer } />
                             </React.Fragment> : <Loader page /> }
                         </Route>
                     </Switch>

@@ -59,7 +59,6 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('node_modules/matsumoto/public/index.html'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
@@ -70,7 +69,9 @@ module.exports = {
   appNodeModules: resolveApp('src'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  matsumoto: resolveApp('node_modules/matsumoto/src')
+  matsumoto: resolveApp('node_modules/matsumoto/src'),
+  appHtml: resolveApp('node_modules/matsumoto/public/index.html'),
+  matsumotoPublic: resolveApp('node_modules/matsumoto/public'),
 };
 
 
