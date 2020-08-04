@@ -1,10 +1,10 @@
 import i18n from 'i18next';
 import { windowLocalStorage } from 'matsumoto/src/core/misc/window-storage';
-import settings from 'settings';
 import matsumotoEnglish from 'matsumoto/src/translation/english';
 import matsumotoArabic from 'matsumoto/src/translation/arabic';
 import uedaEnglish from 'ueda/translation/english';
 import uedaArabic from 'ueda/translation/english';
+import settings from 'settings';
 
 i18n.init({
     lng: windowLocalStorage.get('locale') || settings.default_culture,
