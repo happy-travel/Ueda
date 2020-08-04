@@ -67,3 +67,22 @@ steps:
       from_secret: DISCORD_WEBHOOK_TOKEN
   when:
     status: [success, failure]
+
+---    
+kind: pipeline
+type: docker
+name: Test
+
+trigger:
+  branch:
+    - master
+  event:
+    include:
+      - pull_request
+
+steps:
+- name: test
+  image: node:14
+  commands:
+  - npm install
+  - npm run lint
