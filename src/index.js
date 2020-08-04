@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as Sentry from '@sentry/browser';
-import { initApplication } from "core/init";
-import App from "core/app";
-import settings from "settings";
-
-//if (!__localhost)
-//    Sentry.init({ dsn: settings.sentry_dsn });
+import { initApplication } from 'matsumoto/src/core/init';
+import App from 'core/app';
 
 window.setPageDirectionFromLS = () => {
     var dir = window.localStorage.getItem('direction');
-    if (dir == "ltr" || dir == "rtl")
-        document.getElementsByTagName("html")[0].setAttribute("dir", dir);
+    if (['ltr', 'rtl'].includes(dir)) {
+        document.getElementsByTagName('html')[0].setAttribute('dir', dir);
+    }
 };
 window.setPageDirectionFromLS();
 
+// eslint-disable-next-line react/no-render-return-value
 export const RenderTheApp = () => ReactDOM.render(<App />, document.getElementById('app'));
 RenderTheApp();
 

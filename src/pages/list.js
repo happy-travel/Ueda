@@ -1,23 +1,22 @@
 import React from 'react';
-import { observer } from "mobx-react";
-import { useTranslation } from "react-i18next";
-import { API } from "core";
-import METHODS from "core/methods";
+import { observer } from 'mobx-react';
+import { useTranslation } from 'react-i18next';
+import { API } from 'matsumoto/src/core';
+import METHODS from 'core/methods';
 
 @observer
 class CounterpartiesList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            result : null
+            result: null
         }
     }
 
     componentDidMount() {
         API.get({
             url: METHODS.COUNTERPARTIES,
-            success: result => {
-                console.log(result);
+            success: (result) => {
                 this.setState({
                     result
                 });
@@ -25,14 +24,15 @@ class CounterpartiesList extends React.Component {
         })
     }
 
-    render () {
+    render() {
+        // eslint-disable-next-line no-unused-vars
         var { t } = useTranslation();
         return (
-            <div class="block">
+            <div className="block">
                 <section>
                     <h1>LIST</h1>
-                    {this.state.result?.map(item => (
-                        <div>
+                    {this.state.result?.map((item) => (
+                        <div key={item.id}>
                             <h3>#{item.id}: {item.name}</h3>
                             address: {item.address}
                             {/*billingEmail: null
