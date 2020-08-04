@@ -1,20 +1,20 @@
-module.exports = function (api) {
+module.exports = function(api) {
     api.cache(true);
     const presets = [
-        "react-app"
+        'react-app'
     ];
     const plugins= [
         [
-            "@babel/plugin-proposal-decorators",
+            '@babel/plugin-proposal-decorators',
             {
-                "legacy": true
+                'legacy': true
             }
         ],
         [
-            "@babel/plugin-proposal-optional-chaining"
+            '@babel/plugin-proposal-optional-chaining'
         ],
         [
-            "@babel/plugin-proposal-optional-catch-binding"
+            '@babel/plugin-proposal-optional-catch-binding'
         ]
     ];
     return {
