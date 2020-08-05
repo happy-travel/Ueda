@@ -7,7 +7,7 @@ import uedaArabic from 'ueda/translation/english';
 import settings from 'settings';
 
 i18n.init({
-    lng: windowLocalStorage.get('locale') || settings.default_culture,
+    lng: windowLocalStorage.get('locale') || settings.defaultCulture,
     resources: {
         en: {
             translations: {

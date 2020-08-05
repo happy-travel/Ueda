@@ -1,8 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { useTranslation } from 'react-i18next';
 import { API } from 'matsumoto/src/core';
-import METHODS from 'core/methods';
+import apiMethods from 'core/methods';
 
 @observer
 class CounterpartiesList extends React.Component {
@@ -15,7 +14,7 @@ class CounterpartiesList extends React.Component {
 
     componentDidMount() {
         API.get({
-            url: METHODS.COUNTERPARTIES,
+            url: apiMethods.getCounterparties,
             success: (result) => {
                 this.setState({
                     result
@@ -25,8 +24,6 @@ class CounterpartiesList extends React.Component {
     }
 
     render() {
-        // eslint-disable-next-line no-unused-vars
-        var { t } = useTranslation();
         return (
             <div className="block">
                 <section>
@@ -35,17 +32,6 @@ class CounterpartiesList extends React.Component {
                         <div key={item.id}>
                             <h3>#{item.id}: {item.name}</h3>
                             address: {item.address}
-                            {/*billingEmail: null
-                            city: "radf"
-                            countryCode: "TC"
-                            countryName: "Turks and Caicos Islands"
-                            fax: ""
-                            phone: "49294923942"
-                            postalCode: null
-                            preferredCurrency: "NotSpecified"
-                            preferredPaymentMethod: "Other"
-                            vatNumber: null
-                            website: ""*/}
                         </div>
                     ))}
                 </section>

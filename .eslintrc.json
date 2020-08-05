@@ -33,7 +33,7 @@
             "error",
             "prefer-double"
         ],
-        "quotes": [2, "single"],
+        "quotes": ["error", "single"],
         "no-multi-spaces" : "error",
         "no-trailing-spaces" : "error",
         "no-multiple-empty-lines" : [
@@ -57,6 +57,8 @@
         ],
         "space-before-function-paren" : ["error", "never"],
         "arrow-parens": "error",
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "no-implicit-coercion": "error",
+        "eqeqeq": "error"
     }
 }
