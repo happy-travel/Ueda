@@ -1,4 +1,5 @@
 import 'matsumoto/styles';
+import '../../styles';
 
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -8,8 +9,6 @@ import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
 import AuthDefault from 'matsumoto/src/core/auth/default';
 import Footer from 'matsumoto/src/parts/footer';
-import TopAlert from 'matsumoto/src/parts/top-alert';
-import Modal from 'matsumoto/src/parts/modal';
 import { Loader } from 'matsumoto/src/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
 import internationalization from 'core/internationalization';
@@ -30,7 +29,6 @@ const App = () => {
                             { canShowContent ? <React.Fragment>
                                 <div className="block-wrapper">
                                     <Route component={ Header } />
-                                    <TopAlert />
                                     <Routes />
                                 </div>
                                 <Route component={ Footer } />
@@ -38,7 +36,6 @@ const App = () => {
                         </Route>
                     </Switch>
                 </div>
-                <Modal />
 
                 <ScrollToTop />
             </BrowserRouter>

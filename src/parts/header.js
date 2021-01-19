@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import UserMenu from 'matsumoto/src/components/complex/user-menu';
 import { Authorized } from 'matsumoto/src/core/auth';
 
@@ -11,6 +11,8 @@ const Header = () => {
                     <Link to="/" class="logo" />
                 </div>
                 <nav>
+                    <li><NavLink to="/counterparties">Counterparties</NavLink></li>
+                    <li><NavLink to="/paymentlinks">Payment Links</NavLink></li>
                 </nav>
                 { Authorized() && <UserMenu /> }
             </section>
