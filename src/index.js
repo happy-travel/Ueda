@@ -11,8 +11,9 @@ window.setPageDirectionFromLS = () => {
 };
 window.setPageDirectionFromLS();
 
-// eslint-disable-next-line react/no-render-return-value
-export const RenderTheApp = () => ReactDOM.render(<App />, document.getElementById('app'));
-RenderTheApp();
+window._renderTheApp = () => {
+    ReactDOM.render(<App />, document.getElementById('app'));
+};
+window._renderTheApp();
 
 initApplication();
