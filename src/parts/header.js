@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import UserMenu from 'matsumoto/src/components/complex/user-menu';
+import UserMenu from 'components/complex/user-menu';
 import { Authorized } from 'matsumoto/src/core/auth';
 
 const Header = () => {
@@ -13,6 +13,7 @@ const Header = () => {
                 <nav>
                     <li><NavLink to="/counterparties">Counterparties</NavLink></li>
                     <li><NavLink to="/paymentlinks">Payment Links</NavLink></li>
+                    <li><NavLink to="/admins">Admins</NavLink></li>
                 </nav>
                 { Authorized() && <UserMenu /> }
             </section>

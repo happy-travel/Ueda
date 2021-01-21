@@ -1,6 +1,6 @@
 import settings from 'settings';
 
-const v1common = settings.edo(settings.defaultCulture);
+const v1common = settings.edo('en');
 const v1 = v1common + '/admin';
 
 const apiMethods = {
@@ -16,6 +16,9 @@ const apiMethods = {
     contractFile: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/contract-file`,
     createPaymentLink: `${v1common}/external/payment-links`,
     createPaymentLinkAndSend: `${v1common}/external/payment-links/send`,
+    adminSendInvitation: `${v1}/management/invite`,
+    adminRegister: `${v1}/management/register`,
+    // adminDisableInvitation: (code) => `${v1}/management​/invitations​/${code}​/disable`,
 
     // /{culture}/api/{v}/admin/agencies/{agencyId}/system-settings/displayed-payment-options get put
     // /{culture}/api/{v}/admin/agencies/{agencyId}/system-settings/availability-search get put
