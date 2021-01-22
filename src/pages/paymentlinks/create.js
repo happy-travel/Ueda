@@ -105,7 +105,6 @@ class CreatePaymentLinkPage extends React.Component {
                                                  label="Currency"
                                                  options={[
                                                      { value: 'USD', text: 'USD' },
-                                                     { value: 'EUR', text: 'EUR' },
                                                      { value: 'AED', text: 'AED' },
                                                      { value: 'SAR', text: 'SAR' }
                                                  ]}

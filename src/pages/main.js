@@ -20,6 +20,11 @@ class UedaMainPage extends React.Component {
                                 Payment Links
                             </button>
                         </Link>
+                        <Link to="/admins">
+                            <button className="button">
+                                Admins
+                            </button>
+                        </Link>
                     </div>
                 </section>
             </div>
