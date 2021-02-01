@@ -7,11 +7,11 @@ import { I18nextProvider } from 'react-i18next';
 import ScrollToTop from 'matsumoto/src/core/misc/scroll-to-top';
 import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
-import AuthDefault from 'matsumoto/src/core/auth/default';
 import Footer from 'matsumoto/src/parts/footer';
 import { Loader } from 'matsumoto/src/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
 import internationalization from 'core/internationalization';
+import AuthDefault from 'core/auth/default';
 import Header from 'parts/header';
 import Routes from 'core/routes';
 
