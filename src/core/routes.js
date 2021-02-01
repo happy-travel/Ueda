@@ -3,13 +3,13 @@ import { Switch } from 'react-router-dom';
 import Route from 'matsumoto/src/core/misc/route';
 import errorPage from 'matsumoto/src/pages/common/error';
 import authLogout from 'matsumoto/src/core/auth/logout';
+import acceptInvite from 'matsumoto/src/pages/account/accept-invite';
 import mainPage from 'pages/main';
 import counterpartiesListPage from 'pages/counterparties/list';
 import counterpartiesItemPage from 'pages/counterparties/counterparty';
 import agencyPage from 'pages/agency/agency';
 import createPaymentLinkPage from 'pages/paymentlinks/create';
 import inviteAdminPage from 'pages/admins/invite';
-import acceptInvite from 'pages/account/accept-invite';
 
 const Routes = () => (
     <Switch>
