@@ -121,7 +121,7 @@ class CounterpartyPage extends React.Component {
             return <Loader />;
 
         return (
-            <div className="block">
+            <div className="settings block">
                 <section>
                     <h1>Counterparty #{this.state.counterparty.id}</h1>
 

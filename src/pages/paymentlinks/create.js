@@ -75,7 +75,7 @@ class CreatePaymentLinkPage extends React.Component {
             );
 
         return (
-            <div className="block">
+            <div className="settings block">
                 <section>
                     <h1>Create a payment link</h1>
                     <CachedForm
