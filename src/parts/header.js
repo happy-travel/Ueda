@@ -14,6 +14,7 @@ const Header = () => {
                     <li><NavLink to="/counterparties">Counterparties</NavLink></li>
                     <li><NavLink to="/paymentlinks">Payment Links</NavLink></li>
                     <li><NavLink to="/admins">Admins</NavLink></li>
+                    <li><NavLink to="/duplicates">Duplicates</NavLink></li>
                 </nav>
                 { Authorized() && <UserMenu /> }
             </section>

@@ -50,6 +50,11 @@ class UedaMainPage extends React.Component {
                                 Admins
                             </button>
                         </Link>
+                        <Link to="/duplicates">
+                            <button className="button">
+                                Duplicates
+                            </button>
+                        </Link>
                     </div>
                 </section>
             </div>

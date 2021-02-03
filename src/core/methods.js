@@ -18,10 +18,14 @@ const apiMethods = {
     createPaymentLinkAndSend: `${v1common}/external/payment-links/send`,
     adminSendInvitation: `${v1}/management/invite`,
     adminRegister: `${v1}/management/register`,
-    // adminDisableInvitation: (code) => `${v1}/management​/invitations​/${code}​/disable`,
 
-    // /{culture}/api/{v}/admin/agencies/{agencyId}/system-settings/displayed-payment-options get put
-    // /{culture}/api/{v}/admin/agencies/{agencyId}/system-settings/availability-search get put
+    displayedPaymentOptions: (agencyId) => `${v1}/agencies/${agencyId}/system-settings/displayed-payment-options`,
+    availabilitySearchOptions: (agencyId) => `${v1}/agencies/${agencyId}/system-settings/availability-search`,
+
+    duplicates: `${v1}/accommodation-duplicate-reports`,
+    duplicate: (id) => `${v1}/accommodation-duplicate-reports/${id}`,
+    duplicateApprove: (id) => `${v1}/accommodation-duplicate-reports/${id}/approve`,
+    duplicateDisapprove: (id) => `${v1}/accommodation-duplicate-reports/${id}/disapprove`,
 
     // /{culture}/api/{v}/admin/agencies/{agencyId}/agents/{agentId}/system-settings/availability-search put get
     // /{culture}/api/{v}/admin/agencies/{agencyId}/agents/{agentId}/change-agency post
@@ -29,13 +33,9 @@ const apiMethods = {
     // /{culture}/api/{v}/admin/accommodations/bookings/{bookingId}/discard
     // /{culture}/api/{v}/admin/accommodations/bookings/{bookingId}/cancel
 
-    // /{culture}/api/{v}/admin/accommodation-duplicate-reports get
-    // /{culture}/api/{v}/admin/accommodation-duplicate-reports/{id} get
-    // /{culture}/api/{v}/admin/accommodation-duplicate-reports/{reportId}/approve post
-    // /{culture}/api/{v}/admin/accommodation-duplicate-reports/{reportId}/disapprove post
-
     // predictions: `${v1}/counterparties/predictions`, //get ?query=
     // put ​/{culture}​/api​/{v}​/admin​/counterparties​/{counterpartyId}​/verification-state Sets counterparty fully verified.
+    // adminDisableInvitation: (code) => `${v1}/management​/invitations​/${code}​/disable`,
 };
 
 export default apiMethods;
