@@ -1,8 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { CachedForm, FieldSelect, FieldSwitch } from 'matsumoto/src/components/form';
+import { CachedForm, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
+import AgentsList from './agents';
+import SearchOptionsForm from './search-options-form';
+import Bookings from 'parts/bookings/bookings';
 
 @observer
 class AgencyPage extends React.Component {
@@ -31,6 +34,14 @@ class AgencyPage extends React.Component {
                 }
             }),
             error: this.setState({ availabilitySearchOptions: false })
+        })
+        API.get({
+            url: apiMethods.bookingsByAgency(this.props.match.params.id),
+            success: (bookings) => {
+                this.setState({
+                    bookings
+                });
+            }
         })
     }
 
@@ -123,65 +134,17 @@ class AgencyPage extends React.Component {
                 </section>
                 <section>
                     <h1>Availability Search Options</h1>
-
-                    <CachedForm
-                        initialValues={
-                            this.state.availabilitySearchOptions || {
-                                enabledSuppliers: {}
-                            }
-                        }
-                        enableReinitialize
+                    <SearchOptionsForm
+                        initialValues={this.state.availabilitySearchOptions}
                         onSubmit={this.submitAvailabilitySearchOptions}
-                        render={(formik) => (
-                            <div className="form">
-                                <div className="row"><FieldSwitch formik={formik} id="isMarkupDisabled" label="Is Markup Disabled" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="isSupplierVisible" label="Is Supplier Visible" /></div>
-                                <div className="row">
-                                    <FieldSelect formik={formik}
-                                                 id="aprMode"
-                                                 label="APR Mode"
-                                                 options={[
-                                                     { value: '', text: 'None' },
-                                                     { value: 'Hide', text: 'Hide' },
-                                                     { value: 'DisplayOnly', text: 'Display Only' },
-                                                     { value: 'CardPurchasesOnly', text: 'Card Purchases Only' },
-                                                     { value: 'CardAndAccountPurchases', text: 'Card And Account Purchases' }
-                                                 ]}
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldSelect formik={formik}
-                                                 id="passedDeadlineOffersMode"
-                                                 label="Passed Deadline Offers Mode"
-                                                 options={[
-                                                     { value: '', text: 'None' },
-                                                     { value: 'Hide', text: 'Hide' },
-                                                     { value: 'DisplayOnly', text: 'Display Only' },
-                                                     { value: 'CardPurchasesOnly', text: 'Card Purchases Only' },
-                                                     { value: 'CardAndAccountPurchases', text: 'Card And Account Purchases' }
-                                                 ]}
-                                    />
-                                </div>
-                                <div className="row">
-                                    <label>Enabled Suppliers</label>
-                                </div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.Unknown" label="Unknown" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.Netstorming" label="Netstorming" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.Illusions" label="Illusions" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.DirectContracts" label="DirectContracts" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.Etg" label="Etg" /></div>
-                                <div className="row"><FieldSwitch formik={formik} id="enabledSuppliers.Rakuten" label="Rakuten" /></div>
-                                <div className="row submit-holder">
-                                    <div className="field">
-                                        <div className="inner">
-                                            <button type="submit" className="button">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                    />
+                </section>
+                <AgentsList id={this.props.match.params.id} />
+                <section>
+                    <h1>Bookings</h1>
+
+                    <Bookings
+                        bookings={this.state.bookings}
                     />
                 </section>
             </div>

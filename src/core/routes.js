@@ -8,6 +8,7 @@ import mainPage from 'pages/main';
 import counterpartiesListPage from 'pages/counterparties/list';
 import counterpartiesItemPage from 'pages/counterparties/counterparty';
 import agencyPage from 'pages/agency/agency';
+import agentPage from 'pages/agency/agent';
 import createPaymentLinkPage from 'pages/paymentlinks/create';
 import inviteAdminPage from 'pages/admins/invite';
 import duplicatesListPage from 'pages/duplicates/list';
@@ -19,6 +20,7 @@ const Routes = () => (
         <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
         <Route exact path="/counterparties" component={counterpartiesListPage} />
         <Route exact path="/counterparties/agencies/:id" component={agencyPage} />
+        <Route exact path="/counterparties/agencies/:id/agents/:agentId" component={agentPage} />
         <Route exact path="/paymentlinks" component={createPaymentLinkPage} />
         <Route exact path="/admins" component={inviteAdminPage} />
         <Route exact path="/duplicates/:id" component={duplicatePage} />

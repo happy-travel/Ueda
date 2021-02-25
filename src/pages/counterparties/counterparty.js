@@ -2,10 +2,11 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { Loader } from 'matsumoto/src/simple';
+import { Loader, price } from 'matsumoto/src/simple';
 import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
+import Bookings from 'parts/bookings/bookings';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -13,7 +14,9 @@ class CounterpartyPage extends React.Component {
         super(props);
         this.state = {
             counterparty: null,
-            agencies: null
+            agencies: null,
+            bookings: null,
+            balance: null
         }
     }
 
@@ -34,6 +37,22 @@ class CounterpartyPage extends React.Component {
                 });
             }
         });
+        API.get({
+            url: apiMethods.bookingsByCounterparty(this.props.match.params.id),
+            success: (bookings) => {
+                this.setState({
+                    bookings
+                });
+            }
+        })
+        API.get({
+            url: apiMethods.accountBalance(this.props.match.params.id, 'USD'),
+            success: (balance) => {
+                this.setState({
+                    balance
+                });
+            }
+        })
     }
 
     submit = (body) => {
@@ -137,6 +156,7 @@ class CounterpartyPage extends React.Component {
                         <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
                     </div>
 
+                    <h2>Balance: {price(this.state.balance)}</h2>
                     <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
                     <div>
                         <div className="buttons voucher-image">
@@ -216,7 +236,13 @@ class CounterpartyPage extends React.Component {
                             </div>
                         )}
                     />
+                </section>
+                <section>
+                    <h1>Bookings</h1>
 
+                    <Bookings
+                        bookings={this.state.bookings}
+                    />
                 </section>
             </div>
         );
