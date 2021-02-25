@@ -13,6 +13,7 @@ const apiMethods = {
     deactivateCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/deactivate`,
     activateAgency: (agencyId) => `${v1}/counterparties/agencies/${agencyId}/activate`,
     deactivateAgency: (agencyId) => `${v1}/counterparties/agencies/${agencyId}/deactivate`,
+    agencyAgents: (agencyId) => `${v1}/agencies/${agencyId}/agents`,
     contractFile: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/contract-file`,
     createPaymentLink: `${v1common}/external/payment-links`,
     createPaymentLinkAndSend: `${v1common}/external/payment-links/send`,
@@ -27,15 +28,35 @@ const apiMethods = {
     duplicateApprove: (id) => `${v1}/accommodation-duplicate-reports/${id}/approve`,
     duplicateDisapprove: (id) => `${v1}/accommodation-duplicate-reports/${id}/disapprove`,
 
-    // /{culture}/api/{v}/admin/agencies/{agencyId}/agents/{agentId}/system-settings/availability-search put get
-    // /{culture}/api/{v}/admin/agencies/{agencyId}/agents/{agentId}/change-agency post
+    agentSettingsAvailabilitySearch: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/system-settings/availability-search`,
+    agentChangeAgency: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/change-agency`,
 
-    // /{culture}/api/{v}/admin/accommodations/bookings/{bookingId}/discard
-    // /{culture}/api/{v}/admin/accommodations/bookings/{bookingId}/cancel
+    bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/bookings`,
+    bookingsByAgency: (agencyId) => `${v1}/agencies/${agencyId}/bookings`,
+    bookingsByCounterparty: (counterpartyId) =>`${v1}/counterparties/${counterpartyId}/bookings`,
+    bookingDiscard: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/discard`,
+    bookingCancel: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/cancel`,
 
-    // predictions: `${v1}/counterparties/predictions`, //get ?query=
-    // put ​/{culture}​/api​/{v}​/admin​/counterparties​/{counterpartyId}​/verification-state Sets counterparty fully verified.
-    // adminDisableInvitation: (code) => `${v1}/management​/invitations​/${code}​/disable`,
+    markups: `${v1}​/markups`,
+    markup: (id) => `${v1}/markups​/{id}`,
+    markupPolicies: (scopeType, scopeId) => `${v1}​/markups​/${scopeType}​/${scopeId}`,
+    markupTemplates: `${v1}​/markups​/templates`,
+
+    paymentCompleteManually: (bookingId) => `${v1}​/payments​/offline​/${bookingId}`,
+    paymentConfirm: (bookingId) => `${v1}​/payments​/credit-card​/${bookingId}​/confirm`,
+    accountBalance: (counterpartyId, currency) => `${v1}/payments/counterparties/${counterpartyId}/balance/${currency}`,
+    accountPlusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/replenish`,
+    accountMinusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/subtract`,
+    accountManuallyPlusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/increase-manually`,
+    accountManuallyMinusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/decrease-manually`,
+    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${v1}​​/payments​/agency-accounts​/${agencyAccountId}​/increase-manually`,
+    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${v1}​​/payments​/agency-accounts​/${agencyAccountId}​/decrease-manually`,
+    
+    // ​/counterparties​/{counterpartyId}​/verification-state
+    // /management​/invitations​/${code}​/disable
+    // /agencies/{agencyId}/agents/{agentId}/api-client
+    // /counterparties/predictions
+    // ​/payments​/counterparty-accounts​/{counterpartyAccountId}​/transfer
 };
 
 export default apiMethods;
