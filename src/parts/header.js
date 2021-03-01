@@ -15,7 +15,7 @@ const Header = () => {
                     <li><NavLink to="/paymentlinks">Payment Links</NavLink></li>
                     <li><NavLink to="/admins">Admins</NavLink></li>
                     <li><NavLink to="/duplicates">Duplicates</NavLink></li>
-                    <li><NavLink to="/markups">Markups</NavLink></li>
+                    {/* <li><NavLink to="/markups">Markups</NavLink></li> */}
                 </nav>
                 { Authorized() && <UserMenu /> }
             </section>
