@@ -6,6 +6,7 @@ import apiMethods from 'core/methods';
 import AgentsList from './agents';
 import SearchOptionsForm from './search-options-form';
 import Bookings from 'parts/bookings/bookings';
+import AgencyBalance from './agency-balance';
 
 @observer
 class AgencyPage extends React.Component {
@@ -137,6 +138,12 @@ class AgencyPage extends React.Component {
                     <SearchOptionsForm
                         initialValues={this.state.availabilitySearchOptions}
                         onSubmit={this.submitAvailabilitySearchOptions}
+                    />
+                </section>
+                <section>
+                    <h1>Balance</h1>
+                    <AgencyBalance
+                        id={this.props.match.params.id}
                     />
                 </section>
                 <AgentsList id={this.props.match.params.id} />

@@ -7,6 +7,7 @@ import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/for
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
 import Bookings from 'parts/bookings/bookings';
+import CounterpartyBalance from './counterparty-balance';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -157,6 +158,10 @@ class CounterpartyPage extends React.Component {
                     </div>
 
                     <h2>Balance: {price(this.state.balance)}</h2>
+                    <CounterpartyBalance
+                        id={this.props.match.params.id}
+                    />
+
                     <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
                     <div>
                         <div className="buttons voucher-image">
