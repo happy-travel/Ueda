@@ -22,7 +22,16 @@ class Booking extends React.Component {
     bookingPaymentCompleteManually = () => {
         API.post({
             url: apiMethods.paymentCompleteManually(this.props.booking.id),
-            success: () => alert('Discarded')
+            success: () => alert('Success'),
+            error: (e) => alert(JSON.stringify(e))
+        });
+    }
+
+    paymentConfirm = () => {
+        API.post({
+            url: apiMethods.paymentConfirm(this.props.booking.id),
+            success: () => alert('Success'),
+            error: (e) => alert(JSON.stringify(e))
         });
     }
 

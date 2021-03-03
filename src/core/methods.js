@@ -37,26 +37,26 @@ const apiMethods = {
     bookingDiscard: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/discard`,
     bookingCancel: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/cancel`,
 
-    markups: `${v1}​/markups`,
-    markup: (id) => `${v1}/markups​/{id}`,
-    markupPolicies: (scopeType, scopeId) => `${v1}​/markups​/${scopeType}​/${scopeId}`,
-    markupTemplates: `${v1}​/markups​/templates`,
+    markups: `${v1}/markups`,
+    markup: (id) => `${v1}/markups/{id}`,
+    markupPolicies: (scopeType, scopeId) => `${v1}/markups/${scopeType}/${scopeId}`,
+    markupTemplates: `${v1}/markups/templates`,
 
-    paymentCompleteManually: (bookingId) => `${v1}​/payments​/offline​/${bookingId}`,
-    paymentConfirm: (bookingId) => `${v1}​/payments​/credit-card​/${bookingId}​/confirm`,
+    paymentCompleteManually: (bookingId) => `${v1}/payments/offline/${bookingId}`,
+    paymentConfirm: (bookingId) => `${v1}/payments/credit-card/${bookingId}/confirm`,
     accountBalance: (counterpartyId, currency) => `${v1}/payments/counterparties/${counterpartyId}/balance/${currency}`,
-    accountPlusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/replenish`,
-    accountMinusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/subtract`,
-    accountManuallyPlusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/increase-manually`,
-    accountManuallyMinusMoney: (counterpartyAccountId) => `${v1}​/payments​/counterparty-accounts​/${counterpartyAccountId}​/decrease-manually`,
-    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${v1}​​/payments​/agency-accounts​/${agencyAccountId}​/increase-manually`,
-    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${v1}​​/payments​/agency-accounts​/${agencyAccountId}​/decrease-manually`,
+    accountPlusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/replenish`,
+    accountMinusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/subtract`,
+    accountManuallyPlusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
+    accountManuallyMinusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
+    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${v1}/payments/agency-accounts/${agencyAccountId}/increase-manually`,
+    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${v1}/payments/agency-accounts/${agencyAccountId}/decrease-manually`,
     
-    // ​/counterparties​/{counterpartyId}​/verification-state
-    // /management​/invitations​/${code}​/disable
+    // /counterparties/{counterpartyId}/verification-state
+    // /management/invitations/${code}/disable
     // /agencies/{agencyId}/agents/{agentId}/api-client
     // /counterparties/predictions
-    // ​/payments​/counterparty-accounts​/{counterpartyAccountId}​/transfer
+    // /payments/counterparty-accounts/{counterpartyAccountId}/transfer
 };
 
 export default apiMethods;
