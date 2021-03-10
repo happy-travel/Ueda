@@ -27,7 +27,8 @@ class CreatePaymentLinkPage extends React.Component {
         });
     }
 
-    submitButtonClick = (send, formik) => {
+    submitButtonClick = (event, send, formik) => {
+        event.preventDefault();
         formik.setFieldValue('send', send);
         formik.handleSubmit();
     }
@@ -121,8 +122,7 @@ class CreatePaymentLinkPage extends React.Component {
                                     <div className="field">
                                         <div className="inner">
                                             <button
-                                                onClick={() => this.submitButtonClick(false, formik)}
-                                                type="submit"
+                                                onClick={(e) => this.submitButtonClick(e, false, formik)}
                                                 className="button"
                                             >
                                                 Generate
@@ -132,8 +132,7 @@ class CreatePaymentLinkPage extends React.Component {
                                     <div className="field">
                                         <div className="inner">
                                             <button
-                                                onClick={() => this.submitButtonClick(true, formik)}
-                                                type="submit"
+                                                onClick={(e) => this.submitButtonClick(e, true, formik)}
                                                 className="button"
                                             >
                                                 Send by Email
