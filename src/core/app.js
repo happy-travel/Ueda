@@ -9,7 +9,7 @@ import history from 'matsumoto/src/core/misc/history';
 import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
 import authLogout from 'matsumoto/src/core/auth/logout';
-import Footer from 'matsumoto/src/parts/footer';
+import Footer from 'matsumoto/src/parts/footer/footer';
 import { Loader } from 'matsumoto/src/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
 import internationalization from 'core/internationalization';
@@ -32,8 +32,8 @@ const App = () => {
                         <Route>
                             <Route component={ AuthDefault } />
                             { canShowContent ? <React.Fragment>
+                                <Route component={ Header } />
                                 <div className="block-wrapper">
-                                    <Route component={ Header } />
                                     <Routes />
                                 </div>
                                 <Route component={ Footer } />

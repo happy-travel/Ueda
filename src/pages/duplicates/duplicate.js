@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { dateFormat } from 'matsumoto/src/simple';
+import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
 
 @observer
@@ -50,7 +50,7 @@ class DuplicatePage extends React.Component {
                     </div>
 
                     <div style={{ marginTop: '30px' }}>
-                        <strong>Created:</strong> {dateFormat.a(duplicate.created)}
+                        <strong>Created:</strong> {date.format.a(duplicate.created)}
                     </div>
                     <div>
                         <strong>Status:</strong> {duplicate.state}

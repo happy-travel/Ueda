@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { dateFormat } from 'matsumoto/src/simple';
+import { date } from 'matsumoto/src/simple';
 import Table from 'matsumoto/src/components/table';
 import apiMethods from 'core/methods';
 
@@ -53,7 +53,7 @@ class AgentsList extends React.Component {
                                 },
                                 {
                                     header: 'Created',
-                                    cell: (cell) => dateFormat.a(cell.created * 1000)
+                                    cell: (cell) => date.format.a(cell.created * 1000)
                                 },
                                 {
                                     header: 'Markup Settings',

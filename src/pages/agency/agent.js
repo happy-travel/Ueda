@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { dateFormat } from 'matsumoto/src/simple';
+import { date } from 'matsumoto/src/simple';
 import { CachedForm, FieldText } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import SearchOptionsForm from './search-options-form';
@@ -78,7 +78,7 @@ class AgencyPage extends React.Component {
                 <section>
                     <h1>Agent #{this.props.match.params.agentId} (Agency #{this.props.match.params.id})</h1>
                     <h3>Name: {agent.name}</h3>
-                    <h3>Created: {dateFormat.a(agent.created * 1000)}</h3>
+                    <h3>Created: {date.format.a(agent.created * 1000)}</h3>
                     <h3>Markup: {agent.markupSettings}</h3>
                     <h3>{agent.isActive ? 'Active' : 'Inactive'}</h3>
                 </section>
@@ -121,8 +121,6 @@ class AgencyPage extends React.Component {
                     />
                 </section>
                 <section>
-                    <h1>Bookings</h1>
-
                     <Bookings
                         bookings={this.state.bookings}
                     />

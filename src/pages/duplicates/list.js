@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
-import { dateFormat } from 'matsumoto/src/simple';
+import { date } from 'matsumoto/src/simple';
 
 @observer
 class duplicatesListPage extends React.Component {
@@ -49,7 +49,7 @@ class duplicatesListPage extends React.Component {
                                 },
                                 {
                                     header: 'Created',
-                                    cell: (cell) => dateFormat.a(cell.created),
+                                    cell: (cell) => date.format.a(cell.created),
                                 },
                                 {
                                     header: 'Creator',

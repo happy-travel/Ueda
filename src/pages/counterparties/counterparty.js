@@ -243,8 +243,6 @@ class CounterpartyPage extends React.Component {
                     />
                 </section>
                 <section>
-                    <h1>Bookings</h1>
-
                     <Bookings
                         bookings={this.state.bookings}
                     />

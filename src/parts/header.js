@@ -10,13 +10,9 @@ const Header = () => {
                 <div className="logo-wrapper">
                     <Link to="/" class="logo" />
                 </div>
-                <nav>
-                    <li><NavLink to="/counterparties">Counterparties</NavLink></li>
-                    <li><NavLink to="/paymentlinks">Payment Links</NavLink></li>
-                    <li><NavLink to="/admins">Admins</NavLink></li>
-                    <li><NavLink to="/duplicates">Duplicates</NavLink></li>
-                    {/* <li><NavLink to="/markups">Markups</NavLink></li> */}
-                </nav>
+                <div className="search-wrapper">
+
+                </div>
                 { Authorized() && <UserMenu /> }
             </section>
         </header>

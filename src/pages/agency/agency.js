@@ -148,8 +148,6 @@ class AgencyPage extends React.Component {
                 </section>
                 <AgentsList id={this.props.match.params.id} />
                 <section>
-                    <h1>Bookings</h1>
-
                     <Bookings
                         bookings={this.state.bookings}
                     />
