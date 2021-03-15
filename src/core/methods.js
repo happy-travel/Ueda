@@ -6,8 +6,8 @@ const v1 = v1common + '/admin';
 const apiMethods = {
     counterparties: `${v1}/counterparties`,
     counterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}`,
-    verifyCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/verify`,
-    verifyReadonlyCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/verify/read-only`,
+    verifyCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/verify-full-access`,
+    verifyReadonlyCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/verify-read-only`,
     agencies: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/agencies`,
     activateCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/activate`,
     deactivateCounterparty: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/deactivate`,
