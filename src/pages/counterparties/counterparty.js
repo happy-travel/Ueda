@@ -147,10 +147,10 @@ class CounterpartyPage extends React.Component {
                     <Breadcrumbs
                         items={[
                             {
-                                text: ('Сounterparties'),
+                                text: 'Сounterparties',
                                 link: '/counterparties'
                             }, {
-                                text: ( this.state.counterparty.name)
+                                text: this.state.counterparty.name
                             }
                         ]}
                         backLink="/bookings"
