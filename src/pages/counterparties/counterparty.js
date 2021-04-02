@@ -8,6 +8,7 @@ import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
 import Bookings from 'parts/bookings/bookings';
 import CounterpartyBalance from './counterparty-balance';
+import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -143,7 +144,18 @@ class CounterpartyPage extends React.Component {
         return (
             <div className="settings block">
                 <section>
-                    <h1>Counterparty #{this.state.counterparty.id}</h1>
+                    <Breadcrumbs
+                        items={[
+                            {
+                                text: ('Сounterparties'),
+                                link: '/counterparties'
+                            }, {
+                                text: ( this.state.counterparty.name)
+                            }
+                        ]}
+                        backLink="/bookings"
+                    />
+                    <h1>{this.state.counterparty.name}</h1>
 
                     {/*
                         <div>Country Name: {this.state.counterparty.countryName}</div>
