@@ -9,6 +9,7 @@ import Table from 'matsumoto/src/components/table';
 import Bookings from 'parts/bookings/bookings';
 import CounterpartyBalance from './counterparty-balance';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
+import { remapStatus } from 'matsumoto/src/simple';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -156,6 +157,8 @@ class CounterpartyPage extends React.Component {
                         backLink="/counterparties"
                     />
                     <h1>{this.state.counterparty.name}</h1>
+                    <h3>Status: {this.state.counterparty.isActive ? 'Active' : 'Inactive'}</h3>
+                    <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(this.state.counterparty.verificationState)}</h3>
 
                     {/*
                         <div>Country Name: {this.state.counterparty.countryName}</div>
@@ -163,8 +166,9 @@ class CounterpartyPage extends React.Component {
                     */}
 
                     <div className="buttons">
-                        <button className="button" onClick={this.activate}>Activate</button>
-                        <button className="button" onClick={this.deactivate}>Deactivate</button>
+                        {this.state.counterparty.isActive ?
+                            <button className="button" onClick={this.deactivate}>Deactivate</button> :
+                            <button className="button" onClick={this.activate}>Activate</button>}
                         <button className="button" onClick={this.verify}>Verify</button>
                         <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
                     </div>
