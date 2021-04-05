@@ -31,7 +31,7 @@ class CounterpartiesList extends React.Component {
             return <Redirect push to={this.state.redirect}/>;
 
         return (
-            <div className="block">
+            <div className="block counterparties-list">
                 <section>
                     <h1>Counterparties list</h1>
 
