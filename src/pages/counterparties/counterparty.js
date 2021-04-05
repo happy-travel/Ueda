@@ -153,7 +153,7 @@ class CounterpartyPage extends React.Component {
                                 text: this.state.counterparty.name
                             }
                         ]}
-                        backLink="/bookings"
+                        backLink="/counterparties"
                     />
                     <h1>{this.state.counterparty.name}</h1>
 
