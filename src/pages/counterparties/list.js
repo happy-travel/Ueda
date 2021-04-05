@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
+import { remapStatus } from 'matsumoto/src/simple';
 
 @observer
 class CounterpartiesList extends React.Component {
@@ -48,14 +49,19 @@ class CounterpartiesList extends React.Component {
                                 },
                                 {
                                     header: 'Address',
-                                    cell: (cell) => <>
-                                        {cell.city}, {cell.countryName}<br/>
-                                        {cell.address}
-                                    </>
+                                    cell: 'legalAddress'
                                 },
                                 {
                                     header: 'Contract',
                                     cell: (cell) => cell.isContractUploaded ? 'Uploaded' : '—'
+                                },
+                                {
+                                    header: 'Status',
+                                    cell: (cell) => remapStatus(cell.verificationState)
+                                },
+                                {
+                                    header: 'State',
+                                    cell: (cell) => cell.isActive ? 'Active' : 'Inactive'
                                 }
                             ]}
                             onRowClick={(item) => this.setState({
@@ -63,7 +69,7 @@ class CounterpartiesList extends React.Component {
                             })}
                             textEmptyResult="No counterparties found"
                             textEmptyList="No counterparties found (empty)"
-                            searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address]}
+                            searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState]}
                         />
                     </div>
                     {this.state.result?.map((item) => (
