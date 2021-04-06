@@ -84,11 +84,11 @@ class CounterpartyPage extends React.Component {
         });
     }
 
-    verify = () => {
+    verify = (contractKind) => {
         let reason = prompt('Enter a reason');
         API.post({
             url: apiMethods.verifyCounterparty(this.props.match.params.id),
-            body: { reason },
+            body: { contractKind, reason },
             success: () => alert('Counterparty verified')
         });
     }
@@ -169,7 +169,12 @@ class CounterpartyPage extends React.Component {
                         {this.state.counterparty.isActive ?
                             <button className="button" onClick={this.deactivate}>Deactivate</button> :
                             <button className="button" onClick={this.activate}>Activate</button>}
-                        <button className="button" onClick={this.verify}>Verify</button>
+                        {this.state.counterparty.verificationState === 'ReadOnly' &&
+                        <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
+                            <button className="button" onClick={() => this.verify('CashPayments')}>Verify Cash Payments</button>
+                            <button className="button" onClick={() => this.verify('CreditPayments')}>Verify Credit Payments</button>
+                            <button className="button" onClick={() => this.verify('CreditCardPayments')}>Verify Credit Card Payments</button>
+                        </div>}
                         <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
                     </div>
                     {Boolean(this.state.balance) &&
