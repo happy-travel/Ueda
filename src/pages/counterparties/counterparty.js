@@ -162,14 +162,14 @@ class CounterpartyPage extends React.Component {
                         <div>Preferred Currency: {this.state.counterparty.preferredCurrency}</div>
                     */}
 
-                    <div className="buttons">
+                    <div className="buttons" style={{ marginBottom: '10px' }}>
                         <button className="button" onClick={this.activate}>Activate</button>
                         <button className="button" onClick={this.deactivate}>Deactivate</button>
                         <button className="button" onClick={this.verify}>Verify</button>
                         <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
                     </div>
-
-                    <h2>Balance: {price(this.state.balance)}</h2>
+                    {Boolean(this.state.balance) &&
+                    <h2>Balance: {price(this.state.balance.currency, this.state.balance.balance )}</h2>}
                     <CounterpartyBalance
                         id={this.props.match.params.id}
                     />
