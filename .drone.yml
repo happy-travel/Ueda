@@ -24,7 +24,7 @@ steps:
     registry: registry.happytravel.com
     repo: registry.happytravel.com/ueda
     tags:
-      - ${DRONE_COMMIT_SHA:0:7}
+      - ${DRONE_COMMIT_SHA:0:7}-DEV
       - ${DRONE_COMMIT_BRANCH}
     force_tag: true
     use_cache: true
@@ -48,7 +48,7 @@ steps:
     namespace: dev
     skip_tls_verify: true
     wait_for_upgrade: true
-    values: image.tag=${DRONE_COMMIT_SHA:0:7}
+    values: image.tag=${DRONE_COMMIT_SHA:0:7}-DEV
   environment:
     KUBE_API_SERVER:
       from_secret: KUBERNETES_DEV_API
@@ -138,9 +138,9 @@ steps:
     webhook_token:
       from_secret: DISCORD_WEBHOOK_TOKEN
   when:
-    status: [success, failure]        
+    status: [success, failure]
 
----    
+---
 kind: pipeline
 type: docker
 name: Test
