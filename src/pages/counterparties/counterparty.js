@@ -209,7 +209,6 @@ class CounterpartyPage extends React.Component {
                             </div>
                         </div>
 
-
                     <h2>Agencies</h2>
                     <Table
                         list={this.state.agencies}
