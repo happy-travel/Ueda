@@ -186,26 +186,19 @@ class CounterpartyPage extends React.Component {
                     <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
                     <div>
                         <div className="buttons voucher-image">
-                            {this.state.counterparty.isContractUploaded ?
                                 <div style={{ display: 'flex' }}>
-                                    <button className="button" onClick={this.downloadContract}>Download Contract
-                                    </button>
+                                    {this.state.counterparty.isContractUploaded &&
+                                    <button className="button" onClick={this.downloadContract}>
+                                        Download Contract
+                                    </button>}
                                     <form id="formElem" onSubmit={this.uploadContract}>
                                         <label className="button file-upload">
-                                            Upload Another Contract
+                                            {this.state.counterparty.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
                                             <input type="file" name="file" accept="application/pdf"
                                                    onChange={this.uploadContract}/>
                                         </label>
                                     </form>
-                                </div> :
-                                <form id="formElem" onSubmit={this.uploadContract}>
-                                    <label className="button file-upload">
-                                        Upload Contract
-                                        <input type="file" name="file" accept="application/pdf"
-                                               onChange={this.uploadContract}/>
-                                    </label>
-                                </form>
-                            }
+                                </div>
                             </div>
                         </div>
 
