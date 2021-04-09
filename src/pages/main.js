@@ -24,7 +24,6 @@ class UedaMainPage extends React.Component {
                 error: (error) => {
                     forgetInvite();
                     Notifications.addNotification(JSON.stringify(error), null, 'warning');
-                    console.log(error);
                 }
             });
         }
