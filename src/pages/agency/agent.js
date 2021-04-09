@@ -6,6 +6,7 @@ import { CachedForm, FieldText } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import SearchOptionsForm from './search-options-form';
 import Bookings from 'parts/bookings/bookings';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
 class AgencyPage extends React.Component {
@@ -51,7 +52,7 @@ class AgencyPage extends React.Component {
         API.post({
             url: apiMethods.agentChangeAgency(this.props.match.params.id, this.props.match.params.agentId),
             body: values.newAgencyId,
-            success: () => alert('Changed')
+            success: () => Notifications.addNotification('Changed', null, 'success')
         })
     }
 
@@ -66,7 +67,7 @@ class AgencyPage extends React.Component {
                     .map((item) => values.enabledSuppliers[item] && item)
                     .filter((item) => item)
             },
-            success: () => alert('Saved')
+            success: () => Notifications.addNotification('Saved', null, 'success')
         });
     }
 

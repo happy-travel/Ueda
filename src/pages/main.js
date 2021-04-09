@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getInvite, forgetInvite } from 'matsumoto/src/core/auth/invite';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
 class UedaMainPage extends React.Component {
@@ -15,15 +16,14 @@ class UedaMainPage extends React.Component {
                 body: invitationCode,
                 success: () => {
                     forgetInvite();
-                    alert('Registered');
+                    Notifications.addNotification('Registered', null, 'success');
                     this.setState({
                         redirect: '/'
                     });
                 },
                 error: (error) => {
                     forgetInvite();
-                    alert(JSON.stringify(error));
-                    console.log(error);
+                    Notifications.addNotification(JSON.stringify(error), null, 'warning');
                 }
             });
         }

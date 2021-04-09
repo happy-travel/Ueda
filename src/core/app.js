@@ -4,7 +4,6 @@ import '../../styles';
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import ScrollToTop from 'matsumoto/src/core/misc/scroll-to-top';
 import history from 'matsumoto/src/core/misc/history';
 import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
@@ -41,8 +40,6 @@ const App = () => {
                         </Route>
                     </Switch>
                 </div>
-
-                <ScrollToTop />
             </Router>
         </I18nextProvider>
     );
