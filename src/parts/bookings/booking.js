@@ -2,36 +2,37 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
 class Booking extends React.Component {
     bookingCancel = () => {
         API.post({
             url: apiMethods.bookingCancel(this.props.booking.id),
-            success: () => alert('Cancelled')
+            success: () => Notifications.addNotification('Cancelled', null, 'success')
         });
     }
 
     bookingDiscard = () => {
         API.post({
             url: apiMethods.bookingDiscard(this.props.booking.id),
-            success: () => alert('Discarded')
+            success: () => Notifications.addNotification('Discarded', null, 'success')
         });
     }
 
     bookingPaymentCompleteManually = () => {
         API.post({
             url: apiMethods.paymentCompleteManually(this.props.booking.id),
-            success: () => alert('Success'),
-            error: (e) => alert(JSON.stringify(e))
+            success: () => Notifications.addNotification('Success', null, 'success'),
+            error: (e) =>Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
     }
 
     paymentConfirm = () => {
         API.post({
             url: apiMethods.paymentConfirm(this.props.booking.id),
-            success: () => alert('Success'),
-            error: (e) => alert(JSON.stringify(e))
+            success: () => Notifications.addNotification('Success', null, 'success'),
+            error: (e) =>Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
     }
 

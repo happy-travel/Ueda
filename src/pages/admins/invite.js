@@ -6,6 +6,7 @@ import { Loader } from 'matsumoto/src/simple';
 import { CachedForm, FieldText } from 'matsumoto/src/components/form';
 import FormUserData from 'matsumoto/src/parts/form-user-data';
 import { registrationUserValidatorWithEmail } from 'matsumoto/src/components/form/validation';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
 class inviteAdminPage extends React.Component {
@@ -27,7 +28,7 @@ class inviteAdminPage extends React.Component {
                 });
             },
             error: (error) => {
-                alert(JSON.stringify(error));
+                Notifications.addNotification(JSON.stringify(error), null, 'warning');
             }
         });
     }

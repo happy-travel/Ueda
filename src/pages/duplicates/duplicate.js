@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
 class DuplicatePage extends React.Component {
@@ -23,14 +24,14 @@ class DuplicatePage extends React.Component {
     approve = () => {
         API.post({
             url: apiMethods.duplicateApprove(this.props.match.params.id),
-            success: () => alert('Approved')
+            success: () => Notifications.addNotification('Approved', null, 'success'),
         });
     }
 
     disapprove = () => {
         API.post({
             url: apiMethods.duplicateDisapprove(this.props.match.params.id),
-            success: () => alert('Disapproved')
+            success: () => Notifications.addNotification('Disapproved', null, 'success'),
         });
     }
 

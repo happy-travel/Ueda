@@ -10,6 +10,7 @@ import Bookings from 'parts/bookings/bookings';
 import CounterpartyBalance from './counterparty-balance';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import { remapStatus } from 'matsumoto/src/simple';
+import Notifications from 'matsumoto/src/stores/notifications-store'
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -71,7 +72,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.activateCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty activated')
+            success: () => Notifications.addNotification('Counterparty activated', null, 'success')
         });
     }
 
@@ -80,7 +81,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.deactivateCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty deactivated')
+            success: () => Notifications.addNotification('Counterparty deactivated', null, 'success')
         });
     }
 
@@ -89,7 +90,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.verifyCounterparty(this.props.match.params.id),
             body: { contractKind, reason },
-            success: () => alert('Counterparty verified')
+            success: () => Notifications.addNotification('Counterparty verified', null, 'success')
         });
     }
 
@@ -98,7 +99,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.verifyReadonlyCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty verified readonly')
+            success: () => Notifications.addNotification('Counterparty verified readonly', null, 'success')
         });
     }
 
