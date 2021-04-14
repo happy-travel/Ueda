@@ -27,9 +27,6 @@ class inviteAdminPage extends React.Component {
                     success: true
                 });
             },
-            error: (error) => {
-                Notifications.addNotification(JSON.stringify(error), null, 'warning');
-            }
         });
     }
 

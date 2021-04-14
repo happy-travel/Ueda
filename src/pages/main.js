@@ -21,9 +21,9 @@ class UedaMainPage extends React.Component {
                         redirect: '/'
                     });
                 },
-                error: (error) => {
+                error: () => {
                     forgetInvite();
-                    Notifications.addNotification(JSON.stringify(error), null, 'warning');
+                    Notifications.addNotification('Unable to accept invitation', null, 'warning');
                 }
             });
         }

@@ -14,9 +14,6 @@ const BalanceModal = (props) => {
             success: () => {
                 Notifications.addNotification('Done', null, 'warning');
             },
-            error: (error) => {
-                Notifications.addNotification(JSON.stringify(error), null, 'warning');
-            }
         });
         onClose();
     }
