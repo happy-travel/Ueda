@@ -86,9 +86,6 @@ class BookingsList extends React.Component {
                             booking: item,
                             redirect: `booking/${item.referenceCode}`
                         })}
-                        // onRowClick={()=> {
-                        //     console.log(this.state, this.props)
-                        // }}
                         textEmptyResult="No bookings found"
                         textEmptyList="No bookings found (empty)"
                         searches={(v) => [
