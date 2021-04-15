@@ -12,7 +12,7 @@ import createPaymentLinkPage from 'pages/paymentlinks/create';
 import inviteAdminPage from 'pages/admins/invite';
 import duplicatesListPage from 'pages/duplicates/list';
 import duplicatePage from 'pages/duplicates/duplicate';
-import bookingPage from '../parts/bookings/booking';
+import bookingPage from 'pages/bookings/booking';
 
 const Routes = () => (
     <Switch>

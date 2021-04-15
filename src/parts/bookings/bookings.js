@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { date } from 'matsumoto/src/simple';
 import Table from 'matsumoto/src/components/table';
-import Booking from './booking';
+import Booking from '../../pages/bookings/booking';
 import { Redirect } from 'react-router-dom';
 
 @observer
