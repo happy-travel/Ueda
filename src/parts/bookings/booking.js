@@ -3,9 +3,27 @@ import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
+import BookingDetailsView from 'matsumoto/src/pages/accommodation/parts/booking-details-view';
 
 @observer
 class Booking extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            booking: null
+        };
+    }
+    componentDidMount() {
+        this.loadBooking();
+    }
+    loadBooking = async() => {
+        const booking = await API.get({
+            url: apiMethods.bookingsByReferenceCode(this.props.booking.referenceCode),
+        });
+        this.setState({
+            booking,
+        });
+    }
     bookingCancel = () => {
         API.post({
             url: apiMethods.bookingCancel(this.props.booking.id),
@@ -37,11 +55,12 @@ class Booking extends React.Component {
     }
 
     render() {
+      const { booking } = this.state;
         return (
-            <div className="block">
+            <div className="confirmation block">
                 <section>
                     <h1>Booking</h1>
-                    <pre>{JSON.stringify(this.props.booking,1,2)}</pre>
+                    { booking && <BookingDetailsView booking={booking} /> }
 
                     <div className="buttons">
                         <button className="button" onClick={this.bookingCancel}>Cancel</button>
