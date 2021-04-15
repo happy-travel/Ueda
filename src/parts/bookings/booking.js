@@ -20,7 +20,7 @@ class Booking extends React.Component {
 
     loadBooking = async() => {
         const booking = await API.get({
-            url: apiMethods.bookingsByReferenceCode(this.props.match.params.id),
+            url: apiMethods.bookingsByReferenceCode(this.props.match.params.refCode),
         });
         this.setState({
             booking,
@@ -65,11 +65,10 @@ class Booking extends React.Component {
                         <div className="buttons">
                             <button className="button" onClick={this.bookingCancel}>Cancel</button>
                             <button className="button" onClick={this.bookingDiscard}>Discard</button>
-                            <button className="button" onClick={this.bookingPaymentCompleteManually}>Manually Complete
-                                Payment
+                            <button className="button" onClick={this.bookingPaymentCompleteManually}>
+                                Manually Complete Payment
                             </button>
                             <button className="button" onClick={this.paymentConfirm}>Confirm Payment</button>
-
                         </div>
                         <div className="buttons">
                             <button className="button" onClick={this.props.onClose}>Back</button>

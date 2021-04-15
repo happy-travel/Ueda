@@ -12,7 +12,7 @@ import createPaymentLinkPage from 'pages/paymentlinks/create';
 import inviteAdminPage from 'pages/admins/invite';
 import duplicatesListPage from 'pages/duplicates/list';
 import duplicatePage from 'pages/duplicates/duplicate';
-import Booking from '../parts/bookings/booking';
+import bookingPage from '../parts/bookings/booking';
 
 const Routes = () => (
     <Switch>
@@ -25,7 +25,7 @@ const Routes = () => (
         <Route exact path="/admins" component={inviteAdminPage} />
         <Route exact path="/duplicates/:id" component={duplicatePage} />
         <Route exact path="/duplicates" component={duplicatesListPage} />
-        <Route exact path="/counterparties/booking/:id" component={Booking} />
+        <Route exact path="/counterparties/booking/:refCode" component={bookingPage} />
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route component={errorPage} />
     </Switch>
