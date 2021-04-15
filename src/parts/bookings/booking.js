@@ -13,12 +13,14 @@ class Booking extends React.Component {
             booking: null
         };
     }
+
     componentDidMount() {
         this.loadBooking();
     }
+
     loadBooking = async() => {
         const booking = await API.get({
-            url: apiMethods.bookingsByReferenceCode(this.props.booking.referenceCode),
+            url: apiMethods.bookingsByReferenceCode(this.props.match.params.id),
         });
         this.setState({
             booking,
@@ -55,22 +57,25 @@ class Booking extends React.Component {
     }
 
     render() {
-      const { booking } = this.state;
+        const { booking } = this.state;
         return (
             <div className="confirmation block">
                 <section>
-                    <h1>Booking</h1>
-                    { booking && <BookingDetailsView booking={booking} /> }
+                    <div style={{ display: 'flex', justifyContent: 'space-between', margin: '50px 0 30px' }}>
+                        <div className="buttons">
+                            <button className="button" onClick={this.bookingCancel}>Cancel</button>
+                            <button className="button" onClick={this.bookingDiscard}>Discard</button>
+                            <button className="button" onClick={this.bookingPaymentCompleteManually}>Manually Complete
+                                Payment
+                            </button>
+                            <button className="button" onClick={this.paymentConfirm}>Confirm Payment</button>
 
-                    <div className="buttons">
-                        <button className="button" onClick={this.bookingCancel}>Cancel</button>
-                        <button className="button" onClick={this.bookingDiscard}>Discard</button>
-                        <button className="button" onClick={this.bookingPaymentCompleteManually}>Manually Complete Payment</button>
-                        <button className="button" onClick={this.paymentConfirm}>Confirm Payment</button>
+                        </div>
+                        <div className="buttons">
+                            <button className="button" onClick={this.props.onClose}>Back</button>
+                        </div>
                     </div>
-                    <div className="buttons">
-                        <button className="button" onClick={this.props.onClose}>Back</button>
-                    </div>
+                    {booking && <BookingDetailsView booking={booking}/>}
                 </section>
             </div>
         );

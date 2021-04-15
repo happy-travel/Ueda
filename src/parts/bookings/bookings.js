@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { date } from 'matsumoto/src/simple';
 import Table from 'matsumoto/src/components/table';
 import Booking from './booking';
+import { Redirect } from 'react-router-dom';
 
 @observer
 class BookingsList extends React.Component {
@@ -15,6 +16,8 @@ class BookingsList extends React.Component {
     }
 
     render() {
+        if (this.state.redirect)
+            return <Redirect push to={ this.state.redirect }/>;
         const { bookings } = this.props;
 
         if (this.state.booking)
@@ -80,8 +83,12 @@ class BookingsList extends React.Component {
                             }
                         ]}
                         onRowClick={(item) => this.setState({
-                            booking: item
+                            booking: item,
+                            redirect: `booking/${item.referenceCode}`
                         })}
+                        // onRowClick={()=> {
+                        //     console.log(this.state, this.props)
+                        // }}
                         textEmptyResult="No bookings found"
                         textEmptyList="No bookings found (empty)"
                         searches={(v) => [
