@@ -31,6 +31,7 @@ const apiMethods = {
     agentSettingsAvailabilitySearch: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/system-settings/availability-search`,
     agentChangeAgency: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/change-agency`,
 
+    bookingsByReferenceCode: (referenceCode) => `${v1}/bookings/${referenceCode}`,
     bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/bookings`,
     bookingsByAgency: (agencyId) => `${v1}/agencies/${agencyId}/bookings`,
     bookingsByCounterparty: (counterpartyId) =>`${v1}/counterparties/${counterpartyId}/bookings`,
