@@ -40,7 +40,41 @@ class DuplicatePage extends React.Component {
         const { duplicate } = this.state;
         const a = duplicate.accommodations?.[0].data;
         const b = duplicate.accommodations?.[1].data;
-        // const dataForTable = {...a, ...b}
+        const columns = [
+            {
+                title: 'Name',
+                selector: 'name'
+            },
+            {
+                title: 'ID',
+                selector: 'id'
+            },
+            {
+                title: 'Emails',
+                selector: 'contacts.emails'
+            },
+            {
+                title: 'Phones',
+                selector: 'contacts.phones'
+            },
+            {
+                title: 'Country',
+                selector: 'location.country'
+            },
+            {
+                title: 'Address',
+                selector: 'location.address'
+            },
+            {
+                title: 'Rating',
+                selector: 'rating'
+            },
+            {
+                title: 'Photos',
+                imgA: <img style={{ width: '300px' }} src={ a?.photos[0].sourceUrl }/>,
+                imgB: <img style={{ width: '300px' }} src={ b?.photos[0].sourceUrl }/>,
+            },
+        ]
 
         return (
             <div className="settings block">
@@ -61,59 +95,9 @@ class DuplicatePage extends React.Component {
                     { duplicate.agentName && <div>
                         <strong>Agent:</strong> {duplicate.agentName}
                     </div> }
-
                     {duplicate.accommodations &&
-                    <table>
-                        <div style={{ marginRight: '100px' }}>
-                            <td>
-                                <Verticaltable dataA={a} dataB={b}/>
-                            </td>
-                        </div>
-                            {/*<td><th>{b.name}</th>*/}
-                            {/*    /!*<Verticaltable data={b}/>*!/*/}
-                            {/*</td>*/}
-                        {/*{[*/}
-                        {/*    ['ID', (x) => x.id],*/}
-                        {/*    ['Name', (x) => x.name],*/}
-                        {/*    ['Location', (x) => x.location.countryCode + ' ' + x.location.address],*/}
-                        {/*    ['Coordinates', (x) => JSON.stringify(x.location.coordinates)],*/}
-                        {/*    ['Rating', (x) => x.rating],*/}
-                        {/*].map((line) => (*/}
-                        {/*    <tr>*/}
-                        {/*        <td><b>{line[0]}</b></td>*/}
-                        {/*        <td>{line[1](a)}</td>*/}
-                        {/*        <td>{line[1](b)}</td>*/}
-                        {/*    </tr>*/}
-                        {/*))}*/}
-                    </table>
+                                <Verticaltable dataA={a} dataB={b} columns={columns}/>
                     }
-
-                    {/*<h1>Raw data</h1>*/}
-                    {/*<h1>Accommodation A</h1>*/}
-                    {/*<div>*/}
-                    {/*    <pre>*/}
-                    {/*        {JSON.stringify(a, 0, 2)}*/}
-                    {/*    </pre>*/}
-                    {/*</div>*/}
-                    {/*<h1>Accommodation B</h1>*/}
-                    {/*<div>*/}
-                    {/*    <pre>*/}
-                    {/*        {JSON.stringify(b, 0, 2)}*/}
-                    {/*    </pre>*/}
-                    {/*</div>*/}
-                    {/*<table>*/}
-                    {/*    <tr>*/}
-                    {/*        <th/>*/}
-                    {/*        <th><h1>Accommodation A</h1></th>*/}
-                    {/*        <th><h1>Accommodation B</h1></th>*/}
-                    {/*    </tr>*/}
-                    {/*    <tr>*/}
-                    {/*        <td><b>Source</b></td>*/}
-                    {/*        <td>{a.data.id}</td>*/}
-                    {/*        <td>{b.data.id}</td>*/}
-                    {/*    </tr>*/}
-                    {/*</table>*/}
-
                 </section>
             </div>
         );
