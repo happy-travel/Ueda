@@ -4,6 +4,7 @@ import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
+import Verticaltable from './verticaltable';
 
 @observer
 class DuplicatePage extends React.Component {
@@ -39,6 +40,7 @@ class DuplicatePage extends React.Component {
         const { duplicate } = this.state;
         const a = duplicate.accommodations?.[0].data;
         const b = duplicate.accommodations?.[1].data;
+        // const dataForTable = {...a, ...b}
 
         return (
             <div className="settings block">
@@ -62,45 +64,55 @@ class DuplicatePage extends React.Component {
 
                     {duplicate.accommodations &&
                     <table>
-                        <tr>
-                            <th/>
-                            <th>Accommodation A</th>
-                            <th>Accommodation B</th>
-                        </tr>
-                        <tr>
-                            <td><b>Source</b></td>
-                            <td>{duplicate.accommodations[0].source}</td>
-                            <td>{duplicate.accommodations[1].source}</td>
-                        </tr>
-                        {[
-                            ['ID', (x) => x.id],
-                            ['Name', (x) => x.name],
-                            ['Location', (x) => x.location.countryCode + ' ' + x.location.address],
-                            ['Coordinates', (x) => JSON.stringify(x.location.coordinates)],
-                            ['Rating', (x) => x.rating],
-                        ].map((line) => (
-                            <tr>
-                                <td><b>{line[0]}</b></td>
-                                <td>{line[1](a)}</td>
-                                <td>{line[1](b)}</td>
-                            </tr>
-                        ))}
+                        <div style={{ marginRight: '100px' }}>
+                            <td>
+                                <Verticaltable dataA={a} dataB={b}/>
+                            </td>
+                        </div>
+                            {/*<td><th>{b.name}</th>*/}
+                            {/*    /!*<Verticaltable data={b}/>*!/*/}
+                            {/*</td>*/}
+                        {/*{[*/}
+                        {/*    ['ID', (x) => x.id],*/}
+                        {/*    ['Name', (x) => x.name],*/}
+                        {/*    ['Location', (x) => x.location.countryCode + ' ' + x.location.address],*/}
+                        {/*    ['Coordinates', (x) => JSON.stringify(x.location.coordinates)],*/}
+                        {/*    ['Rating', (x) => x.rating],*/}
+                        {/*].map((line) => (*/}
+                        {/*    <tr>*/}
+                        {/*        <td><b>{line[0]}</b></td>*/}
+                        {/*        <td>{line[1](a)}</td>*/}
+                        {/*        <td>{line[1](b)}</td>*/}
+                        {/*    </tr>*/}
+                        {/*))}*/}
                     </table>
                     }
 
-                    <h1>Raw data</h1>
-                    <h1>Accommodation A</h1>
-                    <div>
-                        <pre>
-                            {JSON.stringify(a, 0, 2)}
-                        </pre>
-                    </div>
-                    <h1>Accommodation B</h1>
-                    <div>
-                        <pre>
-                            {JSON.stringify(b, 0, 2)}
-                        </pre>
-                    </div>
+                    {/*<h1>Raw data</h1>*/}
+                    {/*<h1>Accommodation A</h1>*/}
+                    {/*<div>*/}
+                    {/*    <pre>*/}
+                    {/*        {JSON.stringify(a, 0, 2)}*/}
+                    {/*    </pre>*/}
+                    {/*</div>*/}
+                    {/*<h1>Accommodation B</h1>*/}
+                    {/*<div>*/}
+                    {/*    <pre>*/}
+                    {/*        {JSON.stringify(b, 0, 2)}*/}
+                    {/*    </pre>*/}
+                    {/*</div>*/}
+                    {/*<table>*/}
+                    {/*    <tr>*/}
+                    {/*        <th/>*/}
+                    {/*        <th><h1>Accommodation A</h1></th>*/}
+                    {/*        <th><h1>Accommodation B</h1></th>*/}
+                    {/*    </tr>*/}
+                    {/*    <tr>*/}
+                    {/*        <td><b>Source</b></td>*/}
+                    {/*        <td>{a.data.id}</td>*/}
+                    {/*        <td>{b.data.id}</td>*/}
+                    {/*    </tr>*/}
+                    {/*</table>*/}
 
                 </section>
             </div>
