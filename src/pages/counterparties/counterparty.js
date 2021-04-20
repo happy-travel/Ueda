@@ -6,7 +6,6 @@ import { Loader, price } from 'matsumoto/src/simple';
 import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
-import Bookings from 'parts/bookings/bookings';
 import CounterpartyBalance from './counterparty-balance';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import { remapStatus } from 'matsumoto/src/simple';
@@ -263,11 +262,6 @@ class CounterpartyPage extends React.Component {
                                 </div>
                             </div>
                         )}
-                    />
-                </section>
-                <section>
-                    <Bookings
-                        bookings={this.state.bookings}
                     />
                 </section>
             </div>

@@ -25,7 +25,7 @@ const Routes = () => (
         <Route exact path="/admins" component={inviteAdminPage} />
         <Route exact path="/duplicates/:id" component={duplicatePage} />
         <Route exact path="/duplicates" component={duplicatesListPage} />
-        <Route exact path="/counterparties/booking/:refCode" component={bookingPage} />
+        <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route component={errorPage} />
     </Switch>
