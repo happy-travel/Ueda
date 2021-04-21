@@ -2,10 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
-import { Loader } from 'matsumoto/src/simple';
+import { Loader } from 'matsumoto/src/components/simple';
 import { CachedForm, FieldText } from 'matsumoto/src/components/form';
-import FormUserData from 'matsumoto/src/parts/form-user-data';
-import { registrationUserValidatorWithEmail } from 'matsumoto/src/components/form/validation';
+import FormAgentData from 'matsumoto/src/parts/form-agent-data';
+import { registrationAgentValidatorWithEmail } from 'matsumoto/src/components/form/validation';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 
 @observer
@@ -45,7 +45,7 @@ class inviteAdminPage extends React.Component {
                     </div> }
 
                     { false === this.state.success && <CachedForm
-                        validationSchema={registrationUserValidatorWithEmail}
+                        validationSchema={registrationAgentValidatorWithEmail}
                         onSubmit={this.submit}
                         render={(formik) => (
                             <React.Fragment>
@@ -58,7 +58,7 @@ class inviteAdminPage extends React.Component {
                                                    required
                                         />
                                     </div>
-                                    <FormUserData formik={formik} t={(x)=>x}/>
+                                    <FormAgentData formik={formik} t={(x)=>x}/>
                                     <div className="row submit-holder">
                                         <div className="field">
                                             <div className="inner">

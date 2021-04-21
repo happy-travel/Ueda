@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import UserMenu from 'components/complex/user-menu';
+import { Link } from 'react-router-dom';
+import AgentMenu from 'components/complex/agent-menu';
 import { Authorized } from 'matsumoto/src/core/auth';
 
 const Header = () => {
@@ -8,12 +8,12 @@ const Header = () => {
         <header>
             <section>
                 <div className="logo-wrapper">
-                    <Link to="/" class="logo" />
+                    <div className="logo">
+                        <Link to="/" className="image" />
+                        <div className="underline" />
+                    </div>
                 </div>
-                <div className="search-wrapper">
-
-                </div>
-                { Authorized() && <UserMenu /> }
+                { Authorized() && <AgentMenu /> }
             </section>
         </header>
     );

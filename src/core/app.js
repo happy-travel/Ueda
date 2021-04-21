@@ -9,7 +9,7 @@ import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
 import authLogout from 'matsumoto/src/core/auth/logout';
 import Footer from 'matsumoto/src/parts/footer/footer';
-import { Loader } from 'matsumoto/src/simple';
+import { Loader } from 'matsumoto/src/components/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
 import internationalization from 'core/internationalization';
 import AuthDefault from 'core/auth/default';

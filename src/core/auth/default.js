@@ -1,7 +1,7 @@
 import React from 'react';
 import Authorize from 'matsumoto/src/core/auth/authorize';
 import { isPageAvailableAuthorizedOnly, Authorized } from 'core/auth';
-import { Loader } from 'matsumoto/src/simple';
+import { Loader } from 'matsumoto/src/components/simple';
 
 class AuthDefaultComponent extends React.PureComponent {
     render() {

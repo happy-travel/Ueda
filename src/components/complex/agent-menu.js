@@ -3,10 +3,10 @@ import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 
 @observer
-class UserMenu extends React.Component {
+class AgentMenu extends React.Component {
     render() {
         return (
-            <div className="user-menu">
+            <div className="agent-menu">
                 <Link to="/logout" className="button">
                     Logout
                 </Link>
@@ -15,4 +15,4 @@ class UserMenu extends React.Component {
     }
 }
 
-export default UserMenu;
+export default AgentMenu;
