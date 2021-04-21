@@ -4,7 +4,7 @@ import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
-import Verticaltable from './verticaltable';
+import Verticaltable from '../vertical-table/vertical-table';
 
 @observer
 class DuplicatePage extends React.Component {
@@ -43,36 +43,57 @@ class DuplicatePage extends React.Component {
         const columns = [
             {
                 title: 'Name',
-                selector: 'name'
+                selector: 'name',
+
             },
             {
                 title: 'ID',
-                selector: 'id'
+                selector: 'id',
+
             },
             {
                 title: 'Emails',
-                selector: 'contacts.emails'
+                selector: 'contacts.emails',
+
             },
             {
                 title: 'Phones',
-                selector: 'contacts.phones'
+                selector: 'contacts.phones',
+                formatter: (row) => (row.contacts?.phones[0].replace(/-|\s/g,'')),
+
+
             },
             {
-                title: 'Country',
-                selector: 'location.country'
-            },
-            {
-                title: 'Address',
-                selector: 'location.address'
+                title: 'Location',
+                selector: 'location',
+                formatter: (row) => (<div>
+                    {row.location.country}<br/>
+                    {row.location.address}
+                </div>),
+
             },
             {
                 title: 'Rating',
-                selector: 'rating'
+                selector: 'rating',
+
+            },
+            {
+                title: 'Coordinates',
+                selector: 'location',
+                formatter: (row) => (<div>
+                    {row.location?.coordinates?.longitude.toFixed(6)}<br/>
+                    {row.location?.coordinates?.latitude.toFixed(6)}
+                </div>),
+                match: (a, b) => (a.location?.coordinates?.longitude.toFixed(4)===
+                    b.location?.coordinates?.longitude.toFixed(4)),
+
             },
             {
                 title: 'Photos',
-                imgA: <img style={{ width: '300px' }} src={ a?.photos[0].sourceUrl }/>,
-                imgB: <img style={{ width: '300px' }} src={ b?.photos[0].sourceUrl }/>,
+                formatter: (row) => (<img 
+                    style={{ width: '300px' }}
+                    src={ row.photos[0].sourceUrl } alt={'No image'}/>),
+                match: () => null,
             },
         ]
 
