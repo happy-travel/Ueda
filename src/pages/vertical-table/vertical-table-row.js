@@ -2,7 +2,7 @@ import React from 'react';
 import { getIn } from 'formik';
 
 const usualFormatter = (a, s) => (
-    getIn(a, s));
+    getIn(a.data, s));
 
 const VerticalTableRow = ({
                accommodationA,
@@ -18,7 +18,7 @@ const VerticalTableRow = ({
                 'equal' :
                 'different'
         }>
-            <td>{title}</td>
+            <td className="title">{title}</td>
             <td>{formatter(accommodationA, selector)}</td>
             <td>{formatter(accommodationB, selector)}</td>
         </tr>

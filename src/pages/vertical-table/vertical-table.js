@@ -13,22 +13,22 @@ const VerticalTable = (props) => {
     })
 
     return(
-            <div className="table">
-                {columns &&
-                        <table className="the-table">
-                            <tbody>
-                            {columns.map((el) => (
-                                 <Row accommodationA={ dataA }
-                                      accommodationB={ dataB }
-                                      selector={el.selector}
-                                      sourceUrl={el.sourceUrl}
-                                      title={el.title}
-                                      formatter={el.formatter}
-                                      match={el.match}
-                                 />
+        <div className="table vertical-table">
+            {columns &&
+                <table className="the-table">
+                    <tbody>
+                        {columns.map((el) => (
+                            <Row accommodationA={ dataA }
+                                 accommodationB={ dataB }
+                                 selector={el.selector}
+                                 sourceUrl={el.sourceUrl}
+                                 title={el.title}
+                                 formatter={el.formatter}
+                                 match={el.match}
+                            />
                                 ))}
-                            </tbody>
-                        </table>
+                    </tbody>
+                </table>
                 }
             </div>
         );
