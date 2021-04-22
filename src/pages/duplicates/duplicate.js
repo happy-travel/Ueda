@@ -105,7 +105,7 @@ class DuplicatePage extends React.Component {
                     <img
                     style={{ width: '300px' }}
                     src={ row.data.photos[0].sourceUrl }
-                    alt={'No image'}
+                    alt={ row.data.photos[0].caption }
                     />),
                 match: () => null,
             },
