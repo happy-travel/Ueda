@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Row from './vertical-table-row';
 
-const VerticalTable = (accommodations) => {
-    let [dataA, setDataA] = useState(null);
-    let [dataB, setDataB] = useState(null);
-    let [columns, setColumns] = useState(null);
+const VerticalTable = ({ dataA, dataB, columns }) => {
+    let [accommodationA, setAccommodationA] = useState(null);
+    let [accommodationB, setAccommodationB] = useState(null);
+    let [accommodationColumns, setAccommodationColumns] = useState(null);
 
     useEffect(() => {
-        setDataA(accommodations.dataA);
-        setDataB(accommodations.dataB);
-        setColumns(accommodations.columns);
+        setAccommodationA(dataA);
+        setAccommodationB(dataB);
+        setAccommodationColumns(columns);
     })
 
     return(
         <div className="table vertical-table">
-            {columns &&
+            {accommodationColumns &&
                 <table className="the-table">
                     <tbody>
-                        {columns.map((el) => (
-                            <Row accommodationA={ dataA }
-                                 accommodationB={ dataB }
+                        {accommodationColumns.map((el) => (
+                            <Row accommodationA={ accommodationA }
+                                 accommodationB={ accommodationB }
                                  selector={el.selector}
                                  sourceUrl={el.sourceUrl}
                                  title={el.title}
