@@ -6,6 +6,7 @@ import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 import Verticaltable from '../vertical-table/vertical-table';
 import HotelStars from 'matsumoto/src/components/accommodation/hotel-stars';
+import ReactJson from 'react-json-view';
 
 @observer
 class DuplicatePage extends React.Component {
@@ -133,6 +134,27 @@ class DuplicatePage extends React.Component {
                         <Verticaltable dataA={a} dataB={b} columns={columns}/>
                     }
                 </section>
+                <div className={'raw-data'}>
+                    <div>
+                        <pre>
+                            <h1>Accommodation A</h1>
+                            <ReactJson src={a}
+                                       theme="bright:inverted"
+                                       collapseStringsAfterLength={50}
+                                       displayDataTypes={false}/>
+                        </pre>
+                    </div>
+
+                    <div>
+                        <pre>
+                            <h1>Accommodation B</h1>
+                             <ReactJson src={b}
+                                        theme="bright:inverted"
+                                        collapseStringsAfterLength={50}
+                                        displayDataTypes={false}/>
+                        </pre>
+                    </div>
+                </div>
             </div>
         );
     }
