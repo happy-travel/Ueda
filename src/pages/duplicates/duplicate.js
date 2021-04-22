@@ -40,8 +40,8 @@ class DuplicatePage extends React.Component {
 
     render() {
         const { duplicate } = this.state;
-        const a = duplicate.accommodations?.[0];
-        const b = duplicate.accommodations?.[1];
+        const accommodationA = duplicate.accommodations?.[0];
+        const accommodationB = duplicate.accommodations?.[1];
         const columns = [
             {
                 title: 'Name',
@@ -70,8 +70,8 @@ class DuplicatePage extends React.Component {
                 selector: 'location',
                 formatter: (row) => (
                     <div>
-                    {row.data.location.country}<br/>
-                    {row.data.location.address}
+                        {row.data.location.country}<br/>
+                        {row.data.location.address}
                     </div>),
             },
             {
@@ -88,8 +88,8 @@ class DuplicatePage extends React.Component {
                 selector: 'location',
                 formatter: (row) => (
                     <div>
-                    {row.data.location?.coordinates?.longitude.toFixed(6)}<br/>
-                    {row.data.location?.coordinates?.latitude.toFixed(6)}
+                        {row.data.location?.coordinates?.longitude.toFixed(6)}<br/>
+                        {row.data.location?.coordinates?.latitude.toFixed(6)}
                     </div>),
                 match: (a, b) => (
                     a.data.location?.coordinates?.longitude.toFixed(3)===
@@ -131,14 +131,14 @@ class DuplicatePage extends React.Component {
                         <strong>Agent:</strong> {duplicate.agentName}
                     </div> }
                     {duplicate.accommodations &&
-                        <Verticaltable dataA={a} dataB={b} columns={columns}/>
+                        <Verticaltable dataA={accommodationA} dataB={accommodationB} columns={columns}/>
                     }
                 </section>
                 <div className={'raw-data'}>
                     <div>
                         <pre>
                             <h1>Accommodation A</h1>
-                            <ReactJson src={a}
+                            <ReactJson src={accommodationA}
                                        theme="bright:inverted"
                                        collapsed={true}
                                        collapseStringsAfterLength={50}
@@ -149,7 +149,7 @@ class DuplicatePage extends React.Component {
                     <div>
                         <pre>
                             <h1>Accommodation B</h1>
-                             <ReactJson src={b}
+                             <ReactJson src={accommodationB}
                                         theme="bright:inverted"
                                         collapsed={true}
                                         collapseStringsAfterLength={50}

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Row from './vertical-table-row';
 
-const VerticalTable = (props) => {
+const VerticalTable = (accommodations) => {
     let [dataA, setDataA] = useState(null);
     let [dataB, setDataB] = useState(null);
     let [columns, setColumns] = useState(null);
 
     useEffect(() => {
-        setDataA(props.dataA);
-        setDataB(props.dataB);
-        setColumns(props.columns);
+        setDataA(accommodations.dataA);
+        setDataB(accommodations.dataB);
+        setColumns(accommodations.columns);
     })
 
     return(
