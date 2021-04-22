@@ -140,6 +140,7 @@ class DuplicatePage extends React.Component {
                             <h1>Accommodation A</h1>
                             <ReactJson src={a}
                                        theme="bright:inverted"
+                                       collapsed={true}
                                        collapseStringsAfterLength={50}
                                        displayDataTypes={false}/>
                         </pre>
@@ -150,6 +151,7 @@ class DuplicatePage extends React.Component {
                             <h1>Accommodation B</h1>
                              <ReactJson src={b}
                                         theme="bright:inverted"
+                                        collapsed={true}
                                         collapseStringsAfterLength={50}
                                         displayDataTypes={false}/>
                         </pre>
