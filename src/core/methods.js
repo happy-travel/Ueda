@@ -17,8 +17,8 @@ const apiMethods = {
     contractFile: (counterpartyId) => `${v1}/counterparties/${counterpartyId}/contract-file`,
     createPaymentLink: `${v1common}/external/payment-links`,
     createPaymentLinkAndSend: `${v1common}/external/payment-links/send`,
-    adminSendInvitation: `${v1}/management/invite`,
-    adminRegister: `${v1}/management/register`,
+    adminSendInvitation: `${v1}/invitations`,
+    adminRegister: `${v1}/invitations/accept`,
 
     displayedPaymentOptions: (agencyId) => `${v1}/agencies/${agencyId}/system-settings/displayed-payment-options`,
     availabilitySearchOptions: (agencyId) => `${v1}/agencies/${agencyId}/system-settings/availability-search`,
@@ -32,9 +32,9 @@ const apiMethods = {
     agentChangeAgency: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/change-agency`,
 
     bookingsByReferenceCode: (referenceCode) => `${v1}/bookings/${referenceCode}`,
-    bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/bookings`,
-    bookingsByAgency: (agencyId) => `${v1}/agencies/${agencyId}/bookings`,
-    bookingsByCounterparty: (counterpartyId) =>`${v1}/counterparties/${counterpartyId}/bookings`,
+    bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/accommodations/bookings`,
+    bookingsByAgency: (agencyId) => `${v1}/agencies/${agencyId}/accommodations/bookings`,
+    bookingsByCounterparty: (counterpartyId) =>`${v1}/counterparties/${counterpartyId}/accommodations/bookings`,
     bookingDiscard: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/discard`,
     bookingCancel: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/cancel`,
 
@@ -44,21 +44,21 @@ const apiMethods = {
     markupPolicies: (scopeType, scopeId) => `${v1}/markups/${scopeType}/${scopeId}`,
     markupTemplates: `${v1}/markups/templates`,
 
-    paymentCompleteManually: (bookingId) => `${v1}/payments/offline/${bookingId}`,
-    paymentConfirm: (bookingId) => `${v1}/payments/credit-card/${bookingId}/confirm`,
-    accountBalance: (counterpartyId, currency) => `${v1}/payments/counterparties/${counterpartyId}/balance/${currency}`,
-    accountPlusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/replenish`,
-    accountMinusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/subtract`,
-    accountManuallyPlusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
-    accountManuallyMinusMoney: (counterpartyAccountId) => `${v1}/payments/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
-    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${v1}/payments/agency-accounts/${agencyAccountId}/increase-manually`,
-    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${v1}/payments/agency-accounts/${agencyAccountId}/decrease-manually`,
+    paymentCompleteManually: (bookingId) => `${v1}/payments/offline/accommodations/bookings${bookingId}`,
+    paymentConfirm: (bookingId) => `${v1}/payments/credit-card/accommodations/bookings${bookingId}/confirm`,
+    accountBalance: (counterpartyId, currency) => `${v1}/counterparties/${counterpartyId}/counterparty-accounts/${currency}balance/`,
+    accountPlusMoney: (counterpartyAccountId) => `${v1}/counterparty-accounts/${counterpartyAccountId}/replenish`,
+    accountMinusMoney: (counterpartyAccountId) => `${v1}/counterparty-accounts/${counterpartyAccountId}/subtract`,
+    accountManuallyPlusMoney: (counterpartyAccountId) => `${v1}/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
+    accountManuallyMinusMoney: (counterpartyAccountId) => `${v1}/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
+    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${v1}/agency-accounts/${agencyAccountId}/increase-manually`,
+    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${v1}/agency-accounts/${agencyAccountId}/decrease-manually`,
     
     // /counterparties/{counterpartyId}/verification-state
-    // /management/invitations/${code}/disable
+    // /${code}/disable
     // /agencies/{agencyId}/agents/{agentId}/api-client
     // /counterparties/predictions
-    // /payments/counterparty-accounts/{counterpartyAccountId}/transfer
+    // /counterparty-accounts/{counterpartyAccountId}/transfer
 };
 
 export default apiMethods;
