@@ -62,6 +62,10 @@ class CounterpartiesList extends React.Component {
                                 {
                                     header: 'State',
                                     cell: (cell) => cell.isActive ? 'Active' : 'Inactive'
+                                },
+                                {
+                                    header: 'Markups',
+                                    cell: (cell) => cell.markupFormula || 'None'
                                 }
                             ]}
                             onRowClick={(item) => this.setState({

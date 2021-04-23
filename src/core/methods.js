@@ -40,6 +40,7 @@ const apiMethods = {
 
     markups: `${v1}/markups`,
     markup: (id) => `${v1}/markups/{id}`,
+    markupGlobal: `${v1}/global-markups`,
     markupPolicies: (scopeType, scopeId) => `${v1}/markups/${scopeType}/${scopeId}`,
     markupTemplates: `${v1}/markups/templates`,
 

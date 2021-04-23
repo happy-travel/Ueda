@@ -11,6 +11,7 @@ import CounterpartyBalance from './counterparty-balance';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import { remapStatus } from 'matsumoto/src/simple';
 import Notifications from 'matsumoto/src/stores/notifications-store'
+import Markups from 'matsumoto/src/parts/markups/markups';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -221,6 +222,12 @@ class CounterpartyPage extends React.Component {
                         })}
                         textEmptyResult="No agencies"
                         textEmptyList="No agencies"
+                    />
+                    <Markups
+                        id={ this.state.counterparty.id }
+                        emptyText={'No markups'}
+                        markupsRoute={ apiMethods.markupGlobal }
+                        markupRoute={ apiMethods.markupGlobal }
                     />
 
                     <h2>Counterparty details</h2>
