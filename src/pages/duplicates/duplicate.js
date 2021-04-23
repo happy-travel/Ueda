@@ -4,7 +4,9 @@ import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
-import Verticaltable from './verticaltable';
+import Verticaltable from '../vertical-table/vertical-table';
+import HotelStars from 'matsumoto/src/components/accommodation/hotel-stars';
+import ReactJson from 'react-json-view';
 
 @observer
 class DuplicatePage extends React.Component {
@@ -38,41 +40,74 @@ class DuplicatePage extends React.Component {
 
     render() {
         const { duplicate } = this.state;
-        const a = duplicate.accommodations?.[0].data;
-        const b = duplicate.accommodations?.[1].data;
+        const accommodationA = duplicate.accommodations?.[0];
+        const accommodationB = duplicate.accommodations?.[1];
         const columns = [
             {
                 title: 'Name',
-                selector: 'name'
+                selector: 'name',
+            },
+            {
+                title: 'Supplier',
+                selector: 'source',
+                formatter: (row) => (row.source)
             },
             {
                 title: 'ID',
-                selector: 'id'
+                selector: 'id',
             },
             {
                 title: 'Emails',
-                selector: 'contacts.emails'
+                selector: 'contacts.emails',
             },
             {
                 title: 'Phones',
-                selector: 'contacts.phones'
+                selector: 'contacts.phones',
+                formatter: (row) => (row.data.contacts?.phones[0].replace(/-|\s/g,'')),
             },
             {
-                title: 'Country',
-                selector: 'location.country'
-            },
-            {
-                title: 'Address',
-                selector: 'location.address'
+                title: 'Location',
+                selector: 'location',
+                formatter: (row) => (
+                    <div>
+                        {row.data.location.country}<br/>
+                        {row.data.location.address}
+                    </div>),
             },
             {
                 title: 'Rating',
-                selector: 'rating'
+                selector: 'rating',
+                formatter: ((row) => (
+                    <HotelStars count={row.data.rating} />
+                )),
+                match: () => false
+
+            },
+            {
+                title: 'Coordinates',
+                selector: 'location',
+                formatter: (row) => (
+                    <div>
+                        {row.data.location?.coordinates?.longitude.toFixed(6)}<br/>
+                        {row.data.location?.coordinates?.latitude.toFixed(6)}
+                    </div>),
+                match: (a, b) => (
+                    a.data.location?.coordinates?.longitude.toFixed(3)===
+                    b.data.location?.coordinates?.longitude.toFixed(3) &&
+                    a.data.location?.coordinates?.latitude.toFixed(3)===
+                    b.data.location?.coordinates?.latitude.toFixed(3)
+                ),
+
             },
             {
                 title: 'Photos',
-                imgA: <img style={{ width: '300px' }} src={ a?.photos[0].sourceUrl }/>,
-                imgB: <img style={{ width: '300px' }} src={ b?.photos[0].sourceUrl }/>,
+                formatter: (row) => (
+                    <img
+                    style={{ width: '300px' }}
+                    src={ row.data.photos[0].sourceUrl }
+                    alt={ row.data.photos[0].caption }
+                    />),
+                match: () => null,
             },
         ]
 
@@ -96,9 +131,32 @@ class DuplicatePage extends React.Component {
                         <strong>Agent:</strong> {duplicate.agentName}
                     </div> }
                     {duplicate.accommodations &&
-                                <Verticaltable dataA={a} dataB={b} columns={columns}/>
+                        <Verticaltable dataA={accommodationA} dataB={accommodationB} columns={columns}/>
                     }
                 </section>
+                <div className={'raw-data'}>
+                    <div>
+                        <pre>
+                            <h1>Accommodation A</h1>
+                            <ReactJson src={accommodationA}
+                                       theme="bright:inverted"
+                                       collapsed={true}
+                                       collapseStringsAfterLength={50}
+                                       displayDataTypes={false}/>
+                        </pre>
+                    </div>
+
+                    <div>
+                        <pre>
+                            <h1>Accommodation B</h1>
+                             <ReactJson src={accommodationB}
+                                        theme="bright:inverted"
+                                        collapsed={true}
+                                        collapseStringsAfterLength={50}
+                                        displayDataTypes={false}/>
+                        </pre>
+                    </div>
+                </div>
             </div>
         );
     }
