@@ -32,7 +32,7 @@ const apiMethods = {
     agentChangeAgency: (agencyId, agentId) => `${v1}/agencies/${agencyId}/agents/${agentId}/change-agency`,
 
     bookingsByReferenceCode: (referenceCode) => `${v1}/bookings/${referenceCode}`,
-    bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/accommodations/accommodations/bookings`,
+    bookingsByAgent: (agentId) => `${v1}/agents/${agentId}/accommodations/bookings`,
     bookingsByAgency: (agencyId) => `${v1}/agencies/${agencyId}/accommodations/bookings`,
     bookingsByCounterparty: (counterpartyId) =>`${v1}/counterparties/${counterpartyId}/accommodations/bookings`,
     bookingDiscard: (bookingId) => `${v1}/accommodations/bookings/${bookingId}/discard`,
