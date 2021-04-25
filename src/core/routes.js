@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import Route from 'matsumoto/src/core/misc/route';
-import errorPage from 'matsumoto/src/pages/common/error';
+import notFoundPage from 'matsumoto/src/pages/common/not-found-page';
 import acceptInvite from 'matsumoto/src/pages/account/accept-invite';
 import mainPage from 'pages/main';
 import counterpartiesListPage from 'pages/counterparties/list';
@@ -27,7 +27,7 @@ const Routes = () => (
         <Route exact path="/duplicates" component={duplicatesListPage} />
         <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
-        <Route component={errorPage} />
+        <Route component={notFoundPage} />
     </Switch>
 );
 
