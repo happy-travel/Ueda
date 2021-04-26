@@ -12,8 +12,8 @@ const apiMethods = {
     deactivateAgency: (agencyId) => `${a}/counterparties/agencies/${agencyId}/deactivate`,
     agencyAgents: (agencyId) => `${a}/agencies/${agencyId}/agents`,
     contractFile: (counterpartyId) => `${a}/counterparties/${counterpartyId}/contract-file`,
-    createPaymentLink: `/external/payment-links`,
-    createPaymentLinkAndSend: `/external/payment-links/send`,
+    createPaymentLink: '/external/payment-links',
+    createPaymentLinkAndSend: '/external/payment-links/send',
     adminSendInvitation: `${a}/invitations`,
     adminRegister: `${a}/invitations/accept`,
 
