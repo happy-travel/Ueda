@@ -43,7 +43,7 @@ const apiMethods = {
 
     paymentCompleteManually: (bookingId) => `${a}/payments/offline/accommodations/bookings${bookingId}`,
     paymentConfirm: (bookingId) => `${a}/payments/credit-card/accommodations/bookings${bookingId}/confirm`,
-    accountBalance: (counterpartyId, currency) => `${a}/counterparties/${counterpartyId}/counterparty-accounts/${currency}balance/`,
+    accountBalance: (counterpartyId, currency) => `${a}/counterparties/${counterpartyId}/counterparty-accounts/${currency}/balance`,
     accountPlusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/replenish`,
     accountMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/subtract`,
     accountManuallyPlusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
