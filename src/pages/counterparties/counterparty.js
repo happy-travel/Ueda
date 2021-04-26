@@ -12,6 +12,7 @@ import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import { remapStatus } from 'matsumoto/src/simple';
 import Notifications from 'matsumoto/src/stores/notifications-store'
 import Markups from 'matsumoto/src/parts/markups/markups';
+import { PAYMENT_METHODS } from 'enum';
 
 @observer
 class CounterpartyPage extends React.Component {
@@ -249,10 +250,9 @@ class CounterpartyPage extends React.Component {
                                                  id="preferredPaymentMethod"
                                                  label="Preferred Payment Method"
                                                  options={[
-                                                     { value: 'Other', text: 'Other' },
-                                                     { value: 'BankTransfer', text: 'Bank transfer' },
-                                                     { value: 'CreditCard', text: 'Credit card' },
-                                                     { value: 'Offline', text: 'Offline' }
+                                                     { value: PAYMENT_METHODS.ACCOUNT, text: 'Bank transfer' },
+                                                     { value: PAYMENT_METHODS.CARD, text: 'Credit card' },
+                                                     { value: PAYMENT_METHODS.OFFLINE, text: 'Offline' }
                                                  ]}
                                     />
                                 </div>
