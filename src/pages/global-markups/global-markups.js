@@ -16,7 +16,6 @@ const GlobalMarkups = () => {
             </section>
         </div>
     );
-
 };
 
 export default GlobalMarkups;
