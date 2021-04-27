@@ -3,6 +3,7 @@ const a = '/admin';
 const apiMethods = {
     counterparties: `${a}/counterparties`,
     counterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}`,
+    counterpartyMarkups: (counterpartyId) => `${a}/counterparties/${counterpartyId}/markups`,
     verifyCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/verify-full-access`,
     verifyReadonlyCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/verify-read-only`,
     agencies: (counterpartyId) => `${a}/counterparties/${counterpartyId}/agencies`,
