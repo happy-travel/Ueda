@@ -227,8 +227,8 @@ class CounterpartyPage extends React.Component {
                     <Markups
                         id={ this.state.counterparty.id }
                         emptyText={'No markups'}
-                        markupsRoute={() => apiMethods.markupGlobal }
-                        markupRoute={() => apiMethods.markupGlobal }
+                        markupsRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
+                        markupRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
                     />
 
                     <h2>Counterparty details</h2>

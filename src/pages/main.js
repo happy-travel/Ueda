@@ -55,11 +55,11 @@ class UedaMainPage extends React.Component {
                                 Duplicates
                             </button>
                         </Link>
-                        {/* <Link to="/markups">
+                        <Link to="/globalmarkups">
                             <button className="button">
                                 Markups
                             </button>
-                        </Link> */}
+                        </Link>
                     </div>
                 </section>
             </div>
