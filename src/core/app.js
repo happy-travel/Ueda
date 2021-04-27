@@ -26,6 +26,8 @@ const App = () => {
                 <div className="body-wrapper">
                     <Switch>
                         <Route exact path="/auth/callback" component={AuthCallback} />
+                        <Route exact path="/auth/silent" component={AuthSilent} />
+                        <Route exact path="/logout" component={AuthLogout} />
                         <Route>
                             <Route component={ AuthDefault } />
                             { canShowContent ?
