@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Authorize from 'matsumoto/src/core/auth/authorize';
 import { isPageAvailableAuthorizedOnly, Authorized } from 'core/auth';
 import { Loader } from 'matsumoto/src/components/simple';
 
-class AuthDefaultComponent extends React.PureComponent {
-    render() {
+const AuthDefaultComponent = () => {
+    useEffect(() => {
         if (isPageAvailableAuthorizedOnly()) {
             Authorize.getUser().then((user) => {
                 if (!user?.access_token)
@@ -13,9 +13,9 @@ class AuthDefaultComponent extends React.PureComponent {
             if (!Authorized())
                 return <Loader white page />;
         }
+    }, []);
 
-        return null;
-    }
-}
+    return null;
+};
 
 export default AuthDefaultComponent;

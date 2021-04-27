@@ -1,12 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
 import { remapStatus } from 'matsumoto/src/simple';
 
-@observer
 class CounterpartiesList extends React.Component {
     constructor(props) {
         super(props);

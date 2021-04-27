@@ -1,14 +1,11 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import { Loader } from 'matsumoto/src/components/simple';
 import { CachedForm, FieldText } from 'matsumoto/src/components/form';
 import FormAgentData from 'matsumoto/src/parts/form-agent-data';
 import { registrationAgentValidatorWithEmail } from 'matsumoto/src/components/form/validation';
-import Notifications from 'matsumoto/src/stores/notifications-store';
 
-@observer
 class inviteAdminPage extends React.Component {
     constructor(props) {
         super(props);

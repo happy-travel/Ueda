@@ -1,11 +1,9 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 import BookingDetailsView from 'matsumoto/src/pages/accommodation/parts/booking-details-view';
 
-@observer
 class Booking extends React.Component {
     constructor(props) {
         super(props);

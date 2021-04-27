@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import apiMethods from 'core/methods';
@@ -8,7 +7,6 @@ import Verticaltable from '../vertical-table/vertical-table';
 import HotelStars from 'matsumoto/src/components/accommodation/hotel-stars';
 import ReactJson from 'react-json-view';
 
-@observer
 class DuplicatePage extends React.Component {
     constructor(props) {
         super(props);

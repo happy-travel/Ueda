@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { Loader } from 'matsumoto/src/components/simple';
 import { price } from 'matsumoto/src/simple';
@@ -14,7 +13,6 @@ import Notifications from 'matsumoto/src/stores/notifications-store'
 import Markups from 'matsumoto/src/parts/markups/markups';
 import { PAYMENT_METHODS } from 'enum';
 
-@observer
 class CounterpartyPage extends React.Component {
     constructor(props) {
         super(props);

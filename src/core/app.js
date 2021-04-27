@@ -7,7 +7,7 @@ import { I18nextProvider } from 'react-i18next';
 import history from 'matsumoto/src/core/misc/history';
 import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
-import authLogout from 'matsumoto/src/core/auth/logout';
+import AuthLogout from 'matsumoto/src/core/auth/logout';
 import Footer from 'matsumoto/src/parts/footer/footer';
 import { Loader } from 'matsumoto/src/components/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
@@ -25,18 +25,19 @@ const App = () => {
                 <NotificationList />
                 <div className="body-wrapper">
                     <Switch>
-                        <Route exact path="/auth/callback" component={ AuthCallback } />
-                        <Route exact path="/auth/silent" component={ AuthSilent } />
-                        <Route exact path="/logout" component={authLogout} />
+                        <Route exact path="/auth/callback" component={AuthCallback} />
                         <Route>
                             <Route component={ AuthDefault } />
-                            { canShowContent ? <React.Fragment>
-                                <Route component={ Header } />
-                                <div className="block-wrapper">
-                                    <Routes />
-                                </div>
-                                <Route component={ Footer } />
-                            </React.Fragment> : <Loader page /> }
+                            { canShowContent ?
+                                <>
+                                    <Route component={ Header } />
+                                    <div className="block-wrapper">
+                                        <Routes />
+                                    </div>
+                                    <Route component={ Footer } />
+                                </> :
+                                <Loader page />
+                            }
                         </Route>
                     </Switch>
                 </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
@@ -9,7 +8,6 @@ import Bookings from 'parts/bookings/bookings';
 import AgencyBalance from './agency-balance';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 
-@observer
 class AgencyPage extends React.Component {
     constructor(props) {
         super(props);
