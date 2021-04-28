@@ -1,12 +1,9 @@
-h1
-    margin: 50px 0 30px
+.block
+    h1
+        margin: 50px 0 30px
 
-h2
-    margin: 60px 0 20px
-
-.error-page
-    h1, h2
-        margin: 0
+    h2
+        margin: 60px 0 20px
 
 .box
     display: inline-block
@@ -23,3 +20,14 @@ h2
                 td:nth-child(#{$id})
                     min-width: $col !important
                     max-width: $col !important
+
+.vertical-table
+    .equal, .title
+        color: $color-text-light
+.raw-data
+    display: flex
+    justify-content: space-between
+    margin: 0 100px 0 200px
+.global-markups
+    h2
+        margin-bottom: 25px

@@ -1,7 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
-
-@observer
 class Modal extends React.Component {
     render() {
         const { title } = this.props;

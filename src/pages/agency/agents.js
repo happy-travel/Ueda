@@ -1,12 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { date } from 'matsumoto/src/simple';
 import Table from 'matsumoto/src/components/table';
 import apiMethods from 'core/methods';
 
-@observer
 class AgentsList extends React.Component {
     constructor(props) {
         super(props);

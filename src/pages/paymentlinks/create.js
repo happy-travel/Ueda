@@ -1,11 +1,9 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldText, FieldSelect, FieldTextarea } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import { copyToClipboard } from 'matsumoto/src/simple/logic';
 
-@observer
 class CreatePaymentLinkPage extends React.Component {
     constructor(props) {
         super(props);

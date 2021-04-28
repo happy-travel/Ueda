@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'parts/modal';
 import BalanceForm from './balance-form';
 import { API } from 'matsumoto/src/core';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 const BalanceModal = (props) => {
     const { onClose, text, method } = props;
@@ -11,11 +12,8 @@ const BalanceModal = (props) => {
             url: method,
             body,
             success: () => {
-                alert('Done!');
+                Notifications.addNotification('Done', null, 'warning');
             },
-            error: (error) => {
-                alert(JSON.stringify(error));
-            }
         });
         onClose();
     }

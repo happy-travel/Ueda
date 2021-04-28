@@ -1,8 +1,6 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { CachedForm, FieldSelect, FieldSwitch } from 'matsumoto/src/components/form';
 
-@observer
 class SearchOptionsForm extends React.Component {
     render() {
         const { initialValues, onSubmit } = this.props;

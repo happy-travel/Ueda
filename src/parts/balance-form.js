@@ -1,8 +1,6 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/form';
 
-@observer
 class BalanceForm extends React.Component {
     render() {
         const { action } = this.props;

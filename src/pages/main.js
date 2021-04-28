@@ -1,11 +1,10 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { getInvite, forgetInvite } from 'matsumoto/src/core/auth/invite';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
-@observer
 class UedaMainPage extends React.Component {
     componentDidMount() {
         const invitationCode = getInvite();
@@ -15,15 +14,14 @@ class UedaMainPage extends React.Component {
                 body: invitationCode,
                 success: () => {
                     forgetInvite();
-                    alert('Registered');
+                    Notifications.addNotification('Registered', null, 'success');
                     this.setState({
                         redirect: '/'
                     });
                 },
-                error: (error) => {
+                error: () => {
                     forgetInvite();
-                    alert(JSON.stringify(error));
-                    console.log(error);
+                    Notifications.addNotification('Unable to accept invitation', null, 'warning');
                 }
             });
         }
@@ -55,11 +53,11 @@ class UedaMainPage extends React.Component {
                                 Duplicates
                             </button>
                         </Link>
-                        {/* <Link to="/markups">
+                        <Link to="/globalmarkups">
                             <button className="button">
                                 Markups
                             </button>
-                        </Link> */}
+                        </Link>
                     </div>
                 </section>
             </div>

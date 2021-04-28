@@ -1,17 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
-import { Loader, price } from 'matsumoto/src/simple';
+import { Loader } from 'matsumoto/src/components/simple';
+import { price } from 'matsumoto/src/simple';
 import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
-import Bookings from 'parts/bookings/bookings';
 import CounterpartyBalance from './counterparty-balance';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import { remapStatus } from 'matsumoto/src/simple';
+import Notifications from 'matsumoto/src/stores/notifications-store'
+import Markups from 'matsumoto/src/parts/markups/markups';
+import { PAYMENT_METHODS } from 'enum';
 
-@observer
 class CounterpartyPage extends React.Component {
     constructor(props) {
         super(props);
@@ -71,7 +72,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.activateCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty activated')
+            success: () => Notifications.addNotification('Counterparty activated', null, 'success')
         });
     }
 
@@ -80,7 +81,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.deactivateCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty deactivated')
+            success: () => Notifications.addNotification('Counterparty deactivated', null, 'success')
         });
     }
 
@@ -89,7 +90,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.verifyCounterparty(this.props.match.params.id),
             body: { contractKind, reason },
-            success: () => alert('Counterparty verified')
+            success: () => Notifications.addNotification('Counterparty verified', null, 'success')
         });
     }
 
@@ -98,7 +99,7 @@ class CounterpartyPage extends React.Component {
         API.post({
             url: apiMethods.verifyReadonlyCounterparty(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Counterparty verified readonly')
+            success: () => Notifications.addNotification('Counterparty verified readonly', null, 'success')
         });
     }
 
@@ -186,20 +187,21 @@ class CounterpartyPage extends React.Component {
                     <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
                     <div>
                         <div className="buttons voucher-image">
-                            {this.state.counterparty.isContractUploaded &&
-                                <button className="button" onClick={this.downloadContract}>Download Contract</button>
-                            }
-
-                            <div className="box">
-                                <form id="formElem" onSubmit={this.uploadContract}>
-                                    <label className="button file-upload">
-                                        Upload Contract
-                                        <input type="file" name="file" accept="image/*" onChange={this.uploadContract} />
-                                    </label>
-                                </form>
+                                <div style={{ display: 'flex' }}>
+                                    {this.state.counterparty.isContractUploaded &&
+                                    <button className="button" onClick={this.downloadContract}>
+                                        Download Contract
+                                    </button>}
+                                    <form id="formElem" onSubmit={this.uploadContract}>
+                                        <label className="button file-upload">
+                                            {this.state.counterparty.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
+                                            <input type="file" name="file" accept="application/pdf"
+                                                   onChange={this.uploadContract}/>
+                                        </label>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     <h2>Agencies</h2>
                     <Table
@@ -219,6 +221,12 @@ class CounterpartyPage extends React.Component {
                         })}
                         textEmptyResult="No agencies"
                         textEmptyList="No agencies"
+                    />
+                    <Markups
+                        id={ this.state.counterparty.id }
+                        emptyText={'No markups'}
+                        markupsRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
+                        markupRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
                     />
 
                     <h2>Counterparty details</h2>
@@ -240,10 +248,9 @@ class CounterpartyPage extends React.Component {
                                                  id="preferredPaymentMethod"
                                                  label="Preferred Payment Method"
                                                  options={[
-                                                     { value: 'Other', text: 'Other' },
-                                                     { value: 'BankTransfer', text: 'Bank transfer' },
-                                                     { value: 'CreditCard', text: 'Credit card' },
-                                                     { value: 'Offline', text: 'Offline' }
+                                                     { value: PAYMENT_METHODS.ACCOUNT, text: 'Bank transfer' },
+                                                     { value: PAYMENT_METHODS.CARD, text: 'Credit card' },
+                                                     { value: PAYMENT_METHODS.OFFLINE, text: 'Offline' }
                                                  ]}
                                     />
                                 </div>
@@ -261,11 +268,6 @@ class CounterpartyPage extends React.Component {
                                 </div>
                             </div>
                         )}
-                    />
-                </section>
-                <section>
-                    <Bookings
-                        bookings={this.state.bookings}
                     />
                 </section>
             </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
@@ -7,8 +6,8 @@ import AgentsList from './agents';
 import SearchOptionsForm from './search-options-form';
 import Bookings from 'parts/bookings/bookings';
 import AgencyBalance from './agency-balance';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
-@observer
 class AgencyPage extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +49,7 @@ class AgencyPage extends React.Component {
         API.put({
             url: apiMethods.displayedPaymentOptions(this.props.match.params.id),
             body: values.displayedPaymentOptions,
-            success: () => alert('Saved')
+            success: () => Notifications.addNotification('Saved', null, 'success')
         });
     }
 
@@ -65,7 +64,7 @@ class AgencyPage extends React.Component {
                     .map((item) => values.enabledSuppliers[item] && item)
                     .filter((item) => item)
             },
-            success: () => alert('Saved')
+            success: () => Notifications.addNotification('Saved', null, 'success')
         });
     }
 
@@ -74,7 +73,7 @@ class AgencyPage extends React.Component {
         API.post({
             url: apiMethods.activateAgency(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Agency activated')
+            success: () => Notifications.addNotification('Agency activated', null, 'success')
         });
     }
 
@@ -83,7 +82,7 @@ class AgencyPage extends React.Component {
         API.post({
             url: apiMethods.deactivateAgency(this.props.match.params.id),
             body: { reason },
-            success: () => alert('Agency deactivated')
+            success: () => Notifications.addNotification('Agency deactivated', null, 'success')
         });
     }
 

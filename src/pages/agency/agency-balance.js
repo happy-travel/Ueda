@@ -1,9 +1,7 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import BalanceModal from 'parts/balance-modal';
 import apiMethods from 'core/methods';
 
-@observer
 class CounterpartyBalance extends React.Component {
     constructor(props) {
         super(props);
