@@ -3,10 +3,12 @@ const a = '/admin';
 const apiMethods = {
     counterparties: `${a}/counterparties`,
     counterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}`,
+    counterpartyAccountsList: (counterpartyId) => `${a}/counterparties/${counterpartyId}/accounts`,
     counterpartyMarkups: (counterpartyId) => `${a}/counterparties/${counterpartyId}/markups`,
     verifyCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/verify-full-access`,
     verifyReadonlyCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/verify-read-only`,
     agencies: (counterpartyId) => `${a}/counterparties/${counterpartyId}/agencies`,
+    agency: (agencyId) => `${a}/agencies/${agencyId}/child-agencies`,
     activateCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/activate`,
     deactivateCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/deactivate`,
     activateAgency: (agencyId) => `${a}/counterparties/agencies/${agencyId}/activate`,
@@ -51,6 +53,7 @@ const apiMethods = {
     accountManuallyMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
     agencyAccountManuallyPlusMoney: (agencyAccountId) => `${a}/agency-accounts/${agencyAccountId}/increase-manually`,
     agencyAccountManuallyMinusMoney: (agencyAccountId) => `${a}/agency-accounts/${agencyAccountId}/decrease-manually`,
+    transferFromCounterpartyToAgency: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/transfer`,
 
     // /counterparties/{counterpartyId}/verification-state
     // /${code}/disable

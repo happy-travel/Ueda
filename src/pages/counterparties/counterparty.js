@@ -12,6 +12,7 @@ import { remapStatus } from 'matsumoto/src/simple';
 import Notifications from 'matsumoto/src/stores/notifications-store'
 import Markups from 'matsumoto/src/parts/markups/markups';
 import { PAYMENT_METHODS } from 'enum';
+// import { generateOptions } from 'matsumoto/src/pages/settings/child-agencies/parts/transfer-balance';
 
 class CounterpartyPage extends React.Component {
     constructor(props) {
@@ -19,8 +20,10 @@ class CounterpartyPage extends React.Component {
         this.state = {
             counterparty: null,
             agencies: null,
+            agency: null,
             bookings: null,
-            balance: null
+            balance: null,
+            accounts: null,
         }
     }
 
@@ -57,6 +60,14 @@ class CounterpartyPage extends React.Component {
                 });
             }
         })
+        API.get({
+            url: apiMethods.counterpartyAccountsList(this.props.match.params.id),
+            success: (accounts) => {
+                this.setState({
+                    accounts
+                });
+            }
+        });
     }
 
     submit = (body) => {
@@ -136,6 +147,42 @@ class CounterpartyPage extends React.Component {
         });
     }
 
+    getFormat = (accounts) => {
+        return accounts?.map((item) => (
+            {
+                text: `Account #${item.id}: ${price(item.balance)}`,
+                value: item.id
+            }
+        ));
+    }
+
+    setAgencies = (agencies) => {
+        return agencies?.map((item, index) => (
+            {
+                text: `Agency #${item.id}`,
+                value: index
+            }
+        ));
+    }
+
+    formChanged = (id) => {
+        API.get({
+            url: apiMethods.agency(this.state.agencies[id].id),
+            success: (agency) => {
+                this.setState({
+                    agency
+                });
+            }
+        })
+    }
+
+    submitTransfer = (values) => {
+        API.post({
+            url: apiMethods.transferFromCounterpartyToAgency(values.counterpartyAccountId),
+            body: values
+        })
+    }
+
     render() {
         if (this.state.redirect)
             return <Redirect push to={this.state.redirect}/>;
@@ -160,12 +207,6 @@ class CounterpartyPage extends React.Component {
                     <h1>{this.state.counterparty.name}</h1>
                     <h3>Status: {this.state.counterparty.isActive ? 'Active' : 'Inactive'}</h3>
                     <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(this.state.counterparty.verificationState)}</h3>
-
-                    {/*
-                        <div>Country Name: {this.state.counterparty.countryName}</div>
-                        <div>Preferred Currency: {this.state.counterparty.preferredCurrency}</div>
-                    */}
-
                     <div className="buttons" style={{ marginBottom: '10px' }}>
                         {this.state.counterparty.isActive ?
                             <button className="button" onClick={this.deactivate}>Deactivate</button> :
@@ -183,7 +224,74 @@ class CounterpartyPage extends React.Component {
                     <CounterpartyBalance
                         id={this.props.match.params.id}
                     />
-
+                    <div>
+                        <h2>{'Transfer Balance'}</h2>
+                        <CachedForm
+                            onSubmit={this.submitTransfer}
+                            render={(formik) => (
+                                <div className="form" style={{ width: 400 }}>
+                                    <div className="row">
+                                        <FieldSelect
+                                            formik={formik}
+                                            id="counterpartyAccountId"
+                                            label="From Account"
+                                            placeholder="Please Select"
+                                            required
+                                            options={this.getFormat(this.state.accounts)}
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <FieldSelect
+                                            formik={formik}
+                                            id="agency"
+                                            label="To Agency"
+                                            placeholder="Please Select"
+                                            required
+                                            setValue={this.formChanged}
+                                            options={this.setAgencies(this.state.agencies)}
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <FieldSelect
+                                            formik={formik}
+                                            id="agencyAccount"
+                                            label="To Agency Account"
+                                            placeholder="Please Select"
+                                            required
+                                            options={this.getFormat(this.state.agency)}
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <FieldText
+                                            formik={formik}
+                                            id="amount"
+                                            label="Amount"
+                                            placeholder="Amount"
+                                            numeric
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <FieldSelect
+                                            formik={formik}
+                                            id="currency"
+                                            label="Currency"
+                                            required
+                                            options={[
+                                                { value: 'USD', text: 'USD' },
+                                                { value: 'EUR', text: 'EUR' },
+                                                { value: 'AED', text: 'AED' },
+                                                { value: 'SAR', text: 'SAR' }
+                                            ]}
+                                        />
+                                    </div>
+                                    <div className="row">
+                                        <button type="submit" className="button" style={{ width: '100%' }}>
+                                            Transfer
+                                        </button>
+                                    </div>
+                                </div>
+                        )}/>
+                    </div>
                     <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
                     <div>
                         <div className="buttons voucher-image">
