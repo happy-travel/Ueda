@@ -58,6 +58,11 @@ class UedaMainPage extends React.Component {
                                 Markups
                             </button>
                         </Link>
+                        <Link to="/reports">
+                            <button className="button">
+                                Reports
+                            </button>
+                        </Link>
                     </div>
                 </section>
             </div>
