@@ -55,6 +55,10 @@ const apiMethods = {
     agencyAccountManuallyMinusMoney: (agencyAccountId) => `${a}/agency-accounts/${agencyAccountId}/decrease-manually`,
     transferFromCounterpartyToAgency: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/transfer`,
 
+    supplierConnectivityReport: (from, end) => `${a}/reports/direct-connectivity-report/supplier-wise?from=${from}&end=${end}`,
+    agencyConnectivityReport: (from, end) => `${a}/reports/direct-connectivity-report/agency-wise?from=${from}&end=${end}`,
+    agencyProductivityReport: (from, end) => `${a}/reports/agencies-productivity-report?from=${from}&end=${end}`,
+    fullBookingsReport: (from, end) => `${a}/reports/full-bookings-report?from=${from}&end=${end}`,
     // /counterparties/{counterpartyId}/verification-state
     // /${code}/disable
     // /agencies/{agencyId}/agents/{agentId}/api-client
