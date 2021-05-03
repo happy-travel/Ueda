@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import Route from 'matsumoto/src/core/misc/route';
 import notFoundPage from 'matsumoto/src/pages/common/not-found-page';
-import acceptInvite from 'matsumoto/src/pages/account/accept-invite';
+import acceptInvite from 'matsumoto/src/pages/signup/accept-invite';
 import mainPage from 'pages/main';
 import counterpartiesListPage from 'pages/counterparties/list';
 import counterpartiesItemPage from 'pages/counterparties/counterparty';
@@ -14,7 +14,6 @@ import duplicatesListPage from 'pages/duplicates/list';
 import globalMarkupsPage from 'pages/global-markups/global-markups';
 import duplicatePage from 'pages/duplicates/duplicate';
 import bookingPage from 'pages/bookings/booking';
-import reportsPage from 'pages/reports/reports';
 
 const Routes = () => (
     <Switch>
@@ -28,7 +27,6 @@ const Routes = () => (
         <Route exact path="/duplicates/:id" component={duplicatePage} />
         <Route exact path="/duplicates" component={duplicatesListPage} />
         <Route exact path="/globalmarkups" component={globalMarkupsPage} />
-        <Route exact path="/reports" component={reportsPage} />
         <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route component={notFoundPage} />
