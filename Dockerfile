@@ -1,4 +1,4 @@
-FROM node:14.7.0-alpine as builder
+FROM node:16.0.0-alpine as builder
 
 RUN apk update && \
     apk add --no-cache git python alpine-sdk
@@ -25,7 +25,7 @@ WORKDIR /usr/src/app/public
 
 RUN npm run build
 
-FROM nginx:1.19.1-alpine
+FROM nginx:1.20.0-alpine
 
 RUN apk update && \
     apk add --no-cache curl
