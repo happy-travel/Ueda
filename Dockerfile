@@ -1,7 +1,7 @@
 FROM node:16.0.0-alpine as builder
 
 RUN apk update && \
-    apk add --no-cache git python alpine-sdk
+    apk add --no-cache git python3 alpine-sdk
 
 WORKDIR /usr/src/app
 
