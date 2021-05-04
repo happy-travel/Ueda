@@ -3,6 +3,7 @@ import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldText, FieldSelect, FieldTextarea } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import { copyToClipboard } from 'matsumoto/src/simple/logic';
+import { ValidatorPaymentLink } from '../../components/form/validation/validator-payment-link';
 
 class CreatePaymentLinkPage extends React.Component {
     constructor(props) {
@@ -79,6 +80,7 @@ class CreatePaymentLinkPage extends React.Component {
                     <h1>Create a payment link</h1>
                     <CachedForm
                         onSubmit={this.submit}
+                        validationSchema={ValidatorPaymentLink}
                         render={(formik) => (
                             <div className="form">
                                 <div className="row">
@@ -114,6 +116,7 @@ class CreatePaymentLinkPage extends React.Component {
                                     <FieldTextarea formik={formik}
                                                    id="comment"
                                                    label="Commentary"
+                                                   required
                                     />
                                 </div>
                                 <div className="row submit-holder">
