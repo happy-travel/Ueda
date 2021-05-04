@@ -9,7 +9,7 @@ process.env.NODE_ENV = 'production';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   throw err;
 });
 
@@ -19,6 +19,7 @@ require('../env');
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const fs = require('fs-extra');
+const bfj = require('bfj');
 const webpack = require('webpack');
 const configFactory = require('../webpack.config');
 const paths = require('../paths');
@@ -44,6 +45,9 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
+const argv = process.argv.slice(2);
+const writeStatsJson = argv.indexOf('--stats') !== -1;
+
 // Generate configuration
 const config = configFactory('production');
 
@@ -56,7 +60,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // This lets us display how much they changed later.
     return measureFileSizesBeforeBuild(paths.appBuild);
   })
-  .then((previousFileSizes) => {
+  .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -75,6 +79,11 @@ checkBrowsers(paths.appPath, isInteractive)
             chalk.underline(chalk.yellow('keywords')) +
             ' to learn more about each warning.'
         );
+        console.log(
+          'To ignore, add ' +
+            chalk.cyan('// eslint-disable-next-line') +
+            ' to the line before.\n'
+        );
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
       }
@@ -90,7 +99,7 @@ checkBrowsers(paths.appPath, isInteractive)
       console.log();
 
       const appPackage = require(paths.appPackageJson);
-      const publicUrl = paths.publicUrl;
+      const publicUrl = paths.publicUrlOrPath;
       const publicPath = config.output.publicPath;
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
       printHostingInstructions(
@@ -101,13 +110,13 @@ checkBrowsers(paths.appPath, isInteractive)
         useYarn
       );
     },
-    (err) => {
+    err => {
       console.log(chalk.red('Failed to compile.\n'));
       printBuildError(err);
       process.exit(1);
     }
   )
-  .catch((err) => {
+  .catch(err => {
     if (err && err.message) {
       console.log(err.message);
     }
@@ -116,18 +125,6 @@ checkBrowsers(paths.appPath, isInteractive)
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
-  // We used to support resolving modules according to `NODE_PATH`.
-  // This now has been deprecated in favor of jsconfig/tsconfig.json
-  // This lets you use absolute paths in imports inside large monorepos:
-  if (process.env.NODE_PATH) {
-    console.log(
-      chalk.yellow(
-        'Setting NODE_PATH to resolve modules absolutely has been deprecated in favor of setting baseUrl in jsconfig.json and will be removed in a future major release of create-react-app.'
-      )
-    );
-    console.log();
-  }
-
   console.log('Creating an optimized production build...');
 
   const compiler = webpack(config);
@@ -138,8 +135,18 @@ function build(previousFileSizes) {
         if (!err.message) {
           return reject(err);
         }
+
+        let errMessage = err.message;
+
+        // Add additional information for postcss errors
+        if (Object.prototype.hasOwnProperty.call(err, 'postcssNode')) {
+          errMessage +=
+            '\nCompileError: Begins at CSS selector ' +
+            err['postcssNode'].selector;
+        }
+
         messages = formatWebpackMessages({
-          errors: [err.message],
+          errors: [errMessage],
           warnings: [],
         });
       } else {
@@ -170,11 +177,20 @@ function build(previousFileSizes) {
         return reject(new Error(messages.warnings.join('\n\n')));
       }
 
-      return resolve({
+      const resolveArgs = {
         stats,
         previousFileSizes,
         warnings: messages.warnings,
-      });
+      };
+
+      if (writeStatsJson) {
+        return bfj
+          .write(paths.appBuild + '/bundle-stats.json', stats.toJson())
+          .then(() => resolve(resolveArgs))
+          .catch(error => reject(new Error(error)));
+      }
+
+      return resolve(resolveArgs);
     });
   });
 }
@@ -186,6 +202,6 @@ function copyPublicFolder() {
   });
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
-    filter: (file) => file !== paths.appHtml,
+    filter: file => file !== paths.appHtml,
   });
 }

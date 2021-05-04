@@ -38,11 +38,8 @@ const apiMethods = {
     bookingDiscard: (bookingId) => `${a}/accommodations/bookings/${bookingId}/discard`,
     bookingCancel: (bookingId) => `${a}/accommodations/bookings/${bookingId}/cancel`,
 
-    markups: `${a}/markups`,
-    markup: (id) => `${a}/markups/{id}`,
-    markupGlobal: `${a}/global-markups`,
-    markupPolicies: (scopeType, scopeId) => `${a}/markups/${scopeType}/${scopeId}`,
-    markupTemplates: `${a}/markups/templates`,
+    markupsGlobal: () => `${a}/global-markups`,
+    markupGlobal: (id, policyId) => `${a}/global-markups/${policyId}`,
 
     paymentCompleteManually: (bookingId) => `${a}/payments/offline/accommodations/bookings${bookingId}`,
     paymentConfirm: (bookingId) => `${a}/payments/credit-card/accommodations/bookings${bookingId}/confirm`,

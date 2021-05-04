@@ -220,12 +220,13 @@ class CounterpartyPage extends React.Component {
                         <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
                     </div>
                     {Boolean(this.state.balance) &&
-                    <div>
-                        <h2>Balance: {price(this.state.balance.currency, this.state.balance.balance)}</h2>
-                        <CounterpartyBalance
-                            accounts={this.state.accounts}
-                        />
-                    </div>}
+                        <>
+                            <h2>Balance: {price(this.state.balance.currency, this.state.balance.balance)}</h2>
+                            <CounterpartyBalance
+                                id={this.state.accounts?.[0].id}
+                            />
+                        </>
+                    }
                     <div>
                         <h2>{'Transfer Balance'}</h2>
                         <CachedForm

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getInvite, forgetInvite } from 'matsumoto/src/core/auth/invite';
+import { getInvite, forgetInvite } from 'matsumoto/src/tasks/signup/invitation';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
