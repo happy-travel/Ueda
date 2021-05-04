@@ -28,6 +28,7 @@ const Routes = () => (
         <Route exact path="/duplicates/:id" component={duplicatePage} />
         <Route exact path="/duplicates" component={duplicatesListPage} />
         <Route exact path="/globalmarkups" component={globalMarkupsPage} />
+        <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route exact path="/reports" component={reportsPage} />
         <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
         <Route component={notFoundPage} />
