@@ -7,7 +7,7 @@ const CounterpartyBalance = ({ accounts }) => {
     const [isDecreaseManuallyModalShown, showDecreaseManually] = useState(null);
     const [isReplenishModalShown, showReplenish] = useState(null);
     const [isSubtractModalShown, showSubtract] = useState(null);
-    let defaultAccountId = accounts[0].id;
+    let defaultAccountId = accounts?.[0].id;
     return (
         <div>
             <div className="buttons">
