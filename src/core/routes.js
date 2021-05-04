@@ -14,6 +14,7 @@ import duplicatesListPage from 'pages/duplicates/list';
 import globalMarkupsPage from 'pages/global-markups/global-markups';
 import duplicatePage from 'pages/duplicates/duplicate';
 import bookingPage from 'pages/bookings/booking';
+import reportsPage from 'pages/reports/reports';
 
 const Routes = () => (
     <Switch>
@@ -27,8 +28,8 @@ const Routes = () => (
         <Route exact path="/duplicates/:id" component={duplicatePage} />
         <Route exact path="/duplicates" component={duplicatesListPage} />
         <Route exact path="/globalmarkups" component={globalMarkupsPage} />
+        <Route exact path="/reports" component={reportsPage} />
         <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
-        <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route component={notFoundPage} />
     </Switch>
 );
