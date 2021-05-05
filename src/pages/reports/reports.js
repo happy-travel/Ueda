@@ -5,7 +5,7 @@ import Notifications from 'matsumoto/src/stores/notifications-store';
 import FieldDatepicker from 'matsumoto/src/components/form/field-datepicker/field-datepicker';
 import { FieldSelect } from 'matsumoto/src/components/form';
 import { date } from 'matsumoto/src/simple';
-import { Formik } from 'formik';
+import CachedForm from 'matsumoto/src/components/form/cached-form';
 
 
 
@@ -31,7 +31,7 @@ const reportResponse = (res, values) => {
 
             const objectUrl = window.URL.createObjectURL(blobby);
             anchor.href = objectUrl;
-            anchor.download = `report${values.checkInDate.toISOString()}${values.checkOutDate.toISOString()}.pdf`;
+            anchor.download = `report${values.start.toISOString()}${values.end.toISOString()}.pdf`;
             anchor.click();
 
             window.URL.revokeObjectURL(objectUrl);
@@ -40,7 +40,7 @@ const reportResponse = (res, values) => {
 
 const downloadReport = (values) => {
     API.get({
-        url: apiMethods[values.reportMethod](values.checkInDate.toISOString(), values.checkOutDate.toISOString()),
+        url: apiMethods[values.reportMethod](values.start.toISOString(), values.end.toISOString()),
         response: (res) => reportResponse(res, values)
     })
 }
@@ -48,7 +48,7 @@ const downloadReport = (values) => {
 const ReportsPage = () => (
     <div>
         <section>
-            <Formik
+            <CachedForm
                 initialValues={initialDateValues}
                 onSubmit={downloadReport}
                 render={(formik) => (
