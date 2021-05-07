@@ -15,12 +15,20 @@ import globalMarkupsPage from 'pages/global-markups/global-markups';
 import duplicatePage from 'pages/duplicates/duplicate';
 import bookingPage from 'pages/bookings/booking';
 import reportsPage from 'pages/reports/reports';
+import CounterPartyTransferBalancePage from '../pages/counterparties/counterparty-transfer-balance';
+import CounterPartyMarkupManagerPage from '../pages/counterparties/counterparty-markup-manager';
 
 const Routes = () => (
     <Switch>
         <Route exact path="/" component={mainPage} />
-        <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
+
+
         <Route exact path="/counterparties" component={counterpartiesListPage} />
+        <Route exact path="/counterparties/:id/transfer-balance" component={CounterPartyTransferBalancePage} />
+        <Route exact path="/counterparties/:id/markup-manager" component={CounterPartyMarkupManagerPage} />
+        <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
+
+
         <Route exact path="/counterparties/agencies/:id" component={agencyPage} />
         <Route exact path="/counterparties/agencies/:id/agents/:agentId" component={agentPage} />
         <Route exact path="/paymentlinks" component={createPaymentLinkPage} />
