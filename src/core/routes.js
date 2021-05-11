@@ -23,16 +23,12 @@ import CounterpartyDetailsPage from '../pages/counterparties/counterparty-detail
 const Routes = () => (
     <Switch>
         <Route exact path="/" component={mainPage} />
-
-
         <Route exact path="/counterparties" component={counterpartiesListPage} />
         <Route exact path="/counterparties/:id/transfer-balance" component={CounterPartyTransferBalancePage} />
         <Route exact path="/counterparties/:id/markup-manager" component={CounterPartyMarkupManagerPage} />
         <Route exact path="/counterparties/:id/agencies" component={CounterPartyAgenciesPage} />
         <Route exact path="/counterparties/:id/details" component={ CounterpartyDetailsPage} />
         <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
-
-
         <Route exact path="/counterparties/agencies/:id" component={agencyPage} />
         <Route exact path="/counterparties/agencies/:id/agents/:agentId" component={agentPage} />
         <Route exact path="/paymentlinks" component={createPaymentLinkPage} />
