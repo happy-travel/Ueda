@@ -17,6 +17,8 @@ import bookingPage from 'pages/bookings/booking';
 import reportsPage from 'pages/reports/reports';
 import CounterPartyTransferBalancePage from '../pages/counterparties/counterparty-transfer-balance';
 import CounterPartyMarkupManagerPage from '../pages/counterparties/counterparty-markup-manager';
+import CounterPartyAgenciesPage from '../pages/counterparties/counterparty-agencies';
+import CounterpartyDetailsPage from '../pages/counterparties/counterparty-details';
 
 const Routes = () => (
     <Switch>
@@ -26,6 +28,8 @@ const Routes = () => (
         <Route exact path="/counterparties" component={counterpartiesListPage} />
         <Route exact path="/counterparties/:id/transfer-balance" component={CounterPartyTransferBalancePage} />
         <Route exact path="/counterparties/:id/markup-manager" component={CounterPartyMarkupManagerPage} />
+        <Route exact path="/counterparties/:id/agencies" component={CounterPartyAgenciesPage} />
+        <Route exact path="/counterparties/:id/details" component={ CounterpartyDetailsPage} />
         <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
 
 
