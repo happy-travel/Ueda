@@ -20,3 +20,4 @@ const CounterPartyMarkupManager = ({ match }) => {
 }
 
 export default CounterPartyMarkupManager;
+

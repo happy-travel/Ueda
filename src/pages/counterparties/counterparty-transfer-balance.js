@@ -155,3 +155,4 @@ const CounterPartyTransferBalance = ({ match }) => {
 }
 
 export default CounterPartyTransferBalance;
+

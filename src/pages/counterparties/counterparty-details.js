@@ -76,3 +76,4 @@ const CounterpartyDetails = ({ match }) => {
 }
 
 export default CounterpartyDetails;
+
