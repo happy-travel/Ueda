@@ -42,7 +42,6 @@ const CounterpartyAgencies = ({ match }) => {
             </section>
         </div>
     )
-
 }
 
 export default CounterpartyAgencies;
