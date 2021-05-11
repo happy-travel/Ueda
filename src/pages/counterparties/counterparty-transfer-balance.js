@@ -14,7 +14,6 @@ const CounterPartyTransferBalance = ({ match }) => {
     let [agency, setAgency] = useState(null);
     let [balance, setBalance] = useState(null);
 
-
     useEffect(() => {
         API.get({
             url: apiMethods.counterpartyAccountsList(match.params.id),
