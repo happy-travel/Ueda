@@ -28,8 +28,8 @@ class AgencyPage extends React.Component {
             success: (availabilitySearchOptions) => this.setState({
                 availabilitySearchOptions: {
                     ...availabilitySearchOptions,
-                    enabledSuppliers: availabilitySearchOptions
-                        .enabledSuppliers
+                    enabledSuppliers: Object.keys(availabilitySearchOptions
+                        .enabledSuppliers)
                         .reduce(( a, key ) => (a[key] = true, a), {})
                 }
             }),
