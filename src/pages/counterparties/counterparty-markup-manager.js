@@ -5,17 +5,15 @@ import apiMethods from '../../core/methods';
 
 const CounterPartyMarkupManager = ({ match }) => {
     return (
-        <div>
-            <CounterpartyNavigation match={match} />
-                <section className="admin-tab-element-wrapper">
-                    <Markups
-                        id={ match.params.id }
-                        emptyText={'No markups'}
-                        markupsRoute={() => apiMethods.counterpartyMarkups(match.params.id)}
-                        markupRoute={() => apiMethods.counterpartyMarkups(match.params.id)}
-                    />
-                </section>
-        </div>
+        <section>
+            <CounterpartyNavigation match={ match } />
+            <Markups
+                    id={ match.params.id }
+                    emptyText={'No markups'}
+                    markupsRoute={() => apiMethods.counterpartyMarkups(match.params.id)}
+                    markupRoute={() => apiMethods.counterpartyMarkups(match.params.id)}
+                />
+        </section>
     )
 }
 
