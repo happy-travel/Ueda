@@ -4,15 +4,14 @@ import { API } from 'matsumoto/src/core';
 import apiMethods from '../../core/methods';
 import { price } from 'matsumoto/src/simple';
 import CounterpartyBalance from './counterparty-balance';
-import { NavLink } from 'react-router-dom';
 import CounterpartyNavigation from './counterparty-navigation';
 
 const CounterPartyTransferBalance = ({ match }) => {
 
-    let [accounts, setAccounts] = useState(null);
-    let [agencies, setAgencies] = useState(null);
-    let [agency, setAgency] = useState(null);
-    let [balance, setBalance] = useState(null);
+    const [accounts, setAccounts] = useState(null);
+    const [agencies, setAgencies] = useState(null);
+    const [agency, setAgency] = useState(null);
+    const [balance, setBalance] = useState(null);
 
     useEffect(() => {
         API.get({

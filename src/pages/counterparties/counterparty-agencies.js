@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'matsumoto/src/components/table';
 import { API, redirect } from 'matsumoto/src/core';
-import apiMethods from '../../core/methods';
+import apiMethods from 'core/methods';
 import CounterpartyNavigation from './counterparty-navigation';
 
 const CounterpartyAgencies = ({ match }) => {
