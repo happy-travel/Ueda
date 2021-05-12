@@ -31,7 +31,7 @@ const reportResponse = (res, values) => {
 
             const objectUrl = window.URL.createObjectURL(blobby);
             anchor.href = objectUrl;
-            anchor.download = `report${values.start.toISOString()}${values.end.toISOString()}.pdf`;
+            anchor.download = `report${values.start.toISOString()}${values.end.toISOString()}.csv`;
             anchor.click();
 
             window.URL.revokeObjectURL(objectUrl);
