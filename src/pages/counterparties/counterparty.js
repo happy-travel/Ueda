@@ -1,122 +1,62 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { API } from 'matsumoto/src/core';
-import { Loader } from 'matsumoto/src/components/simple';
-import { price } from 'matsumoto/src/simple';
-import { CachedForm, FieldText, FieldSelect } from 'matsumoto/src/components/form';
-import apiMethods from 'core/methods';
-import Table from 'matsumoto/src/components/table';
-import CounterpartyBalance from './counterparty-balance';
-import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
+import React, { useState, useEffect } from 'react';
+import CounterpartyNavigation from './counterparty-navigation';
 import { remapStatus } from 'matsumoto/src/simple';
-import Notifications from 'matsumoto/src/stores/notifications-store'
-import Markups from 'matsumoto/src/parts/markups/markups';
-import { PAYMENT_METHODS } from 'enum';
-// import { generateOptions } from 'matsumoto/src/pages/settings/child-agencies/parts/transfer-balance';
+import { API } from 'matsumoto/src/core';
+import apiMethods from '../../core/methods';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
-class CounterpartyPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            counterparty: null,
-            agencies: null,
-            agency: null,
-            bookings: null,
-            balance: null,
-            accounts: null,
-        }
-    }
+const CounterpartyPage = ({ match }) => {
 
-    componentDidMount() {
+    let [counterparty, setCounterparty] = useState(null);
+
+    useEffect(() => {
         API.get({
-            url: apiMethods.counterparty(this.props.match.params.id),
+            url: apiMethods.counterparty(match.params.id),
             success: (counterparty) => {
-                this.setState({
-                    counterparty
-                });
+                setCounterparty(counterparty)
             }
         });
-        API.get({
-            url: apiMethods.agencies(this.props.match.params.id),
-            success: (agencies) => {
-                this.setState({
-                    agencies
-                });
-            }
-        });
-        API.get({
-            url: apiMethods.bookingsByCounterparty(this.props.match.params.id),
-            success: (bookings) => {
-                this.setState({
-                    bookings
-                });
-            }
-        })
-        API.get({
-            url: apiMethods.accountBalance(this.props.match.params.id, 'USD'),
-            success: (balance) => {
-                this.setState({
-                    balance
-                });
-            }
-        })
-        API.get({
-            url: apiMethods.counterpartyAccountsList(this.props.match.params.id),
-            success: (accounts) => {
-                this.setState({
-                    accounts
-                });
-            }
-        });
-    }
+    }, []);
 
-    submit = (body) => {
-        API.put({
-            url: apiMethods.counterparty(this.props.match.params.id),
-            body,
-            success: () => this.setState({ redirect: '/counterparties' })
-        });
-    }
-
-    activate = () => {
+    const activate = () => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.activateCounterparty(this.props.match.params.id),
+            url: apiMethods.activateCounterparty(match.params.id),
             body: { reason },
             success: () => Notifications.addNotification('Counterparty activated', null, 'success')
         });
     }
 
-    deactivate = () => {
+    const deactivate = () => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.deactivateCounterparty(this.props.match.params.id),
+            url: apiMethods.deactivateCounterparty(match.params.id),
             body: { reason },
             success: () => Notifications.addNotification('Counterparty deactivated', null, 'success')
         });
     }
 
-    verify = (contractKind) => {
+    const verify = (contractKind) => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.verifyCounterparty(this.props.match.params.id),
+            url: apiMethods.verifyCounterparty(match.params.id),
             body: { contractKind, reason },
             success: () => Notifications.addNotification('Counterparty verified', null, 'success')
         });
     }
 
-    verifyReadonly = () => {
+    const verifyReadonly = () => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.verifyReadonlyCounterparty(this.props.match.params.id),
+            url: apiMethods.verifyReadonlyCounterparty(match.params.id),
             body: { reason },
             success: () => Notifications.addNotification('Counterparty verified readonly', null, 'success')
         });
     }
 
-    downloadContract = () => {
+    const downloadContract = () => {
         API.get({
-            url: apiMethods.contractFile(this.props.match.params.id),
+            url: apiMethods.contractFile(match.params.id),
             response: (res) => {
                 res.blob().then((blobby) => {
                     var anchor = document.createElement('a');
@@ -133,10 +73,10 @@ class CounterpartyPage extends React.Component {
         })
     }
 
-    uploadContract = (e) => {
+    const uploadContract = (e) => {
         e.preventDefault();
         API.put({
-            url: apiMethods.contractFile(this.props.match.params.id),
+            url: apiMethods.contractFile(match.params.id),
             formDataBody: new FormData(document.getElementById('formElem')),
             success: () => this.setState({
                 counterparty: {
@@ -147,243 +87,46 @@ class CounterpartyPage extends React.Component {
         });
     }
 
-    getFormat = (accounts) => {
-        return accounts?.map((item) => (
-            {
-                text: `Account #${item.id}: ${price(item.balance)}`,
-                value: item.id
-            }
-        ));
-    }
-
-    setAgencies = (agencies) => {
-        return agencies?.map((item, index) => (
-            {
-                text: `Agency #${item.id}`,
-                value: index
-            }
-        ));
-    }
-
-    formChanged = (id) => {
-        API.get({
-            url: apiMethods.agency(this.state.agencies[id].id),
-            success: (agency) => {
-                this.setState({
-                    agency
-                });
-            }
-        })
-    }
-
-    submitTransfer = (values) => {
-        API.post({
-            url: apiMethods.transferFromCounterpartyToAgency(values.counterpartyAccountId),
-            body: values
-        })
-    }
-
-    render() {
-        if (this.state.redirect)
-            return <Redirect push to={this.state.redirect}/>;
-
-        if (!this.state.counterparty)
-            return <Loader />;
-
-        return (
-            <div className="settings block">
-                <section>
-                    <Breadcrumbs
-                        items={[
-                            {
-                                text: 'Сounterparties',
-                                link: '/counterparties'
-                            }, {
-                                text: this.state.counterparty.name
-                            }
-                        ]}
-                        backLink="/counterparties"
-                    />
-                    <h1>{this.state.counterparty.name}</h1>
-                    <h3>Status: {this.state.counterparty.isActive ? 'Active' : 'Inactive'}</h3>
-                    <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(this.state.counterparty.verificationState)}</h3>
-                    <div className="buttons" style={{ marginBottom: '10px' }}>
-                        {this.state.counterparty.isActive ?
-                            <button className="button" onClick={this.deactivate}>Deactivate</button> :
-                            <button className="button" onClick={this.activate}>Activate</button>}
-                        {this.state.counterparty.verificationState === 'ReadOnly' &&
-                        <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
-                            <button className="button" onClick={() => this.verify('CashPayments')}>Verify Cash Payments</button>
-                            <button className="button" onClick={() => this.verify('CreditPayments')}>Verify Credit Payments</button>
-                            <button className="button" onClick={() => this.verify('CreditCardPayments')}>Verify Credit Card Payments</button>
-                        </div>}
-                        <button className="button" onClick={this.verifyReadonly}>Verify Readonly</button>
-                    </div>
-                    {Boolean(this.state.balance) &&
-                        <>
-                            <h2>Balance: {price(this.state.balance.currency, this.state.balance.balance)}</h2>
-                            <CounterpartyBalance
-                                id={this.state.accounts?.[0].id}
-                            />
-                        </>
-                    }
-                    <div>
-                        <h2>{'Transfer Balance'}</h2>
-                        <CachedForm
-                            onSubmit={this.submitTransfer}
-                            render={(formik) => (
-                                <div className="form" style={{ width: 400 }}>
-                                    <div className="row">
-                                        <FieldSelect
-                                            formik={formik}
-                                            id="counterpartyAccountId"
-                                            label="From Account"
-                                            placeholder="Please Select"
-                                            required
-                                            options={this.getFormat(this.state.accounts)}
-                                        />
-                                    </div>
-                                    <div className="row">
-                                        <FieldSelect
-                                            formik={formik}
-                                            id="agency"
-                                            label="To Agency"
-                                            placeholder="Please Select"
-                                            required
-                                            setValue={this.formChanged}
-                                            options={this.setAgencies(this.state.agencies)}
-                                        />
-                                    </div>
-                                    <div className="row">
-                                        <FieldSelect
-                                            formik={formik}
-                                            id="agencyAccount"
-                                            label="To Agency Account"
-                                            placeholder="Please Select"
-                                            required
-                                            options={this.getFormat(this.state.agency)}
-                                        />
-                                    </div>
-                                    <div className="row">
-                                        <FieldText
-                                            formik={formik}
-                                            id="amount"
-                                            label="Amount"
-                                            placeholder="Amount"
-                                            numeric
-                                        />
-                                    </div>
-                                    <div className="row">
-                                        <FieldSelect
-                                            formik={formik}
-                                            id="currency"
-                                            label="Currency"
-                                            required
-                                            options={[
-                                                { value: 'USD', text: 'USD' },
-                                                { value: 'EUR', text: 'EUR' },
-                                                { value: 'AED', text: 'AED' },
-                                                { value: 'SAR', text: 'SAR' }
-                                            ]}
-                                        />
-                                    </div>
-                                    <div className="row">
-                                        <button type="submit" className="button" style={{ width: '100%' }}>
-                                            Transfer
-                                        </button>
-                                    </div>
-                                </div>
-                        )}/>
-                    </div>
-                    <h2>Contract {!this.state.counterparty.isContractUploaded && ' (No contract uploaded)'}</h2>
-                    <div>
-                        <div className="buttons voucher-image">
-                                <div style={{ display: 'flex' }}>
-                                    {this.state.counterparty.isContractUploaded &&
-                                    <button className="button" onClick={this.downloadContract}>
-                                        Download Contract
-                                    </button>}
-                                    <form id="formElem" onSubmit={this.uploadContract}>
-                                        <label className="button file-upload">
-                                            {this.state.counterparty.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
-                                            <input type="file" name="file" accept="application/pdf"
-                                                   onChange={this.uploadContract}/>
-                                        </label>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                    <h2>Agencies</h2>
-                    <Table
-                        list={this.state.agencies}
-                        columns={ [
-                            {
-                                header: 'ID',
-                                cell: 'id',
-                            },
-                            {
-                                header: 'Name',
-                                cell: 'name'
-                            },
-                        ]}
-                        onRowClick={(item) => this.setState({
-                            redirect: `/counterparties/agencies/${item.id}`
-                        })}
-                        textEmptyResult="No agencies"
-                        textEmptyList="No agencies"
-                    />
-                    <Markups
-                        id={ this.state.counterparty.id }
-                        emptyText={'No markups'}
-                        markupsRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
-                        markupRoute={() => apiMethods.counterpartyMarkups(this.state.counterparty.id)}
-                    />
-
-                    <h2>Counterparty details</h2>
-                    <CachedForm
-                        initialValues={this.state.counterparty}
-                        enableReinitialize
-                        onSubmit={this.submit}
-                        render={(formik) => (
-                            <div className="form">
-                                <div className="row"><FieldText formik={formik} id="name" label="Name" /></div>
-                                <div className="row"><FieldText formik={formik} id="address" label="Address" /></div>
-                                <div className="row"><FieldText formik={formik} id="countryCode" label="Country Code" /></div>
-                                <div className="row"><FieldText formik={formik} id="city" label="City" /></div>
-                                <div className="row"><FieldText formik={formik} id="phone" label="Phone" /></div>
-                                <div className="row"><FieldText formik={formik} id="fax" label="Fax" /></div>
-                                <div className="row"><FieldText formik={formik} id="postalCode" label="Postal Code" /></div>
-                                <div className="row">
-                                    <FieldSelect formik={formik}
-                                                 id="preferredPaymentMethod"
-                                                 label="Preferred Payment Method"
-                                                 options={[
-                                                     { value: PAYMENT_METHODS.ACCOUNT, text: 'Bank transfer' },
-                                                     { value: PAYMENT_METHODS.CARD, text: 'Credit card' },
-                                                     { value: PAYMENT_METHODS.OFFLINE, text: 'Offline' }
-                                                 ]}
-                                    />
-                                </div>
-                                <div className="row"><FieldText formik={formik} id="website" label="Website" /></div>
-                                <div className="row"><FieldText formik={formik} id="vatNumber" label="VAT Number" /></div>
-                                <div className="row"><FieldText formik={formik} id="billingEmail" label="Billing Email" /></div>
-                                <div className="row submit-holder">
-                                    <div className="field">
-                                        <div className="inner">
-                                            <button type="submit" className="button">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    />
-                </section>
+    return (
+        <section>
+            <CounterpartyNavigation match={match} />
+            <h1>{counterparty?.name}</h1>
+            <h3>Status: {counterparty?.isActive ? 'Active' : 'Inactive'}</h3>
+            <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(counterparty?.verificationState)}</h3>
+            <div className="buttons" style={{ marginBottom: '10px' }}>
+                {counterparty?.isActive ?
+                    <button className="button" onClick={deactivate}>Deactivate</button> :
+                    <button className="button" onClick={activate}>Activate</button>}
+                {counterparty?.verificationState === 'ReadOnly' &&
+                <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
+                    <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
+                    <button className="button" onClick={() => verify('CreditPayments')}>Verify Credit Payments</button>
+                    <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card Payments</button>
+                </div>}
+                <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
             </div>
-        );
-    }
+            <div className="admin-tab-element-wrapper block">
+                <h2>Contract {!counterparty?.isContractUploaded && ' (No contract uploaded)'}</h2>
+                <div className="buttons voucher-image">
+                    <div style={{ display: 'flex' }}>
+                        {counterparty?.isContractUploaded &&
+                        <button className="button" onClick={downloadContract}>
+                            Download Contract
+                        </button>}
+                        <form id="formElem" onSubmit={uploadContract}>
+                            <label className="button file-upload">
+                                {counterparty?.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
+                                <input type="file" name="file" accept="application/pdf"
+                                       onChange={uploadContract}/>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }
 
+
 export default CounterpartyPage;
+

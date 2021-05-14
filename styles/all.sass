@@ -31,3 +31,35 @@
 .global-markups
     h2
         margin-bottom: 25px
+
+
+.counterparty-tabs-navigation
+    box-shadow: 0 .5px 0 $color-shadow-border
+    margin: 60px 0 60px 0
+
+    section
+        padding: 0 7px
+        display: flex
+        justify-content: flex-start
+    a
+        font-size: 13px
+        line-height: 16px
+        text-align: center
+        color: $color-text-light
+        margin: 0 10px
+        padding: 19px 14px
+        position: relative
+        &:hover
+            color: $color-text
+        &.active
+            cursor: default
+            color: $color-brand
+            &:after
+                content: ' '
+                height: 4px
+                width: 100%
+                background: linear-gradient(90deg, #F9A51B 0%, #FECE08 100%)
+                border-radius: 25px
+                position: absolute
+                bottom: 0
+                left: 0
