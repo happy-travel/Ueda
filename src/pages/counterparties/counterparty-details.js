@@ -7,7 +7,7 @@ import CounterpartyNavigation from './counterparty-navigation';
 
 const CounterpartyDetails = ({ match }) => {
 
-    let [counterparty, setCounterparty] = useState(null);
+    const [counterparty, setCounterparty] = useState(null);
 
     useEffect(() => {
         API.get({
