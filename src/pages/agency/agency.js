@@ -1,61 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import AgentsList from './agents';
 import SearchOptionsForm from './search-options-form';
 import Bookings from 'parts/bookings/bookings';
-import AgencyBalance from './agency-balance';
 import Notifications from 'matsumoto/src/stores/notifications-store';
+import { price } from 'matsumoto/src/simple';
 
-class AgencyPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            displayedPaymentOptions: null,
-            availabilitySearchOptions: null
-        };
-    }
+const AgencyPage = ({ match }) => {
+    const [displayedPaymentOptions, setDisplayedPaymentOptions] = useState(null);
+    const [bookings, setBookings] = useState(null);
+    const [availabilitySearchOptions, setAvailabilitySearchOptions] = useState(null);
+    const [agencyAccounts, setAgencyAccounts] = useState(null);
 
-    componentDidMount() {
+    useEffect(() => {
         API.get({
-            url: apiMethods.displayedPaymentOptions(this.props.match.params.id),
-            success: (displayedPaymentOptions) => this.setState({ displayedPaymentOptions }),
-            error: this.setState({ displayedPaymentOptions: false })
+            url: apiMethods.displayedPaymentOptions(match.params.id),
+            success: (displayedPaymentOptions) => setDisplayedPaymentOptions(displayedPaymentOptions),
+            error: setDisplayedPaymentOptions(false)
         })
         API.get({
-            url: apiMethods.availabilitySearchOptions(this.props.match.params.id),
-            success: (availabilitySearchOptions) => this.setState({
-                availabilitySearchOptions: {
-                    ...availabilitySearchOptions,
-                    enabledSuppliers: Object.keys(availabilitySearchOptions
-                        .enabledSuppliers)
-                        .reduce(( a, key ) => (a[key] = true, a), {})
-                }
-            }),
-            error: this.setState({ availabilitySearchOptions: false })
+            url: apiMethods.bookingsByAgency(match.params.id),
+            success: (bookings) => {setBookings(bookings)}
         })
         API.get({
-            url: apiMethods.bookingsByAgency(this.props.match.params.id),
-            success: (bookings) => {
-                this.setState({
-                    bookings
-                });
-            }
+            url: apiMethods.agenciesAccounts(match.params.id),
+            success: (agencyAccounts) => setAgencyAccounts(agencyAccounts),
         })
-    }
+    }, [])
 
-    submitDisplayedPaymentOptions = (values) => {
+    const submitDisplayedPaymentOptions = (values) => {
         API.put({
-            url: apiMethods.displayedPaymentOptions(this.props.match.params.id),
+            url: apiMethods.displayedPaymentOptions(match.params.id),
             body: values.displayedPaymentOptions,
             success: () => Notifications.addNotification('Saved', null, 'success')
         });
     }
 
-    submitAvailabilitySearchOptions = (values) => {
+    const submitAvailabilitySearchOptions = (values) => {
         API.put({
-            url: apiMethods.availabilitySearchOptions(this.props.match.params.id),
+            url: apiMethods.availabilitySearchOptions(match.params.id),
             body: {
                 values,
                 enabledSuppliers: values
@@ -68,92 +53,87 @@ class AgencyPage extends React.Component {
         });
     }
 
-    activate = () => {
+    const activate = () => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.activateAgency(this.props.match.params.id),
+            url: apiMethods.activateAgency(match.params.id),
             body: { reason },
             success: () => Notifications.addNotification('Agency activated', null, 'success')
         });
     }
 
-    deactivate = () => {
+    const deactivate = () => {
         let reason = prompt('Enter a reason');
         API.post({
-            url: apiMethods.deactivateAgency(this.props.match.params.id),
+            url: apiMethods.deactivateAgency(match.params.id),
             body: { reason },
             success: () => Notifications.addNotification('Agency deactivated', null, 'success')
         });
     }
+    return (
+        <div className="settings block">
+            <section>
+                <h1>Agency #{match.params.id}</h1>
 
-    render() {
-        return (
-            <div className="settings block">
-                <section>
-                    <h1>Agency #{this.props.match.params.id}</h1>
+                <div className="buttons">
+                    <button className="button" onClick={activate}>Activate</button>
+                    <button className="button" onClick={deactivate}>Deactivate</button>
+                </div>
+            </section>
+            <section>
+                {Boolean(agencyAccounts) &&
+                <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>}
+            </section>
+            <section>
+                <h1>Displayed Payment Options</h1>
 
-                    <div className="buttons">
-                        <button className="button" onClick={this.activate}>Activate</button>
-                        <button className="button" onClick={this.deactivate}>Deactivate</button>
-                    </div>
-                </section>
-                <section>
-                    <h1>Displayed Payment Options</h1>
-
-                    <CachedForm
-                        initialValues={{
-                            displayedPaymentOptions: this.state.displayedPaymentOptions
-                        }}
-                        enableReinitialize
-                        onSubmit={this.submitDisplayedPaymentOptions}
-                        render={(formik) => (
-                            <div className="form">
-                                <div className="row">
-                                    <FieldSelect formik={formik}
-                                                 id="displayedPaymentOptions"
-                                                 label="Displayed Payment Options"
-                                                 options={[
-                                                     { value: '', text: 'Not selected' },
-                                                     { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
-                                                     { value: 'CreditCard', text: 'Credit Card' }
-                                                 ]}
-                                    />
-                                </div>
-                                <div className="row submit-holder">
-                                    <div className="field">
-                                        <div className="inner">
-                                            <button type="submit" className="button">
-                                                Submit
-                                            </button>
-                                        </div>
+                <CachedForm
+                    initialValues={{
+                        displayedPaymentOptions: displayedPaymentOptions
+                    }}
+                    enableReinitialize
+                    onSubmit={submitDisplayedPaymentOptions}
+                    render={(formik) => (
+                        <div className="form">
+                            <div className="row">
+                                <FieldSelect formik={formik}
+                                             id="displayedPaymentOptions"
+                                             label="Displayed Payment Options"
+                                             options={[
+                                                 { value: '', text: 'Not selected' },
+                                                 { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
+                                                 { value: 'CreditCard', text: 'Credit Card' }
+                                             ]}
+                                />
+                            </div>
+                            <div className="row submit-holder">
+                                <div className="field">
+                                    <div className="inner">
+                                        <button type="submit" className="button">
+                                            Submit
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        )}
-                    />
-                </section>
-                <section>
-                    <h1>Availability Search Options</h1>
-                    <SearchOptionsForm
-                        initialValues={this.state.availabilitySearchOptions}
-                        onSubmit={this.submitAvailabilitySearchOptions}
-                    />
-                </section>
-                <section>
-                    <h1>Balance</h1>
-                    <AgencyBalance
-                        id={this.props.match.params.id}
-                    />
-                </section>
-                <AgentsList id={this.props.match.params.id} />
-                <section>
-                    <Bookings
-                        bookings={this.state.bookings}
-                    />
-                </section>
-            </div>
-        );
-    }
+                        </div>
+                    )}
+                />
+            </section>
+            <section>
+                <h1>Availability Search Options</h1>
+                <SearchOptionsForm
+                    initialValues={availabilitySearchOptions}
+                    onSubmit={submitAvailabilitySearchOptions}
+                />
+            </section>
+            <AgentsList id={match.params.id} />
+            <section>
+                <Bookings
+                    bookings={bookings}
+                />
+            </section>
+        </div>
+    );
 }
 
 export default AgencyPage;

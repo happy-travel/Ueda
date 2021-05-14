@@ -11,6 +11,7 @@ const apiMethods = {
     agency: (agencyId) => `${a}/agencies/${agencyId}/child-agencies`,
     activateCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/activate`,
     deactivateCounterparty: (counterpartyId) => `${a}/counterparties/${counterpartyId}/deactivate`,
+    agenciesAccounts: (agencyId) => `${a}/agencies/${agencyId}/accounts`,
     activateAgency: (agencyId) => `${a}/agencies/${agencyId}/activate`,
     deactivateAgency: (agencyId) => `${a}/agencies/${agencyId}/deactivate`,
     agencyAgents: (agencyId) => `${a}/agencies/${agencyId}/agents`,
@@ -48,8 +49,6 @@ const apiMethods = {
     accountMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/subtract`,
     accountManuallyPlusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
     accountManuallyMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
-    agencyAccountManuallyPlusMoney: (agencyAccountId) => `${a}/agency-accounts/${agencyAccountId}/increase-manually`,
-    agencyAccountManuallyMinusMoney: (agencyAccountId) => `${a}/agency-accounts/${agencyAccountId}/decrease-manually`,
     transferFromCounterpartyToAgency: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/transfer`,
 
     supplierConnectivityReport: (from, end) => `${a}/reports/direct-connectivity-report/supplier-wise?from=${from}&end=${end}`,
