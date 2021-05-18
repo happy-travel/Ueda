@@ -63,6 +63,11 @@ class UedaMainPage extends React.Component {
                                 Reports
                             </button>
                         </Link>
+                        <Link to="/bookings">
+                            <button className="button">
+                                Bookings
+                            </button>
+                        </Link>
                     </div>
                 </section>
             </div>

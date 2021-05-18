@@ -14,6 +14,7 @@ import duplicatesListPage from 'pages/duplicates/list';
 import globalMarkupsPage from 'pages/global-markups/global-markups';
 import duplicatePage from 'pages/duplicates/duplicate';
 import bookingPage from 'pages/bookings/booking';
+import bookingsPage from 'pages/bookings/bookings-page';
 import reportsPage from 'pages/reports/reports';
 import CounterPartyTransferBalancePage from '../pages/counterparties/counterparty-transfer-balance';
 import CounterPartyMarkupManagerPage from '../pages/counterparties/counterparty-markup-manager';
@@ -39,6 +40,7 @@ const Routes = () => (
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route exact path="/reports" component={reportsPage} />
         <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
+        <Route exact path="/bookings" component={bookingsPage} />
         <Route component={notFoundPage} />
     </Switch>
 );

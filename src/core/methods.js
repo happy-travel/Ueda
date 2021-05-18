@@ -35,7 +35,6 @@ const apiMethods = {
     bookingsByReferenceCode: (referenceCode) => `${a}/bookings/${referenceCode}`,
     bookingsByAgent: (agentId) => `${a}/agents/${agentId}/accommodations/bookings`,
     bookingsByAgency: (agencyId) => `${a}/agencies/${agencyId}/accommodations/bookings`,
-    bookingsByCounterparty: (counterpartyId) =>`${a}/counterparties/${counterpartyId}/accommodations/bookings`,
     bookingDiscard: (bookingId) => `${a}/accommodations/bookings/${bookingId}/discard`,
     bookingCancel: (bookingId) => `${a}/accommodations/bookings/${bookingId}/cancel`,
 
