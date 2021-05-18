@@ -15,7 +15,7 @@ const CounterpartiesList = () => {
                 setList(list)
             }
         });
-    })
+    }, [])
 
     return (
         <div className="block counterparties-list">
