@@ -92,75 +92,23 @@ const SearchOptionsForm = ({ id }) => {
                             </div>
                             <div className="suppliers">
                                 <h1>Enabled suppliers</h1>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Columbus"
-                                        value={settings?.enabledSuppliers?.Columbus}
-                                        label="Columbus"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.DirectContracts"
-                                        value={settings?.enabledSuppliers?.DirectContracts}
-                                        label="Direct Contracts"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Etg"
-                                        value={settings?.enabledSuppliers?.Etg}
-                                        label="Etg"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Illusions"
-                                        value={settings?.enabledSuppliers?.Illusions}
-                                        label="Illusions"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Jumeirah"
-                                        value={settings?.enabledSuppliers?.Jumeirah}
-                                        label="Jumeirah"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Netstorming"
-                                        value={settings?.enabledSuppliers?.Netstorming}
-                                        label="Netstorming"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.Rakuten"
-                                        value={settings?.enabledSuppliers?.Rakuten}
-                                        label="Rakuten"
-                                    />
-                                </div>
-                                <div className="row">
-                                    <FieldCheckbox
-                                        formik={formik}
-                                        id="enabledSuppliers.TravelgateXTest"
-                                        value={settings?.enabledSuppliers?.TravelgateXTest}
-                                        label="TravelgateXTest"
-                                    />
-                                </div>
+                                {Object.entries(settings.enabledSuppliers).map(([key, value]) => {
+                                    return (
+                                        <div className="row">
+                                            <FieldCheckbox
+                                                formik={formik}
+                                                id="enabledSuppliers.Columbus"
+                                                value={value}
+                                                label={key}
+                                            />
+                                        </div>
+                                    )
+                                })}
                                 <div className="row">
                                     <FieldCheckbox
                                         formik={formik}
                                         id="enabledSuppliers.IsDirectContractFlagVisible"
-                                        value={settings?.enabledSuppliers?.IsDirectContractFlagVisible}
+                                        value={settings?.isDirectContractFlagVisible}
                                         label="Direct Contract Flag View"
                                     />
                                 </div>
@@ -168,17 +116,15 @@ const SearchOptionsForm = ({ id }) => {
                                     <FieldCheckbox
                                         formik={formik}
                                         id="enabledSuppliers.IsMarkupDisabled"
-                                        value={settings?.enabledSuppliers?.IsMarkupDisabled}
+                                        value={settings?.isMarkupDisabled}
                                         label="Markup Disabled"
                                     />
                                 </div>
                                 <div className="row">
                                     <FieldCheckbox
                                         formik={formik}
-                                        id="enabledSuppliers.isSupplierVisible"
-                                        formik={formik}
                                         id="supplierVisible"
-                                        value={settings?.enabledSuppliers?.isSupplierVisible}
+                                        value={settings?.isSupplierVisible}
                                         label="Supplier Visible View"
                                     />
                                 </div>
