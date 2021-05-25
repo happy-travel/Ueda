@@ -7,6 +7,10 @@ import mainPage from 'pages/main';
 import counterpartiesListPage from 'pages/counterparties/list';
 import counterpartiesItemPage from 'pages/counterparties/counterparty';
 import agencyPage from 'pages/agency/agency';
+import agencyBalancePage from 'pages/agency/agency-balance';
+import agencySettingsPage from 'pages/agency/agency-settings';
+import agencyListPage from 'pages/agency/list';
+import agencyBookingPage from 'pages/agency/agency-bookings';
 import agentPage from 'pages/agency/agent';
 import createPaymentLinkPage from 'pages/paymentlinks/create';
 import inviteAdminPage from 'pages/admins/invite';
@@ -16,20 +20,24 @@ import duplicatePage from 'pages/duplicates/duplicate';
 import bookingPage from 'pages/bookings/booking';
 import bookingsPage from 'pages/bookings/bookings-page';
 import reportsPage from 'pages/reports/reports';
-import CounterPartyTransferBalancePage from '../pages/counterparties/counterparty-transfer-balance';
-import CounterPartyMarkupManagerPage from '../pages/counterparties/counterparty-markup-manager';
-import CounterPartyAgenciesPage from '../pages/counterparties/counterparty-agencies';
-import CounterpartyDetailsPage from '../pages/counterparties/counterparty-details';
+import counterPartyTransferBalancePage from '../pages/counterparties/counterparty-transfer-balance';
+import counterPartyMarkupManagerPage from '../pages/counterparties/counterparty-markup-manager';
+import counterPartyAgenciesPage from '../pages/counterparties/counterparty-agencies';
+import counterpartyDetailsPage from '../pages/counterparties/counterparty-details';
 
 const Routes = () => (
     <Switch>
         <Route exact path="/" component={mainPage} />
         <Route exact path="/counterparties" component={counterpartiesListPage} />
-        <Route exact path="/counterparties/:id/transfer-balance" component={CounterPartyTransferBalancePage} />
-        <Route exact path="/counterparties/:id/markup-manager" component={CounterPartyMarkupManagerPage} />
-        <Route exact path="/counterparties/:id/agencies" component={CounterPartyAgenciesPage} />
-        <Route exact path="/counterparties/:id/details" component={ CounterpartyDetailsPage} />
+        <Route exact path="/counterparties/:id/transfer-balance" component={counterPartyTransferBalancePage} />
+        <Route exact path="/counterparties/:id/markup-manager" component={counterPartyMarkupManagerPage} />
+        <Route exact path="/counterparties/:id/agencies" component={counterPartyAgenciesPage} />
+        <Route exact path="/counterparties/:id/details" component={ counterpartyDetailsPage} />
         <Route exact path="/counterparties/:id" component={counterpartiesItemPage} />
+        <Route exact path="/counterparties/agencies/:id/transfer-balance" component={agencyBalancePage} />
+        <Route exact path="/counterparties/agencies/:id/settings" component={agencySettingsPage} />
+        <Route exact path="/counterparties/agencies/:id/agents" component={agencyListPage} />
+        <Route exact path="/counterparties/agencies/:id/bookings" component={agencyBookingPage} />
         <Route exact path="/counterparties/agencies/:id" component={agencyPage} />
         <Route exact path="/counterparties/agencies/:id/agents/:agentId" component={agentPage} />
         <Route exact path="/paymentlinks" component={createPaymentLinkPage} />
