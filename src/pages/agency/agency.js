@@ -13,21 +13,22 @@ const AgencyPage = ({ match }) => {
     const [bookings, setBookings] = useState(null);
     const [availabilitySearchOptions, setAvailabilitySearchOptions] = useState(null);
     const [agencyAccounts, setAgencyAccounts] = useState(null);
+    const [settings, setSettings] = useState(null);
 
     useEffect(() => {
         API.get({
             url: apiMethods.displayedPaymentOptions(match.params.id),
             success: (displayedPaymentOptions) => setDisplayedPaymentOptions(displayedPaymentOptions),
             error: setDisplayedPaymentOptions(false)
-        })
+        });
         API.get({
             url: apiMethods.bookingsByAgency(match.params.id),
             success: (bookings) => {setBookings(bookings)}
-        })
+        });
         API.get({
             url: apiMethods.agenciesAccounts(match.params.id),
             success: (agencyAccounts) => setAgencyAccounts(agencyAccounts),
-        })
+        });
         API.get({
             url: apiMethods.availabilitySearchOptions(match.params.id),
             success: (availabilitySearchOptions) => {
@@ -39,7 +40,13 @@ const AgencyPage = ({ match }) => {
                 })
             },
             error: setAvailabilitySearchOptions(false)
-        })
+        });
+        API.get({
+            url: apiMethods.availabilitySearchOptions(match.params.id),
+            success: (settings) => {
+                setSettings(settings);
+            }
+        });
     }, [])
 
     const submitDisplayedPaymentOptions = (values) => {
@@ -86,19 +93,16 @@ const AgencyPage = ({ match }) => {
         <div className="settings block">
             <section>
                 <h1>Agency #{match.params.id}</h1>
-
                 <div className="buttons">
                     <button className="button" onClick={activate}>Activate</button>
                     <button className="button" onClick={deactivate}>Deactivate</button>
                 </div>
-            </section>
-            <section>
                 {Boolean(agencyAccounts) &&
                 <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>}
+                <SearchOptionsForm id={match.params.id} />
             </section>
             <section>
                 <h1>Displayed Payment Options</h1>
-
                 <CachedForm
                     initialValues={{
                         displayedPaymentOptions: displayedPaymentOptions
@@ -129,13 +133,6 @@ const AgencyPage = ({ match }) => {
                             </div>
                         </div>
                     )}
-                />
-            </section>
-            <section>
-                <h1>Availability Search Options</h1>
-                <SearchOptionsForm
-                    initialValues={availabilitySearchOptions}
-                    onSubmit={submitAvailabilitySearchOptions}
                 />
             </section>
             <AgentsList id={match.params.id} />
