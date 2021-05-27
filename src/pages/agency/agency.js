@@ -88,62 +88,11 @@ const AgencyPage = ({ match }) => {
             <section>
                 <AgencyNavigation match={match} />
                 <h1>Agency #{match.params.id}</h1>
+
                 <div className="buttons">
                     <button className="button" onClick={activate}>Activate</button>
                     <button className="button" onClick={deactivate}>Deactivate</button>
                 </div>
-            </section>
-            <section>
-                {Boolean(agencyAccounts) &&
-                <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>}
-            </section>
-            <section>
-                <h1>Displayed Payment Options</h1>
-
-                <CachedForm
-                    initialValues={{
-                        displayedPaymentOptions: displayedPaymentOptions
-                    }}
-                    enableReinitialize
-                    onSubmit={submitDisplayedPaymentOptions}
-                    render={(formik) => (
-                        <div className="form">
-                            <div className="row">
-                                <FieldSelect formik={formik}
-                                             id="displayedPaymentOptions"
-                                             label="Displayed Payment Options"
-                                             options={[
-                                                 { value: '', text: 'Not selected' },
-                                                 { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
-                                                 { value: 'CreditCard', text: 'Credit Card' }
-                                             ]}
-                                />
-                            </div>
-                            <div className="row submit-holder">
-                                <div className="field">
-                                    <div className="inner">
-                                        <button type="submit" className="button">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                />
-            </section>
-            <section>
-                <h1>Availability Search Options</h1>
-                <SearchOptionsForm
-                    initialValues={availabilitySearchOptions}
-                    onSubmit={submitAvailabilitySearchOptions}
-                />
-            </section>
-            <AgentsList id={match.params.id} />
-            <section>
-                <Bookings
-                    bookings={bookings}
-                />
             </section>
         </div>
     );

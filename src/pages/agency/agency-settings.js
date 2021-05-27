@@ -41,10 +41,8 @@ const AgencySettings = ({ match }) => {
     return (
         <section>
             <AgencyNavigation match={match} />
-            <h1>Availability Search Options</h1>
             <SearchOptionsForm
-                initialValues={availabilitySearchOptions}
-                onSubmit={submitAvailabilitySearchOptions}
+                id={match.params.id}
             />
         </section>
     )
