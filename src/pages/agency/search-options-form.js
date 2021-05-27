@@ -98,6 +98,7 @@ const SearchOptionsForm = ({ id }) => {
                                             <FieldCheckbox
                                                 formik={formik}
                                                 id="enabledSuppliers.Columbus"
+                                                value={value}
                                                 label={key}
                                             />
                                         </div>
