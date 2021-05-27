@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CounterpartyNavigation from './counterparty-navigation';
 import { remapStatus } from 'matsumoto/src/simple';
 import { API } from 'matsumoto/src/core';
-import apiMethods from '../../core/methods';
+import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 
 const CounterpartyPage = ({ match }) => {

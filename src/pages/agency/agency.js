@@ -20,15 +20,15 @@ const AgencyPage = ({ match }) => {
             url: apiMethods.displayedPaymentOptions(match.params.id),
             success: (displayedPaymentOptions) => setDisplayedPaymentOptions(displayedPaymentOptions),
             error: setDisplayedPaymentOptions(false)
-        })
+        });
         API.get({
             url: apiMethods.bookingsByAgency(match.params.id),
             success: (bookings) => {setBookings(bookings)}
-        })
+        });
         API.get({
             url: apiMethods.agenciesAccounts(match.params.id),
             success: (agencyAccounts) => setAgencyAccounts(agencyAccounts),
-        })
+        });
         API.get({
             url: apiMethods.availabilitySearchOptions(match.params.id),
             success: (availabilitySearchOptions) => {
@@ -40,7 +40,7 @@ const AgencyPage = ({ match }) => {
                 })
             },
             error: setAvailabilitySearchOptions(false)
-        })
+        });
     }, [])
 
     const submitDisplayedPaymentOptions = (values) => {

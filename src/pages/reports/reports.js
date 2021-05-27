@@ -1,6 +1,6 @@
 import React from 'react';
 import { API } from 'matsumoto/src/core';
-import apiMethods from '../../core/methods';
+import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 import FieldDatepicker from 'matsumoto/src/components/form/field-datepicker/field-datepicker';
 import { FieldSelect } from 'matsumoto/src/components/form';

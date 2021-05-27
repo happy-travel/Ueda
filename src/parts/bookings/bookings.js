@@ -1,7 +1,7 @@
 import React from 'react';
 import { date } from 'matsumoto/src/simple';
 import Table from 'matsumoto/src/components/table';
-import Booking from '../../pages/bookings/booking';
+import Booking from 'pages/bookings/booking';
 import { Redirect } from 'react-router-dom';
 
 class BookingsList extends React.Component {

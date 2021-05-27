@@ -27,7 +27,7 @@ const BookingsPage = () => {
                        <div className="row">
                            <FieldText formik={formik}
                                       id="refCode"
-                                      label="REFERENCE CODE"
+                                      label="Reference code"
                                       />
                        </div>
                    </div>
