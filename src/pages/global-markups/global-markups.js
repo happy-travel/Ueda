@@ -1,5 +1,5 @@
 import React from 'react';
-import apiMethods from '../../core/methods';
+import apiMethods from 'core/methods';
 import Markups from 'matsumoto/src/parts/markups/markups';
 
 const GlobalMarkups = () => (

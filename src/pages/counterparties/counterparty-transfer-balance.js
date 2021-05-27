@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CachedForm, FieldSelect, FieldText } from 'matsumoto/src/components/form';
 import { API } from 'matsumoto/src/core';
-import apiMethods from '../../core/methods';
+import apiMethods from 'core/methods';
 import { price } from 'matsumoto/src/simple';
 import CounterpartyBalance from './counterparty-balance';
 import CounterpartyNavigation from './counterparty-navigation';

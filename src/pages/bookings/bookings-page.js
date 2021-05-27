@@ -16,7 +16,8 @@ const BookingsPage = () => {
 
     return (
         <section style={{
-            marginTop: '50px'
+            marginTop: '50px',
+            width: '30%'
         }}>
            <CachedForm
            onSubmit={submit}
@@ -26,7 +27,7 @@ const BookingsPage = () => {
                        <div className="row">
                            <FieldText formik={formik}
                                       id="refCode"
-                                      label="Ref Code"
+                                      label="Reference code"
                                       />
                        </div>
                    </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AgencyNavigation from './agency-navigation';
 import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldSelect } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
@@ -13,7 +14,6 @@ const AgencyPage = ({ match }) => {
     const [bookings, setBookings] = useState(null);
     const [availabilitySearchOptions, setAvailabilitySearchOptions] = useState(null);
     const [agencyAccounts, setAgencyAccounts] = useState(null);
-    const [settings, setSettings] = useState(null);
 
     useEffect(() => {
         API.get({
@@ -40,12 +40,6 @@ const AgencyPage = ({ match }) => {
                 })
             },
             error: setAvailabilitySearchOptions(false)
-        });
-        API.get({
-            url: apiMethods.availabilitySearchOptions(match.params.id),
-            success: (settings) => {
-                setSettings(settings);
-            }
         });
     }, [])
 
@@ -92,54 +86,13 @@ const AgencyPage = ({ match }) => {
     return (
         <div className="settings block">
             <section>
+                <AgencyNavigation match={match} />
                 <h1>Agency #{match.params.id}</h1>
+
                 <div className="buttons">
                     <button className="button" onClick={activate}>Activate</button>
                     <button className="button" onClick={deactivate}>Deactivate</button>
                 </div>
-                {Boolean(agencyAccounts) &&
-                <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>}
-                <SearchOptionsForm id={match.params.id} />
-            </section>
-            <section>
-                <h1>Displayed Payment Options</h1>
-                <CachedForm
-                    initialValues={{
-                        displayedPaymentOptions: displayedPaymentOptions
-                    }}
-                    enableReinitialize
-                    onSubmit={submitDisplayedPaymentOptions}
-                    render={(formik) => (
-                        <div className="form">
-                            <div className="row">
-                                <FieldSelect formik={formik}
-                                             id="displayedPaymentOptions"
-                                             label="Displayed Payment Options"
-                                             options={[
-                                                 { value: '', text: 'Not selected' },
-                                                 { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
-                                                 { value: 'CreditCard', text: 'Credit Card' }
-                                             ]}
-                                />
-                            </div>
-                            <div className="row submit-holder">
-                                <div className="field">
-                                    <div className="inner">
-                                        <button type="submit" className="button">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                />
-            </section>
-            <AgentsList id={match.params.id} />
-            <section>
-                <Bookings
-                    bookings={bookings}
-                />
             </section>
         </div>
     );

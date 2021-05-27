@@ -3,7 +3,7 @@ import { API } from 'matsumoto/src/core';
 import { CachedForm, FieldText, FieldSelect, FieldTextarea } from 'matsumoto/src/components/form';
 import apiMethods from 'core/methods';
 import { copyToClipboard } from 'matsumoto/src/simple/logic';
-import { ValidatorPaymentLink } from '../../components/form/validation/validator-payment-link';
+import { ValidatorPaymentLink } from 'components/form/validation/validator-payment-link';
 
 class CreatePaymentLinkPage extends React.Component {
     constructor(props) {
