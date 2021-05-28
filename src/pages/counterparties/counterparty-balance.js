@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import BalanceModal from 'parts/balance-modal';
 import apiMethods from 'core/methods';
 
-const CounterpartyBalance = ({ accounts }) => {
+const CounterpartyBalance = ({ id }) => {
     const [isIncreaseManuallyModalShown, showIncreaseManually] = useState(null);
     const [isDecreaseManuallyModalShown, showDecreaseManually] = useState(null);
     const [isReplenishModalShown, showReplenish] = useState(null);
     const [isSubtractModalShown, showSubtract] = useState(null);
-    let defaultAccountId = accounts?.[0].id;
     return (
         <div>
             <div className="buttons">
@@ -40,7 +39,7 @@ const CounterpartyBalance = ({ accounts }) => {
             {isReplenishModalShown ?
                 <BalanceModal
                     title="Replenish counterparty account"
-                    method={apiMethods.accountPlusMoney(defaultAccountId)}
+                    method={apiMethods.accountPlusMoney(id)}
                     onClose={() => showReplenish(false)}
                 />
             : null}
@@ -48,7 +47,7 @@ const CounterpartyBalance = ({ accounts }) => {
             {isSubtractModalShown ?
                 <BalanceModal
                     title="Subtract counterparty account"
-                    method={apiMethods.accountMinusMoney(defaultAccountId)}
+                    method={apiMethods.accountMinusMoney(id)}
                     onClose={() => showSubtract(false)}
                 />
             : null}
@@ -56,7 +55,7 @@ const CounterpartyBalance = ({ accounts }) => {
             {isIncreaseManuallyModalShown ?
                 <BalanceModal
                     title="Increase Manually counterparty account"
-                    method={apiMethods.accountManuallyPlusMoney(defaultAccountId)}
+                    method={apiMethods.accountManuallyPlusMoney(id)}
                     onClose={() => showIncreaseManually(false)}
                 />
             : null}
@@ -64,7 +63,7 @@ const CounterpartyBalance = ({ accounts }) => {
             {isDecreaseManuallyModalShown ?
                 <BalanceModal
                     title="Decrease Manually counterparty account"
-                    method={apiMethods.accountManuallyMinusMoney(defaultAccountId)}
+                    method={apiMethods.accountManuallyMinusMoney(id)}
                     onClose={() => showDecreaseManually(false)}
                 />
             : null}
