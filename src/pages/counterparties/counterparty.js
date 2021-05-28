@@ -102,8 +102,8 @@ const CounterpartyPage = ({ match }) => {
                     <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
                     <button className="button" onClick={() => verify('CreditPayments')}>Verify Credit Payments</button>
                     <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card Payments</button>
+                    <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
                 </div>}
-                <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
             </div>
             <div className="admin-tab-element-wrapper block">
                 <h2>Contract {!counterparty?.isContractUploaded && ' (No contract uploaded)'}</h2>
