@@ -58,7 +58,7 @@ const CounterpartiesList = () => {
                         onRowClick={(item) => redirect(`/counterparties/${item.id}`)}
                         textEmptyResult="No counterparties found"
                         textEmptyList="No counterparties found (empty)"
-                        searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState]}
+                        searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState, v.isActive ? 'Active' : 'Inactive']}
                     />
                 </div>
                 {/*{this.state.result?.map((item) => (*/}
