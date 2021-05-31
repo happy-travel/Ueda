@@ -39,12 +39,14 @@ const AgencySettings = ({ match }) => {
     }
 
     return (
-        <section>
-            <AgencyNavigation match={match} />
-            <SearchOptionsForm
-                id={match.params.id}
-            />
-        </section>
+        <>
+            <AgencyNavigation match={match}/>
+            <section>
+                <SearchOptionsForm
+                    id={match.params.id}
+                />
+            </section>
+        </>
     )
 }
 

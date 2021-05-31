@@ -47,7 +47,10 @@ const Routes = () => (
         <Route exact path="/globalmarkups" component={globalMarkupsPage} />
         <Route path="/signup/invite/:email/:code" component={acceptInvite} title="Sign Up" />
         <Route exact path="/reports" component={reportsPage} />
-        <Route exact path="/counterparties/agencies/booking/:refCode" component={bookingPage} />
+        <Route exact path={[
+            '/counterparties/agencies/booking/:refCode',
+            '/counterparties/agencies/:id/booking/:refCode'
+        ]} component={bookingPage} />
         <Route exact path="/bookings" component={bookingsPage} />
         <Route component={notFoundPage} />
     </Switch>

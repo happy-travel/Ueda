@@ -3,6 +3,7 @@ import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 import BookingDetailsView from 'matsumoto/src/pages/accommodation/parts/booking-details-view';
+import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 
 class Booking extends React.Component {
     constructor(props) {
@@ -26,21 +27,21 @@ class Booking extends React.Component {
     }
     bookingCancel = () => {
         API.post({
-            url: apiMethods.bookingCancel(this.props.booking.id),
+            url: apiMethods.bookingCancel(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Cancelled', null, 'success')
         });
     }
 
     bookingDiscard = () => {
         API.post({
-            url: apiMethods.bookingDiscard(this.props.booking.id),
+            url: apiMethods.bookingDiscard(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Discarded', null, 'success')
         });
     }
 
     bookingPaymentCompleteManually = () => {
         API.post({
-            url: apiMethods.paymentCompleteManually(this.props.booking.id),
+            url: apiMethods.paymentCompleteManually(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
             error: (e) => Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
@@ -48,7 +49,7 @@ class Booking extends React.Component {
 
     paymentConfirm = () => {
         API.post({
-            url: apiMethods.paymentConfirm(this.props.booking.id),
+            url: apiMethods.paymentConfirm(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
             error: (e) => Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
@@ -68,10 +69,11 @@ class Booking extends React.Component {
                             </button>
                             <button className="button" onClick={this.paymentConfirm}>Confirm Payment</button>
                         </div>
-                        <div className="buttons">
-                            <button className="button" onClick={this.props.onClose}>Back</button>
-                        </div>
                     </div>
+                    <Breadcrumbs
+                        backLink="/counterparties/agencies/801/bookings"
+                        backText="Back"
+                    />
                     {booking && <BookingDetailsView booking={booking}/>}
                 </section>
             </div>

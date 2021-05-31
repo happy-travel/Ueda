@@ -69,86 +69,87 @@ const CounterPartyTransferBalance = ({ match }) => {
     }
 
     return (
-        <section className="block">
+        <>
             <CounterpartyNavigation match={match}/>
-            {Boolean(balance) &&
-            <>
-                <h2>Balance: {price(balance.currency, balance.balance)}</h2>
-                <CounterpartyBalance
-                    id={accounts?.[0].id}
-                />
-            </>
-            }
-            <div>
-                <h2>{'Transfer Balance'}</h2>
-                <CachedForm
-                    onSubmit={submitTransfer}
-                    render={(formik) => (
-                        <div className="form" style={{ width: 400 }}>
-                            <div className="row">
-                                <FieldSelect
-                                    formik={formik}
-                                    id="counterpartyAccountId"
-                                    label="From Account"
-                                    placeholder="Please Select"
-                                    required
-                                    options={getFormat(accounts)}
-                                />
+            <section className="block">
+                {Boolean(balance) &&
+                <>
+                    <h2>Balance: {price(balance.currency, balance.balance)}</h2>
+                    <CounterpartyBalance
+                        id={accounts?.[0].id}
+                    />
+                </>
+                }
+                <div>
+                    <h2>{'Transfer Balance'}</h2>
+                    <CachedForm
+                        onSubmit={submitTransfer}
+                        render={(formik) => (
+                            <div className="form" style={{ width: 400 }}>
+                                <div className="row">
+                                    <FieldSelect
+                                        formik={formik}
+                                        id="counterpartyAccountId"
+                                        label="From Account"
+                                        placeholder="Please Select"
+                                        required
+                                        options={getFormat(accounts)}
+                                    />
+                                </div>
+                                <div className="row">
+                                    <FieldSelect
+                                        formik={formik}
+                                        id="agency"
+                                        label="To Agency"
+                                        placeholder="Please Select"
+                                        required
+                                        setValue={formChanged}
+                                        options={setAgenciesOptions(agencies)}
+                                    />
+                                </div>
+                                <div className="row">
+                                    <FieldSelect
+                                        formik={formik}
+                                        id="agencyAccount"
+                                        label="To Agency Account"
+                                        placeholder="Please Select"
+                                        required
+                                        options={getFormat(agency)}
+                                    />
+                                </div>
+                                <div className="row">
+                                    <FieldText
+                                        formik={formik}
+                                        id="amount"
+                                        label="Amount"
+                                        placeholder="Amount"
+                                        numeric
+                                    />
+                                </div>
+                                <div className="row">
+                                    <FieldSelect
+                                        formik={formik}
+                                        id="currency"
+                                        label="Currency"
+                                        required
+                                        options={[
+                                            { value: 'USD', text: 'USD' },
+                                            { value: 'EUR', text: 'EUR' },
+                                            { value: 'AED', text: 'AED' },
+                                            { value: 'SAR', text: 'SAR' }
+                                        ]}
+                                    />
+                                </div>
+                                <div className="row">
+                                    <button type="submit" className="button" style={{ width: '100%' }}>
+                                        Transfer
+                                    </button>
+                                </div>
                             </div>
-                            <div className="row">
-                                <FieldSelect
-                                    formik={formik}
-                                    id="agency"
-                                    label="To Agency"
-                                    placeholder="Please Select"
-                                    required
-                                    setValue={formChanged}
-                                    options={setAgenciesOptions(agencies)}
-                                />
-                            </div>
-                            <div className="row">
-                                <FieldSelect
-                                    formik={formik}
-                                    id="agencyAccount"
-                                    label="To Agency Account"
-                                    placeholder="Please Select"
-                                    required
-                                    options={getFormat(agency)}
-                                />
-                            </div>
-                            <div className="row">
-                                <FieldText
-                                    formik={formik}
-                                    id="amount"
-                                    label="Amount"
-                                    placeholder="Amount"
-                                    numeric
-                                />
-                            </div>
-                            <div className="row">
-                                <FieldSelect
-                                    formik={formik}
-                                    id="currency"
-                                    label="Currency"
-                                    required
-                                    options={[
-                                        { value: 'USD', text: 'USD' },
-                                        { value: 'EUR', text: 'EUR' },
-                                        { value: 'AED', text: 'AED' },
-                                        { value: 'SAR', text: 'SAR' }
-                                    ]}
-                                />
-                            </div>
-                            <div className="row">
-                                <button type="submit" className="button" style={{ width: '100%' }}>
-                                    Transfer
-                                </button>
-                            </div>
-                        </div>
-                    )}/>
-            </div>
-        </section>
-
+                        )}/>
+                </div>
+            </section>
+        </>
     )
 }
 
