@@ -96,14 +96,12 @@ const ReportsPage = () => (
                                 />
                                 </div>
                             </div>
-                            <div className="button"
-                                 style={{
-                                marginTop: '40px'
-                            }}>
-                                <button type="submit">
+                                <button
+                                    style={{ marginTop: '40px' }}
+                                    className="button"
+                                    type="submit">
                                     Download Report
                                 </button>
-                            </div>
                         </div>
                     </div>
                 )}/>

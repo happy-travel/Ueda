@@ -12,7 +12,7 @@ const BalanceModal = (props) => {
             url: method,
             body,
             success: () => {
-                Notifications.addNotification('Done', null, 'warning');
+                Notifications.addNotification('Done', null, 'success');
             },
         });
         onClose();
