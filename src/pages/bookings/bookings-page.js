@@ -31,11 +31,10 @@ const BookingsPage = () => {
                                       />
                        </div>
                    </div>
-                   <div className="button">
-                       <button type="submit">
-                           Go over
-                       </button>
-                   </div>
+                   <button className="button"
+                           type="submit">
+                       Go over
+                   </button>
                </div>
            )}/>
         </section>
