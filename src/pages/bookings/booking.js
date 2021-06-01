@@ -2,8 +2,8 @@ import React from 'react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
-import BookingDetailsView from 'matsumoto/src/pages/accommodation/parts/booking-details-view';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
+import BookingConfirmationView from './booking-confirmation-view';
 
 class Booking extends React.Component {
     constructor(props) {
@@ -43,7 +43,6 @@ class Booking extends React.Component {
         API.post({
             url: apiMethods.paymentCompleteManually(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
-            error: (e) => Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
     }
 
@@ -51,7 +50,6 @@ class Booking extends React.Component {
         API.post({
             url: apiMethods.paymentConfirm(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
-            error: (e) => Notifications.addNotification(JSON.stringify(e), null, 'warning')
         });
     }
 
@@ -71,10 +69,9 @@ class Booking extends React.Component {
                         </div>
                     </div>
                     <Breadcrumbs
-                        backLink="/counterparties/agencies/801/bookings"
                         backText="Back"
                     />
-                    {booking && <BookingDetailsView booking={booking}/>}
+                    {booking && <BookingConfirmationView referenceCode={this.props.match.params.refCode} /> }
                 </section>
             </div>
         );
