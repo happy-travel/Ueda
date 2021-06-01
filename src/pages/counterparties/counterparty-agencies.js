@@ -18,26 +18,28 @@ const CounterpartyAgencies = ({ match }) => {
     }, [])
 
     return (
-        <section className="admin-tab-element-wrapper">
-            <CounterpartyNavigation match={match} />
-            <h2>Agencies</h2>
-            <Table
-                list={agencies}
-                columns={ [
-                    {
-                        header: 'ID',
-                        cell: 'id',
-                    },
-                    {
-                        header: 'Name',
-                        cell: 'name'
-                    },
-                ]}
-                onRowClick={(item) => redirect(`/counterparties/agencies/${item.id}`)}
-                textEmptyResult="No agencies"
-                textEmptyList="No agencies"
-            />
-        </section>
+        <>
+            <CounterpartyNavigation match={match}/>
+            <section className="admin-tab-element-wrapper">
+                <h2>Agencies</h2>
+                <Table
+                    list={agencies}
+                    columns={[
+                        {
+                            header: 'ID',
+                            cell: 'id',
+                        },
+                        {
+                            header: 'Name',
+                            cell: 'name'
+                        },
+                    ]}
+                    onRowClick={(item) => redirect(`/counterparties/agencies/${item.id}`)}
+                    textEmptyResult="No agencies"
+                    textEmptyList="No agencies"
+                />
+            </section>
+        </>
     )
 }
 

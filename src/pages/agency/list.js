@@ -4,10 +4,12 @@ import AgentsList from './agents';
 
 const AgenciesList = ({ match }) => {
     return (
-        <section>
-            <AgencyNavigation match={match} />
-            <AgentsList id={match.params.id} />
-        </section>
+        <>
+            <AgencyNavigation match={match}/>
+            <section>
+                <AgentsList id={match.params.id}/>
+            </section>
+        </>
     )
 }
 

@@ -30,7 +30,7 @@ class BookingsList extends React.Component {
 
         return (
             <div className="block">
-                <h1>Bookings</h1>
+                <h1 style={{ paddingLeft: '40px' }}>Bookings</h1>
 
                 <div style={{ marginTop: '-100px' }}>
                     <Table

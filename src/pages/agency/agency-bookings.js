@@ -15,13 +15,14 @@ const AgencyBookings = ({ match }) => {
     },[])
 
     return (
-        <section>
-            <AgencyNavigation match={match} />
-            <Bookings
-                bookings={bookings}
-            />
-
-        </section>
+        <>
+            <AgencyNavigation match={match}/>
+            <section>
+                <Bookings
+                    bookings={bookings}
+                />
+            </section>
+        </>
     )
 }
 

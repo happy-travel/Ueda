@@ -88,42 +88,47 @@ const CounterpartyPage = ({ match }) => {
     }
 
     return (
-        <section>
-            <CounterpartyNavigation match={match} />
-            <h1>{counterparty?.name}</h1>
-            <h3>Status: {counterparty?.isActive ? 'Active' : 'Inactive'}</h3>
-            <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(counterparty?.verificationState)}</h3>
-            <div className="buttons" style={{ marginBottom: '10px' }}>
-                {counterparty?.isActive ?
-                    <button className="button" onClick={deactivate}>Deactivate</button> :
-                    <button className="button" onClick={activate}>Activate</button>}
-                {counterparty?.verificationState === 'ReadOnly' &&
-                <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
-                    <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
-                    <button className="button" onClick={() => verify('CreditPayments')}>Verify Credit Payments</button>
-                    <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card Payments</button>
-                    <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
-                </div>}
-            </div>
-            <div className="admin-tab-element-wrapper block">
-                <h2>Contract {!counterparty?.isContractUploaded && ' (No contract uploaded)'}</h2>
-                <div className="buttons voucher-image">
-                    <div style={{ display: 'flex' }}>
-                        {counterparty?.isContractUploaded &&
-                        <button className="button" onClick={downloadContract}>
-                            Download Contract
-                        </button>}
-                        <form id="formElem" onSubmit={uploadContract}>
-                            <label className="button file-upload">
-                                {counterparty?.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
-                                <input type="file" name="file" accept="application/pdf"
-                                       onChange={uploadContract}/>
-                            </label>
-                        </form>
+        <>
+            <CounterpartyNavigation match={match}/>
+            <section>
+                <h1>{counterparty?.name}</h1>
+                <h3>Status: {counterparty?.isActive ? 'Active' : 'Inactive'}</h3>
+                <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(counterparty?.verificationState)}</h3>
+                <div className="buttons" style={{ marginBottom: '10px' }}>
+                    {counterparty?.isActive ?
+                        <button className="button" onClick={deactivate}>Deactivate</button> :
+                        <button className="button" onClick={activate}>Activate</button>}
+                    {counterparty?.verificationState === 'ReadOnly' &&
+                    <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
+                        <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
+                        <button className="button" onClick={() => verify('CreditPayments')}>Verify Credit Payments
+                        </button>
+                        <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card
+                            Payments
+                        </button>
+                        <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
+                    </div>}
+                </div>
+                <div className="admin-tab-element-wrapper block">
+                    <h2>Contract {!counterparty?.isContractUploaded && ' (No contract uploaded)'}</h2>
+                    <div className="buttons voucher-image">
+                        <div style={{ display: 'flex' }}>
+                            {counterparty?.isContractUploaded &&
+                            <button className="button" onClick={downloadContract}>
+                                Download Contract
+                            </button>}
+                            <form id="formElem" onSubmit={uploadContract}>
+                                <label className="button file-upload">
+                                    {counterparty?.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
+                                    <input type="file" name="file" accept="application/pdf"
+                                           onChange={uploadContract}/>
+                                </label>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     )
 }
 

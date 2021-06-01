@@ -31,46 +31,48 @@ const AgencyBalance = ({ match }) => {
     }
 
     return (
-        <section className="settings block">
-            <AgencyNavigation match={match} />
-            <section>
-                <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>
-            </section>
-            <section>
-                <h1>Displayed Payment Options</h1>
-                <CachedForm
-                    initialValues={{
-                        displayedPaymentOptions: displayedPaymentOptions
-                    }}
-                    enableReinitialize
-                    onSubmit={submitDisplayedPaymentOptions}
-                    render={(formik) => (
-                        <div className="form">
-                            <div className="row">
-                                <FieldSelect formik={formik}
-                                             id="displayedPaymentOptions"
-                                             label="Displayed Payment Options"
-                                             options={[
-                                                 { value: '', text: 'Not selected' },
-                                                 { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
-                                                 { value: 'CreditCard', text: 'Credit Card' }
-                                             ]}
-                                />
-                            </div>
-                            <div className="row submit-holder">
-                                <div className="field">
-                                    <div className="inner">
-                                        <button type="submit" className="button">
-                                            Submit
-                                        </button>
+        <>
+            <AgencyNavigation match={match}/>
+            <section className="settings block">
+                <section>
+                    <h2>Balance: {price(agencyAccounts?.[0]?.balance.currency, agencyAccounts?.[0]?.balance.amount)}</h2>
+                </section>
+                <section>
+                    <h1>Displayed Payment Options</h1>
+                    <CachedForm
+                        initialValues={{
+                            displayedPaymentOptions: displayedPaymentOptions
+                        }}
+                        enableReinitialize
+                        onSubmit={submitDisplayedPaymentOptions}
+                        render={(formik) => (
+                            <div className="form">
+                                <div className="row">
+                                    <FieldSelect formik={formik}
+                                                 id="displayedPaymentOptions"
+                                                 label="Displayed Payment Options"
+                                                 options={[
+                                                     { value: '', text: 'Not selected' },
+                                                     { value: 'CreditCardAndBankTransfer', text: 'Credit Card And Bank Transfer' },
+                                                     { value: 'CreditCard', text: 'Credit Card' }
+                                                 ]}
+                                    />
+                                </div>
+                                <div className="row submit-holder">
+                                    <div className="field">
+                                        <div className="inner">
+                                            <button type="submit" className="button">
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                />
+                        )}
+                    />
+                </section>
             </section>
-        </section>
+        </>
     )
 }
 

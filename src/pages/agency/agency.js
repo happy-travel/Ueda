@@ -85,8 +85,8 @@ const AgencyPage = ({ match }) => {
     }
     return (
         <div className="settings block">
+            <AgencyNavigation match={match} />
             <section>
-                <AgencyNavigation match={match} />
                 <h1>Agency #{match.params.id}</h1>
 
                 <div className="buttons">
