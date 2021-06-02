@@ -4,6 +4,7 @@ import { API, redirect } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import { PAYMENT_METHODS } from 'matsumoto/src/enum';
 import CounterpartyNavigation from './counterparty-navigation';
+import Notifications from 'matsumoto/src/stores/notifications-store';
 
 const CounterpartyDetails = ({ match }) => {
 
@@ -22,11 +23,15 @@ const CounterpartyDetails = ({ match }) => {
         API.put({
             url: apiMethods.counterparty(match.params.id),
             body,
-            success: () => redirect('/counterparties')
+            success: () => redirect(`/counterparties/${match.params.id}`),
+            error: ({ errors }) => {
+                Notifications.addNotification(errors.Name.toString(), null, 'warning');
+            }
         });
     };
 
     const isPendingVerification = counterparty?.verificationState === 'PendingVerification';
+    const isFullAccess = counterparty?.verificationState === 'FullAccess';
     return (
         <>
             <CounterpartyNavigation match={match}/>
@@ -71,13 +76,13 @@ const CounterpartyDetails = ({ match }) => {
                             <div className="row"><FieldText formik={formik} id="billingEmail" label="Billing Email"
                                                             readOnly={!isPendingVerification}/></div>
                             <div className="row submit-holder">
-                                <div className="field">
+                                {!isFullAccess && <div className="field">
                                     <div className="inner">
                                         <button type="submit" className="button">
                                             Submit
                                         </button>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     )}
