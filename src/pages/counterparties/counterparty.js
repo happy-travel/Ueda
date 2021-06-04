@@ -78,12 +78,8 @@ const CounterpartyPage = ({ match }) => {
         API.put({
             url: apiMethods.contractFile(match.params.id),
             formDataBody: new FormData(document.getElementById('formElem')),
-            success: () => this.setState({
-                counterparty: {
-                    ...this.state.counterparty,
-                    isContractUploaded: true
-                }
-            })
+            success: () => setCounterparty({ ...this.state.counterparty,
+                isContractUploaded: true })
         });
     }
 
