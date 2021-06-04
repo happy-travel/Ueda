@@ -1,81 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
 import Breadcrumbs from 'matsumoto/src/components/breadcrumbs';
 import BookingConfirmationView from './booking-confirmation-view';
 
-class Booking extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            booking: null
-        };
-    }
+const Booking = ({ match }) => {
+    const [booking, setBooking] = useState(null);
 
-    componentDidMount() {
-        this.loadBooking();
-    }
+   useEffect(() => {
+       API.get({
+           url: apiMethods.bookingsByReferenceCode(match.params.refCode),
+           success: (booking) => {
+               setBooking(booking)
+           }
+       });
+   }, [])
 
-    loadBooking = async() => {
-        const booking = await API.get({
-            url: apiMethods.bookingsByReferenceCode(this.props.match.params.refCode),
-        });
-        this.setState({
-            booking,
-        });
-    }
-    bookingCancel = () => {
+    // const loadBooking = async() => {
+    //     const booking = await A
+    //
+    // }
+    const bookingCancel = () => {
         API.post({
-            url: apiMethods.bookingCancel(this.state.booking.bookingId),
+            url: apiMethods.bookingCancel(booking.bookingId),
             success: () => Notifications.addNotification('Cancelled', null, 'success')
         });
     }
 
-    bookingDiscard = () => {
+    const bookingDiscard = () => {
         API.post({
             url: apiMethods.bookingDiscard(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Discarded', null, 'success')
         });
     }
 
-    bookingPaymentCompleteManually = () => {
+    const bookingPaymentCompleteManually = () => {
         API.post({
             url: apiMethods.paymentCompleteManually(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
         });
     }
 
-    paymentConfirm = () => {
+    const paymentConfirm = () => {
         API.post({
             url: apiMethods.paymentConfirm(this.state.booking.bookingId),
             success: () => Notifications.addNotification('Success', null, 'success'),
         });
     }
 
-    render() {
-        const { booking } = this.state;
-        return (
-            <div className="confirmation block">
-                <section>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', margin: '50px 0 30px' }}>
-                        <div className="buttons">
-                            <button className="button" onClick={this.bookingCancel}>Cancel</button>
-                            <button className="button" onClick={this.bookingDiscard}>Discard</button>
-                            <button className="button" onClick={this.bookingPaymentCompleteManually}>
-                                Manually Complete Payment
-                            </button>
-                            <button className="button" onClick={this.paymentConfirm}>Confirm Payment</button>
-                        </div>
+    return (
+        <div className="confirmation block">
+            <section>
+                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '50px 0 30px' }}>
+                    <div className="buttons">
+                        <button className="button" onClick={bookingCancel}>Cancel</button>
+                        <button className="button" onClick={bookingDiscard}>Discard</button>
+                        <button className="button" onClick={bookingPaymentCompleteManually}>
+                            Manually Complete Payment
+                        </button>
+                        <button className="button" onClick={paymentConfirm}>Confirm Payment</button>
                     </div>
-                    <Breadcrumbs
-                        backText="Back"
-                    />
-                    {booking && <BookingConfirmationView referenceCode={this.props.match.params.refCode} /> }
-                </section>
-            </div>
-        );
-    }
+                </div>
+                <Breadcrumbs
+                    backText="Back"
+                />
+                {booking && <BookingConfirmationView referenceCode={match.params.refCode} /> }
+            </section>
+        </div>
+    );
 }
 
 export default Booking;
