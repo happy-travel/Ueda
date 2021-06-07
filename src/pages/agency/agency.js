@@ -32,12 +32,16 @@ const AgencyPage = ({ match }) => {
         API.get({
             url: apiMethods.availabilitySearchOptions(match.params.id),
             success: (availabilitySearchOptions) => {
-                setAvailabilitySearchOptions({
-                    ...availabilitySearchOptions,
-                    enabledSuppliers: Object.keys(availabilitySearchOptions
-                        .enabledSuppliers)
-                        .reduce(( a, key ) => (a[key] = true, a), {})
-                })
+                // Убрать условие, когда изменят ответ пустых настроек style={{
+                if(availabilitySearchOptions) {
+                    setAvailabilitySearchOptions({
+                        ...availabilitySearchOptions,
+                        enabledSuppliers: Object.keys(availabilitySearchOptions
+                            .enabledSuppliers)
+                            .reduce(( a, key ) => (a[key] = true, a), {})
+                    })
+                }
+
             },
             error: setAvailabilitySearchOptions(false)
         });

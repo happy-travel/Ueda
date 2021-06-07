@@ -101,7 +101,7 @@ const CounterpartyPage = ({ match }) => {
                     {counterparty?.verificationState === 'ReadOnly' &&
                     <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
                         <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
-                        <button className="button" onClick={() => verify('CreditPayments')}>Verify Credit Payments
+В                        <button className="button" onClick={() => verify('CreditPayments')}>Verify Virtual Account Payments
                         </button>
                         <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card
                             Payments
