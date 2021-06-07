@@ -21,7 +21,6 @@ const apiMethods = {
     adminSendInvitation: `${a}/invitations`,
     adminRegister: `${a}/invitations/accept`,
 
-    displayedPaymentOptions: (agencyId) => `${a}/agencies/${agencyId}/system-settings/displayed-payment-options`,
     availabilitySearchOptions: (agencyId) => `${a}/agencies/${agencyId}/system-settings/availability-search`,
 
     duplicates: `${a}/accommodation-duplicate-reports`,
