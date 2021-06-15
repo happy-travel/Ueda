@@ -14,6 +14,7 @@ import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/au
 import internationalization from 'core/internationalization';
 import AuthDefault from 'core/auth/default';
 import Header from 'parts/header';
+import SideBar from 'parts/side-bar';
 import Routes from 'core/routes';
 import NotificationList from 'matsumoto/src/parts/notifications/list';
 
@@ -33,6 +34,7 @@ const App = () => {
                             { canShowContent ?
                                 <>
                                     <Route component={ Header } />
+                                    <Route component={ SideBar } />
                                     <div className="block-wrapper">
                                         <Routes />
                                     </div>

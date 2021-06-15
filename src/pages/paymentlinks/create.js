@@ -6,12 +6,6 @@ import { copyToClipboard } from 'matsumoto/src/simple/logic';
 import { ValidatorPaymentLink } from 'components/form/validation/validator-payment-link';
 
 const CreatePaymentLinkPage = () => {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         result: null
-    //     }
-    // }
     const [result, setResult] = useState(null);
 
     const submit = (values) => {
@@ -34,7 +28,7 @@ const CreatePaymentLinkPage = () => {
     }
 
 
-    if (this.state.result === true)
+    if (result === true)
         return (
             <div className="block">
                 <section>
