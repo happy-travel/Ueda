@@ -9,18 +9,18 @@ const AgencySettings = ({ match }) => {
     const [availabilitySearchOptions, setAvailabilitySearchOptions] = useState(null);
 
     useEffect(() => {
-        // API.get({
-        //     url: apiMethods.availabilitySearchOptions(match.params.id),
-        //     success: (availabilitySearchOptions) => {
-        //         setAvailabilitySearchOptions({
-        //             ...availabilitySearchOptions,
-        //             enabledSuppliers: Object.keys(availabilitySearchOptions
-        //                 .enabledSuppliers)
-        //                 .reduce(( a, key ) => (a[key] = true, a), {})
-        //         })
-        //     },
-        //     error: setAvailabilitySearchOptions(false)
-        // })
+        API.get({
+            url: apiMethods.availabilitySearchOptions(match.params.id),
+            success: (availabilitySearchOptions) => {
+                setAvailabilitySearchOptions({
+                    ...availabilitySearchOptions,
+                    enabledSuppliers: Object.keys(availabilitySearchOptions
+                        .enabledSuppliers)
+                        .reduce(( a, key ) => (a[key] = true, a), {})
+                })
+            },
+            error: setAvailabilitySearchOptions(false)
+        })
     }, []);
 
     const submitAvailabilitySearchOptions = (values) => {
