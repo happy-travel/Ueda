@@ -15,29 +15,31 @@ const BookingsPage = () => {
     }
 
     return (
-        <section style={{
-            marginTop: '50px',
-            width: '30%'
-        }}>
-           <CachedForm
-           onSubmit={submit}
-           render={(formik) => (
-               <div className="form">
-                   <div>
-                       <div className="row">
-                           <FieldText formik={formik}
-                                      id="refCode"
-                                      label="Reference code"
-                                      />
-                       </div>
-                   </div>
-                   <button className="button"
-                           type="submit">
-                       Go over
-                   </button>
-               </div>
-           )}/>
-        </section>
+        <div className="general-page-content-without-tabs">
+            <section>
+                <CachedForm
+                    onSubmit={submit}
+                    render={(formik) => (
+                        <div className="form"
+                             style={{
+                                 width: '500px'
+                             }}>
+                            <div>
+                                <div className="row">
+                                    <FieldText formik={formik}
+                                               id="refCode"
+                                               label="Reference code"
+                                    />
+                                </div>
+                            </div>
+                            <button className="button"
+                                    type="submit">
+                                Go over
+                            </button>
+                        </div>
+                    )}/>
+            </section>
+        </div>
     )
 }
 

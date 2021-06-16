@@ -84,7 +84,7 @@ const CounterpartyPage = ({ match }) => {
     }
 
     return (
-        <>
+        <div className="general-page-content">
             <CounterpartyNavigation match={match}/>
             <section>
                 <h1>{counterparty?.name}</h1>
@@ -124,7 +124,7 @@ const CounterpartyPage = ({ match }) => {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 

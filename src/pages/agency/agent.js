@@ -55,7 +55,7 @@ const AgencyPage = ({ match }) => {
     }
 
     return (
-        <div className="settings block">
+        <div className="settings block general-page-content-without-tabs">
             <section>
                 <h1>Agent #{match.params.agentId} (Agency #{match.params.id})</h1>
                 <h3>Name: {agent.name}</h3>

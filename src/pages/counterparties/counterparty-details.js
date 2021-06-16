@@ -33,7 +33,7 @@ const CounterpartyDetails = ({ match }) => {
     const isPendingVerification = counterparty?.verificationState === 'PendingVerification';
     const isFullAccess = counterparty?.verificationState === 'FullAccess';
     return (
-        <>
+        <div className="general-page-content">
             <CounterpartyNavigation match={match}/>
             <section className="admin-tab-element-wrapper">
                 <h2>Counterparty details</h2>
@@ -88,7 +88,7 @@ const CounterpartyDetails = ({ match }) => {
                     )}
                 />
             </section>
-        </>
+        </div>
     )
 }
 

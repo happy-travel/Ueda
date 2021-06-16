@@ -18,7 +18,7 @@ const CounterpartyAgencies = ({ match }) => {
     }, [])
 
     return (
-        <>
+        <div className="general-page-content">
             <CounterpartyNavigation match={match}/>
             <section className="admin-tab-element-wrapper">
                 <h2>Agencies</h2>
@@ -39,7 +39,7 @@ const CounterpartyAgencies = ({ match }) => {
                     textEmptyList="No agencies"
                 />
             </section>
-        </>
+        </div>
     )
 }
 

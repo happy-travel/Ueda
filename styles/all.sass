@@ -35,10 +35,11 @@
 
 .counterparty-tabs-navigation
     box-shadow: 0 .5px 0 $color-shadow-border
-    margin: 60px 0 60px 0
+    margin: 60px 0 60px 239px
+
 
     section
-        padding: 0 7px
+        margin-right: 221px
         display: flex
         justify-content: flex-start
     a
@@ -64,9 +65,10 @@
                 bottom: 0
                 left: 0
 .side-bar
-    position: absolute
+    position: fixed
     width: 329px
     height: 1348px
+    z-index: 10
     left: 0
     top: 72px
     background: linear-gradient(180.01deg, rgba(255, 255, 255, 0) 0.62%, #F7F8FC 42.75%)
@@ -80,3 +82,8 @@
     span
         margin: 7px 0 1px 7px
         white-space: nowrap
+.general-page-content
+    margin-left: 90px
+.general-page-content-without-tabs
+    margin: 120px 0 0 100px
+

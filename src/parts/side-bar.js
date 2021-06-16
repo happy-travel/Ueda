@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
-        <nav className="side-bar" style={{
-            width: '329px',
-            height: '1348px',
-            position: 'absolute'
-        }}>
+        <nav className="side-bar">
             <div style={{
                 paddingTop: '130px'
             }}>
