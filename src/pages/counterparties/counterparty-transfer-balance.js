@@ -69,7 +69,7 @@ const CounterPartyTransferBalance = ({ match }) => {
     }
 
     return (
-        <>
+        <div className="page-content">
             <CounterpartyNavigation match={match}/>
             <section className="block">
                 {Boolean(balance) &&
@@ -149,7 +149,7 @@ const CounterPartyTransferBalance = ({ match }) => {
                         )}/>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
 

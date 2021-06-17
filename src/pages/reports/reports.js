@@ -46,7 +46,7 @@ const downloadReport = (values) => {
 }
 
 const ReportsPage = () => (
-    <div>
+    <div className="page-content-no-tabs">
         <section>
             <CachedForm
                 initialValues={initialDateValues}
@@ -54,7 +54,6 @@ const ReportsPage = () => (
                 render={(formik) => (
                     <div className="form"
                          style={{
-                             paddingTop: '120px',
                              width: '500px'
                          }}>
                         <div>

@@ -4,7 +4,7 @@ import Markups from 'matsumoto/src/parts/markups/markups';
 import apiMethods from 'core/methods';
 
 const CounterPartyMarkupManager = ({ match }) => (
-    <>
+    <div className="page-content">
         <CounterpartyNavigation match={match}/>
         <section>
             <Markups
@@ -14,7 +14,7 @@ const CounterPartyMarkupManager = ({ match }) => (
                 markupRoute={() => apiMethods.counterpartyMarkups(match.params.id)}
             />
         </section>
-    </>
+    </div>
 )
 
 export default CounterPartyMarkupManager;

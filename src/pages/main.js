@@ -30,43 +30,6 @@ const UedaMainPage = () => {
         <div className="block">
             <section>
                 <h1>Welcome</h1>
-                <div className="buttons">
-                    <Link to="/counterparties">
-                        <button className="button">
-                            Counterparties
-                        </button>
-                    </Link>
-                    <Link to="/paymentlinks">
-                        <button className="button">
-                            Payment Links
-                        </button>
-                    </Link>
-                    <Link to="/admins">
-                        <button className="button">
-                            Admins
-                        </button>
-                    </Link>
-                    <Link to="/duplicates">
-                        <button className="button">
-                            Duplicates
-                        </button>
-                    </Link>
-                    <Link to="/globalmarkups">
-                        <button className="button">
-                            Markups
-                        </button>
-                    </Link>
-                    <Link to="/reports">
-                        <button className="button">
-                            Reports
-                        </button>
-                    </Link>
-                    <Link to="/bookings">
-                        <button className="button">
-                            Bookings
-                        </button>
-                    </Link>
-                </div>
             </section>
         </div>
     );

@@ -1,0 +1,22 @@
+@mixin icon($image, $width: 26, $height: 26)
+  background-image: url($image)
+  width: #{$width}px
+  height: #{$height}px
+.icon
+  display: inline-block
+  background: no-repeat center center
+  vertical-align: text-bottom
+  &.icon-counterparty
+      @include icon('./icons/sidebar/icon-counterparty.svg')
+  &.icon-payment-links
+    @include icon('./icons/sidebar/icon-payment-links.svg')
+  &.icon-admins
+    @include icon('./icons/sidebar/icon-admins.svg')
+  &.icon-duplicates
+    @include icon('./icons/sidebar/icon-duplicates.svg')
+  &.icon-markups
+    @include icon('./icons/sidebar/icon-markups.svg')
+  &.icon-reports
+    @include icon('./icons/sidebar/icon-reports.svg')
+  &.icon-bookings
+    @include icon('./icons/sidebar/icon-bookings.svg')

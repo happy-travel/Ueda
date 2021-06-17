@@ -18,7 +18,7 @@ const CounterpartiesList = () => {
     }, [])
 
     return (
-        <div className="block counterparties-list">
+        <div className="block counterparties-list page-content-no-tabs">
             <section>
                 <h1>Counterparties list</h1>
 

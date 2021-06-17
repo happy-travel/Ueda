@@ -31,7 +31,7 @@ const AgencyBalance = ({ match }) => {
     }
 
     return (
-        <>
+        <div className="page-content">
             <AgencyNavigation match={match}/>
             <section className="settings block">
                 <section>
@@ -72,7 +72,7 @@ const AgencyBalance = ({ match }) => {
                     />
                 </section>
             </section>
-        </>
+        </div>
     )
 }
 

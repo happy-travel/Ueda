@@ -110,7 +110,7 @@ class DuplicatePage extends React.Component {
         ]
 
         return (
-            <div className="settings block">
+            <div className="settings block page-content-no-tabs">
                 <section>
                     <h1>Duplicate #{this.props.match.params.id}</h1>
 
