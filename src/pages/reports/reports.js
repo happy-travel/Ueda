@@ -46,7 +46,7 @@ const downloadReport = (values) => {
 }
 
 const ReportsPage = () => (
-    <div className="general-page-content-without-tabs">
+    <div className="page-content-no-tabs">
         <section>
             <CachedForm
                 initialValues={initialDateValues}

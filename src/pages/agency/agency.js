@@ -77,7 +77,7 @@ const AgencyPage = ({ match }) => {
         });
     }
     return (
-        <div className="settings block general-page-content">
+        <div className="settings block page-content">
             <AgencyNavigation match={match} />
             <section>
                 <h1>Agency #{match.params.id}</h1>

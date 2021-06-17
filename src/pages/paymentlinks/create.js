@@ -71,7 +71,7 @@ const CreatePaymentLinkPage = () => {
 
     return (
         <div className="settings block">
-            <div className="general-page-content-without-tabs">
+            <div className="page-content-no-tabs">
                 <section>
                     <h1>Create a payment link</h1>
                     <CachedForm

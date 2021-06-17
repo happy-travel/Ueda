@@ -50,7 +50,7 @@ const Booking = ({ match }) => {
     }
 
     return (
-        <div className="confirmation block general-page-content-without-tabs">
+        <div className="confirmation block page-content-no-tabs">
             <section>
                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '50px 0 30px' }}>
                     <div className="buttons">

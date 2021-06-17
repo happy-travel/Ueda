@@ -4,7 +4,7 @@ import AgentsList from './agents';
 
 const AgenciesList = ({ match }) => {
     return (
-        <div className="general-page-content">
+        <div className="page-content">
             <AgencyNavigation match={match}/>
             <section>
                 <AgentsList id={match.params.id}/>

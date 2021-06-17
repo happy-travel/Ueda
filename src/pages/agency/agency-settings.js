@@ -39,7 +39,7 @@ const AgencySettings = ({ match }) => {
     }
 
     return (
-        <div className="general-page-content">
+        <div className="page-content">
             <AgencyNavigation match={match}/>
             <section>
                 <SearchOptionsForm

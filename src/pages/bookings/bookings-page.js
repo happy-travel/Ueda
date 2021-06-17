@@ -15,7 +15,7 @@ const BookingsPage = () => {
     }
 
     return (
-        <div className="general-page-content-without-tabs">
+        <div className="page-content-no-tabs">
             <section>
                 <CachedForm
                     onSubmit={submit}

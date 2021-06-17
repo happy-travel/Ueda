@@ -19,7 +19,7 @@ const inviteAdminPage = () => {
     }
 
     return (
-        <div className="settings block general-page-content-without-tabs">
+        <div className="settings block page-content-no-tabs">
             <section>
                 <h2><span className="brand">Invite Administrator</span></h2>
                 { success === null && <Loader /> }
