@@ -35,7 +35,7 @@ const CounterpartyDetails = ({ match }) => {
     return (
         <div className="page-content">
             <CounterpartyNavigation match={match}/>
-            <section className="admin-tab-element-wrapper">
+            <div className="admin-tab-element-wrapper">
                 <h2>Counterparty details</h2>
                 <CachedForm
                     initialValues={counterparty}
@@ -110,7 +110,7 @@ const CounterpartyDetails = ({ match }) => {
                         </div>
                     )}
                 />
-            </section>
+            </div>
         </div>
     )
 }

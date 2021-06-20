@@ -15,51 +15,48 @@ const duplicatesListPage = () => {
 
     return (
         <div className="block">
-            <section>
-                <h1>Duplicates list</h1>
-
-                <div style={{ marginTop: '-90px' }}>
-                    <Table
-                        list={list}
-                        columns={ [
-                            {
-                                header: 'ID',
-                                cell: 'id',
-                            },
-                            {
-                                header: 'Status',
-                                cell: 'state',
-                            },
-                            {
-                                header: 'Created',
-                                cell: (cell) => date.format.a(cell.created),
-                            },
-                            {
-                                header: 'Creator',
-                                cell: 'agentName',
-                            },
-                            {
-                                header: 'Accommodation A',
-                                cell: (cell) => cell.accommodations?.[0].supplier + ': ' + cell.accommodations?.[0].id
-                            },
-                            {
-                                header: 'Accommodation B',
-                                cell: (cell) => cell.accommodations?.[1].supplier + ': ' + cell.accommodations?.[1].id
-                            },
-                        ]}
-                        onRowClick={(item) => redirect(`/duplicates/${item.id}`)}
-                        textEmptyResult="No duplicates reports found"
-                        textEmptyList="No duplicates reports found (empty)"
-                        searches={(v) => [
-                            String(v.id), v.state, v.agentName, v.countryName,
-                            v.accommodations?.[0].supplier,
-                            v.accommodations?.[1].supplier,
-                            v.accommodations?.[0].id,
-                            v.accommodations?.[1].id,
-                        ]}
-                    />
-                </div>
-            </section>
+            <h1>Duplicates list</h1>
+            <div style={{ marginTop: '-90px' }}>
+                <Table
+                    list={list}
+                    columns={ [
+                        {
+                            header: 'ID',
+                            cell: 'id',
+                        },
+                        {
+                            header: 'Status',
+                            cell: 'state',
+                        },
+                        {
+                            header: 'Created',
+                            cell: (cell) => date.format.a(cell.created),
+                        },
+                        {
+                            header: 'Creator',
+                            cell: 'agentName',
+                        },
+                        {
+                            header: 'Accommodation A',
+                            cell: (cell) => cell.accommodations?.[0].supplier + ': ' + cell.accommodations?.[0].id
+                        },
+                        {
+                            header: 'Accommodation B',
+                            cell: (cell) => cell.accommodations?.[1].supplier + ': ' + cell.accommodations?.[1].id
+                        },
+                    ]}
+                    onRowClick={(item) => redirect(`/duplicates/${item.id}`)}
+                    textEmptyResult="No duplicates reports found"
+                    textEmptyList="No duplicates reports found (empty)"
+                    searches={(v) => [
+                        String(v.id), v.state, v.agentName, v.countryName,
+                        v.accommodations?.[0].supplier,
+                        v.accommodations?.[1].supplier,
+                        v.accommodations?.[0].id,
+                        v.accommodations?.[1].id,
+                    ]}
+                />
+            </div>
         </div>
     );
 }

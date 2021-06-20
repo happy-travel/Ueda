@@ -20,46 +20,44 @@ const inviteAdminPage = () => {
 
     return (
         <div className="settings block page-content-no-tabs">
-            <section>
-                <h2><span className="brand">Invite Administrator</span></h2>
-                { success === null && <Loader /> }
-                { success && <div>
-                    {success === true &&
-                        <div>
-                            <h3>Your invitation sent</h3>
-                        </div>
-                    }
-                </div> }
+            <h1><span className="brand">Invite Administrator</span></h1>
+            { success === null && <Loader /> }
+            { success && <div>
+                {success === true &&
+                    <div>
+                        <h3>Your invitation sent</h3>
+                    </div>
+                }
+            </div> }
 
-                { false === success && <CachedForm
-                    validationSchema={registrationAgentValidatorWithEmail}
-                    onSubmit={submit}
-                    render={(formik) => (
-                        <React.Fragment>
-                            <div className="form">
-                                <div className="row">
-                                    <FieldText formik={formik}
-                                               id="email"
-                                               label="Email"
-                                               placeholder="Email"
-                                               required
-                                    />
-                                </div>
-                                <FormAgentData formik={formik} t={(x)=>x}/>
-                                <div className="row submit-holder">
-                                    <div className="field">
-                                        <div className="inner">
-                                            <button className="button" onClick={formik.handleSubmit}>
-                                                Send Invitation
-                                            </button>
-                                        </div>
+            { false === success && <CachedForm
+                validationSchema={registrationAgentValidatorWithEmail}
+                onSubmit={submit}
+                render={(formik) => (
+                    <React.Fragment>
+                        <div className="form">
+                            <div className="row">
+                                <FieldText formik={formik}
+                                           id="email"
+                                           label="Email"
+                                           placeholder="Email"
+                                           required
+                                />
+                            </div>
+                            <FormAgentData formik={formik} t={(x)=>x}/>
+                            <div className="row submit-holder">
+                                <div className="field">
+                                    <div className="inner">
+                                        <button className="button" onClick={formik.handleSubmit}>
+                                            Send Invitation
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </React.Fragment>
-                    )}
-                />}
-            </section>
+                        </div>
+                    </React.Fragment>
+                )}
+            />}
         </div>
     );
 }

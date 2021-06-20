@@ -34,9 +34,15 @@ const App = () => {
                             { canShowContent ?
                                 <>
                                     <Route component={ Header } />
-                                    <div className="nav-wrapper">
+                                    <div className="nav-wrapper"
+                                    style={{
+                                        display: 'flex'
+                                    }}>
                                         <Route component={ SideBar } />
-                                        <div className="block-wrapper">
+                                        <div className="block-wrapper"
+                                        style={{
+                                            width: '100%'
+                                        }}>
                                             <Routes />
                                         </div>
                                     </div>

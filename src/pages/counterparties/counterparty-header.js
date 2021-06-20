@@ -27,22 +27,20 @@ const CounterpartyHeader = ({ id }) => {
 
     return (
         <div className="counterparty-header">
-            <section>
-                <h1>{counterparty?.name}</h1>
-                {Boolean(balance) &&
-                    <h4>
-                        Balance: {price(balance.currency, balance.balance)}
-                    </h4>
-                }
-                <CachedForm
-                    render={(formik) => (
-                        <div className="row">
-                            <FieldSwitch
-                                formik={formik}
-                                value={counterparty?.isActive}/>
-                        </div>
-                    )}/>
-            </section>
+            <h1>{counterparty?.name}</h1>
+            {Boolean(balance) &&
+                <h4>
+                    Balance: {price(balance.currency, balance.balance)}
+                </h4>
+            }
+            <CachedForm
+                render={(formik) => (
+                    <div className="row">
+                        <FieldSwitch
+                            formik={formik}
+                            value={counterparty?.isActive}/>
+                    </div>
+                )}/>
         </div>
     )
 }

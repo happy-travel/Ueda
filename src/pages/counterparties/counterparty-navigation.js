@@ -9,7 +9,6 @@ const CounterpartyNavigation = ({ match }) => {
         <div>
             <CounterpartyHeader id={id} />
             <div className="counterparty-tabs-navigation">
-                <section>
                     <NavLink to={`/counterparties/${id}/details`}>
                         Counterparty Details
                     </NavLink>
@@ -22,7 +21,6 @@ const CounterpartyNavigation = ({ match }) => {
                     <NavLink to={`/counterparties/${id}/markup-manager`}>
                         Markup Management
                     </NavLink>
-                </section>
             </div>
         </div>
     )

@@ -111,27 +111,24 @@ class DuplicatePage extends React.Component {
 
         return (
             <div className="settings block page-content-no-tabs">
-                <section>
-                    <h1>Duplicate #{this.props.match.params.id}</h1>
+                <h1>Duplicate #{this.props.match.params.id}</h1>
+                <div className="buttons">
+                    <button className="button" onClick={this.approve}>Approve</button>
+                    <button className="button" onClick={this.disapprove}>Disapprove</button>
+                </div>
 
-                    <div className="buttons">
-                        <button className="button" onClick={this.approve}>Approve</button>
-                        <button className="button" onClick={this.disapprove}>Disapprove</button>
-                    </div>
-
-                    <div style={{ marginTop: '30px' }}>
-                        <strong>Created:</strong> {date.format.a(duplicate.created)}
-                    </div>
-                    <div>
-                        <strong>Status:</strong> {duplicate.state}
-                    </div>
-                    { duplicate.agentName && <div>
-                        <strong>Agent:</strong> {duplicate.agentName}
-                    </div> }
-                    {duplicate.accommodations &&
-                        <Verticaltable dataA={accommodationA} dataB={accommodationB} columns={columns}/>
-                    }
-                </section>
+                <div style={{ marginTop: '30px' }}>
+                    <strong>Created:</strong> {date.format.a(duplicate.created)}
+                </div>
+                <div>
+                    <strong>Status:</strong> {duplicate.state}
+                </div>
+                { duplicate.agentName && <div>
+                    <strong>Agent:</strong> {duplicate.agentName}
+                </div> }
+                {duplicate.accommodations &&
+                    <Verticaltable dataA={accommodationA} dataB={accommodationB} columns={columns}/>
+                }
                 <div className={'raw-data'}>
                     <div>
                         <pre>

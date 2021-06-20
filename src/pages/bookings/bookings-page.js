@@ -16,29 +16,32 @@ const BookingsPage = () => {
 
     return (
         <div className="page-content-no-tabs">
-            <section>
-                <CachedForm
-                    onSubmit={submit}
-                    render={(formik) => (
-                        <div className="form"
-                             style={{
-                                 width: '500px'
-                             }}>
-                            <div>
-                                <div className="row">
-                                    <FieldText formik={formik}
-                                               id="refCode"
-                                               label="Reference code"
-                                    />
-                                </div>
-                            </div>
-                            <button className="button"
-                                    type="submit">
-                                Go over
-                            </button>
+            <CachedForm
+                onSubmit={submit}
+                render={(formik) => (
+                    <div className="form"
+                         style={{
+                             width: '500px'
+                         }}>
+                        <div>
+                            <h2>Find booking</h2>
                         </div>
-                    )}/>
-            </section>
+                        <div style={{
+                            paddingTop: '30px'
+                        }}>
+                            <div className="row">
+                                <FieldText formik={formik}
+                                           id="refCode"
+                                           label="Reference code"
+                                />
+                            </div>
+                        </div>
+                        <button className="button"
+                                type="submit">
+                            Search
+                        </button>
+                    </div>
+                )}/>
         </div>
     )
 }
