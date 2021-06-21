@@ -43,17 +43,11 @@ const CounterpartyDetails = ({ match }) => {
                     onSubmit={submit}
                     render={(formik) => (
                         <div className="form">
-                            <div className="row"
-                            style={{
-                                width: '680px'
-                            }}>
+                            <div className="row wide">
                                 <FieldText formik={formik} id="name" label="Name"
                                                             readOnly={!isPendingVerification}/>
                             </div>
-                            <div className="row"
-                                 style={{
-                                     width: '680px'
-                                 }}>
+                            <div className="row wide">
                                 <FieldText formik={formik} id="address" label="Address"
                                                             readOnly={!isPendingVerification}/>
                             </div>
@@ -91,10 +85,7 @@ const CounterpartyDetails = ({ match }) => {
                                 <div className="row"><FieldText formik={formik} id="vatNumber" label="VAT Number"
                                                                 readOnly={!isPendingVerification}/></div>
                             </div>
-                            <div className="row"
-                                 style={{
-                                     width: '680px'
-                                 }}>
+                            <div className="row wide">
                                 <FieldText formik={formik} id="billingEmail" label="Billing Email"
                                                             readOnly={!isPendingVerification}/>
                             </div>
