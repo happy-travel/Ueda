@@ -35,8 +35,8 @@ const CounterpartyDetails = ({ match }) => {
     return (
         <div className="page-content">
             <CounterpartyNavigation match={match}/>
-            <div className="admin-tab-element-wrapper">
-                <h2>Counterparty details</h2>
+            <div className="admin-tab-element-wrapper block">
+                <h2>Counterparty Information</h2>
                 <CachedForm
                     initialValues={counterparty}
                     enableReinitialize

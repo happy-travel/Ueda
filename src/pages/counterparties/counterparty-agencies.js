@@ -20,7 +20,7 @@ const CounterpartyAgencies = ({ match }) => {
     return (
         <div className="page-content">
             <CounterpartyNavigation match={match}/>
-            <div className="admin-tab-element-wrapper">
+            <div className="admin-tab-element-wrapper block">
                 <h2>Agencies</h2>
                 <Table
                     list={agencies}
@@ -37,6 +37,7 @@ const CounterpartyAgencies = ({ match }) => {
                     onRowClick={(item) => redirect(`/counterparties/agencies/${item.id}`)}
                     textEmptyResult="No agencies"
                     textEmptyList="No agencies"
+                    searches={(v) => [v.id, v.name]}
                 />
             </div>
         </div>
