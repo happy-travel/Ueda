@@ -1,9 +1,9 @@
 .block
     h1
-        margin: 50px 0 30px
+        margin: 19px 0 30px
 
     h2
-        margin: 60px 0 20px
+        margin: 40px 0 20px
 
 .box
     display: inline-block
@@ -27,21 +27,17 @@
 .raw-data
     display: flex
     justify-content: space-between
-    margin: 0 100px 0 200px
+    margin: 0 300px 0 0
 .global-markups
     h2
         margin-bottom: 25px
 
-
 .counterparty-tabs-navigation
+    position: relative
     box-shadow: 0 .5px 0 $color-shadow-border
-    margin: 60px 0 60px 239px
-
-
-    section
-        margin-right: 221px
-        display: flex
-        justify-content: flex-start
+    margin: 15px 0 30px -70px
+    display: flex
+    justify-content: flex-start
     a
         font-size: 13px
         line-height: 16px
@@ -50,6 +46,8 @@
         margin: 0 10px
         padding: 19px 14px
         position: relative
+        &:first-child
+            margin-left: 58px
         &:hover
             color: $color-text
         &.active
@@ -65,11 +63,8 @@
                 bottom: 0
                 left: 0
 .side-bar
-    position: fixed
-    width: 329px
-    height: 1348px
-    z-index: 10
-    left: 0
+    width: 17%
+    min-width: 329px
     top: 72px
     background: linear-gradient(180.01deg, rgba(255, 255, 255, 0) 0.62%, #F7F8FC 42.75%)
 
@@ -79,11 +74,33 @@
     font-size: 16px
     margin-bottom: 20px
     margin-left: 30px
+    padding-top: 8px
     span
         margin: 7px 0 1px 7px
         white-space: nowrap
+.sidebar-item:hover
+    width: 230px
+    height: 54px
+    background: #F7F8FC
+    border-radius: 40px
 .page-content
-    margin-left: 90px
+    margin-left: 70px
 .page-content-no-tabs
-    margin: 120px 0 0 100px
-
+    margin: 0 0 0 40px
+.counterparty-header
+    margin-top: 21px
+    h4
+        margin: 15px 0 15px 0
+.row-group
+    display: flex
+    .row
+        width: 330px
+        margin-right: 20px
+.row.wide
+    width: 680px
+.admin-tab-element-wrapper
+    .form .row
+        margin-bottom: 40px
+.admin-app-header
+    display: flex
+    justify-content: center

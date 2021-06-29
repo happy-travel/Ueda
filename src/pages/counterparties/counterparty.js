@@ -86,8 +86,9 @@ const CounterpartyPage = ({ match }) => {
     return (
         <div className="page-content">
             <CounterpartyNavigation match={match}/>
-            <section>
+            <div>
                 <h1>{counterparty?.name}</h1>
+                <h3>Balance</h3>
                 <h3>Status: {counterparty?.isActive ? 'Active' : 'Inactive'}</h3>
                 <h3 style={{ marginBottom: '30px' }}>State: {remapStatus(counterparty?.verificationState)}</h3>
                 <div className="buttons" style={{ marginBottom: '10px' }}>
@@ -123,7 +124,7 @@ const CounterpartyPage = ({ match }) => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

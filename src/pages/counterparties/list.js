@@ -19,7 +19,7 @@ const CounterpartiesList = () => {
 
     return (
         <div className="block counterparties-list page-content-no-tabs">
-            <section>
+            <div>
                 <h1>Counterparties list</h1>
 
                 <div style={{ marginTop: '-90px' }}>
@@ -61,13 +61,7 @@ const CounterpartiesList = () => {
                         searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState, v.isActive ? 'Active' : 'Inactive']}
                     />
                 </div>
-                {/*{this.state.result?.map((item) => (*/}
-                {/*    <div key={item.id}>*/}
-                {/*        <h3>#{item.id}: {item.name}</h3>*/}
-                {/*        address: {item.address}*/}
-                {/*    </div>*/}
-                {/*))}*/}
-            </section>
+            </div>
         </div>
     );
 }

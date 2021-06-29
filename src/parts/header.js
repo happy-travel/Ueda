@@ -4,7 +4,7 @@ import AgentMenu from 'components/complex/agent-menu';
 import { Authorized } from 'matsumoto/src/core/auth';
 
 const Header = () => (
-    <header>
+    <header className="admin-app-header">
         <section>
             <div className="logo-wrapper">
                 <div className="logo">

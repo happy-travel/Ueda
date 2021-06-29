@@ -47,64 +47,62 @@ const downloadReport = (values) => {
 
 const ReportsPage = () => (
     <div className="page-content-no-tabs">
-        <section>
-            <CachedForm
-                initialValues={initialDateValues}
-                onSubmit={downloadReport}
-                render={(formik) => (
-                    <div className="form"
-                         style={{
-                             width: '500px'
+        <CachedForm
+            initialValues={initialDateValues}
+            onSubmit={downloadReport}
+            render={(formik) => (
+                <div className="form"
+                     style={{
+                         width: '500px'
+                     }}>
+                    <div>
+                        <h2>Download Report</h2>
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        paddingTop: '30px'
                          }}>
                         <div>
-                            <h2>Download Report</h2>
-                        </div>
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            paddingTop: '30px'
-                             }}>
                             <div>
-                                <div>
-                                    <FieldDatepicker
-                                    className="size-one"
-                                    required
-                                    formik={ formik }
-                                    id="dates"
-                                    first="start"
-                                    second="end"
-                                    label="Report Period"
-                                    placeholder="Dates"
-                                />
-                                </div>
-                                <div style={{
-                                    paddingTop: '30px'
-                                }}>
-                                    <FieldSelect
-                                    required
-                                    formik={ formik }
-                                    id="reportMethod"
-                                    label="Report Data"
-                                    placeholder="Please Select"
-                                    options={[
-                                        { value: urlMethods.supplier, text: 'Direct connectivity supplier wise report' },
-                                        { value: urlMethods.agency, text: 'Direct connectivity agency wise report' },
-                                        { value: urlMethods.agencyProductivity, text: 'Agencies productivity report' },
-                                        { value: urlMethods.fullBooking, text: 'Full bookings report' }
-                                    ]}
-                                />
-                                </div>
+                                <FieldDatepicker
+                                className="size-one"
+                                required
+                                formik={ formik }
+                                id="dates"
+                                first="start"
+                                second="end"
+                                label="Report Period"
+                                placeholder="Dates"
+                            />
                             </div>
-                                <button
-                                    style={{ marginTop: '40px' }}
-                                    className="button"
-                                    type="submit">
-                                    Download Report
-                                </button>
+                            <div style={{
+                                paddingTop: '30px'
+                            }}>
+                                <FieldSelect
+                                required
+                                formik={ formik }
+                                id="reportMethod"
+                                label="Report Data"
+                                placeholder="Please Select"
+                                options={[
+                                    { value: urlMethods.supplier, text: 'Direct connectivity supplier wise report' },
+                                    { value: urlMethods.agency, text: 'Direct connectivity agency wise report' },
+                                    { value: urlMethods.agencyProductivity, text: 'Agencies productivity report' },
+                                    { value: urlMethods.fullBooking, text: 'Full bookings report' }
+                                ]}
+                            />
+                            </div>
                         </div>
+                            <button
+                                style={{ marginTop: '40px' }}
+                                className="button"
+                                type="submit">
+                                Download Report
+                            </button>
                     </div>
-                )}/>
-        </section>
+                </div>
+            )}/>
     </div>
 )
 
