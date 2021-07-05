@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { CachedForm, FieldSelect, FieldText } from 'matsumoto/src/components/form';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
-import { price } from 'matsumoto/src/simple';
-import CounterpartyBalance from './counterparty-balance';
+import { FormGetFormat } from 'core/service/form';
 import CounterpartyNavigation from './counterparty-navigation';
+import CounterpartyTransferBalanceNavigation from './counterparty-transfer-balance-navigation';
 
-const CounterPartyTransferBalance = ({ match }) => {
+const CounterpartyTransferBalanceActions = ({ match: id }) => {
 
     const [accounts, setAccounts] = useState(null);
     const [agencies, setAgencies] = useState(null);
@@ -15,19 +15,19 @@ const CounterPartyTransferBalance = ({ match }) => {
 
     useEffect(() => {
         API.get({
-            url: apiMethods.counterpartyAccountsList(match.params.id),
+            url: apiMethods.counterpartyAccountsList(id.params.id),
             success: (accounts) => {
                 setAccounts(accounts);
             }
         });
         API.get({
-            url: apiMethods.agencies(match.params.id),
+            url: apiMethods.agencies(id.params.id),
             success: (agencies) => {
                setAgencies(agencies);
             }
         });
         API.get({
-            url: apiMethods.accountBalance(match.params.id, 'USD'),
+            url: apiMethods.accountBalance(id.params.id, 'USD'),
             success: (balance) => {
                 setBalance(balance);
             }
@@ -41,14 +41,6 @@ const CounterPartyTransferBalance = ({ match }) => {
         })
     }
 
-    const getFormat = (accounts) => {
-        return accounts?.map((item) => (
-            {
-                text: `Account #${item.id}: ${price(item.balance)}`,
-                value: item.id
-            }
-        ));
-    }
 
     const setAgenciesOptions = (agencies) => {
         return agencies?.map((item, index) => (
@@ -70,33 +62,26 @@ const CounterPartyTransferBalance = ({ match }) => {
 
     return (
         <div className="page-content">
-            <CounterpartyNavigation match={match}/>
+            <CounterpartyNavigation match={id}/>
+            <CounterpartyTransferBalanceNavigation match={id} />
             <div className="block">
-                {Boolean(balance) &&
-                <>
-                    <h2>Balance: {price(balance.currency, balance.balance)}</h2>
-                    <CounterpartyBalance
-                        id={accounts?.[0].id}
-                    />
-                </>
-                }
                 <div>
-                    <h2>{'Transfer Balance'}</h2>
+                    <h2>Transfer Balance</h2>
                     <CachedForm
                         onSubmit={submitTransfer}
                         render={(formik) => (
-                            <div className="form" style={{ width: 400 }}>
-                                <div className="row">
+                            <div className="form">
+                                <div className="row wide">
                                     <FieldSelect
                                         formik={formik}
                                         id="counterpartyAccountId"
                                         label="From Account"
                                         placeholder="Please Select"
                                         required
-                                        options={getFormat(accounts)}
+                                        options={FormGetFormat(accounts)}
                                     />
                                 </div>
-                                <div className="row">
+                                <div className="row wide">
                                     <FieldSelect
                                         formik={formik}
                                         id="agency"
@@ -107,41 +92,43 @@ const CounterPartyTransferBalance = ({ match }) => {
                                         options={setAgenciesOptions(agencies)}
                                     />
                                 </div>
-                                <div className="row">
+                                <div className="row wide">
                                     <FieldSelect
                                         formik={formik}
                                         id="agencyAccount"
                                         label="To Agency Account"
                                         placeholder="Please Select"
                                         required
-                                        options={getFormat(agency)}
+                                        options={FormGetFormat(agency)}
                                     />
                                 </div>
-                                <div className="row">
-                                    <FieldText
-                                        formik={formik}
-                                        id="amount"
-                                        label="Amount"
-                                        placeholder="Amount"
-                                        numeric
-                                    />
+                                <div className="row-group">
+                                    <div className="row middle-wide">
+                                        <FieldText
+                                            formik={formik}
+                                            id="amount"
+                                            label="Amount"
+                                            placeholder="Amount"
+                                            numeric
+                                        />
+                                    </div>
+                                    <div className="row slim">
+                                        <FieldSelect
+                                            formik={formik}
+                                            id="currency"
+                                            label="Currency"
+                                            required
+                                            options={[
+                                                { value: 'USD', text: 'USD' },
+                                                { value: 'EUR', text: 'EUR' },
+                                                { value: 'AED', text: 'AED' },
+                                                { value: 'SAR', text: 'SAR' }
+                                            ]}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="row">
-                                    <FieldSelect
-                                        formik={formik}
-                                        id="currency"
-                                        label="Currency"
-                                        required
-                                        options={[
-                                            { value: 'USD', text: 'USD' },
-                                            { value: 'EUR', text: 'EUR' },
-                                            { value: 'AED', text: 'AED' },
-                                            { value: 'SAR', text: 'SAR' }
-                                        ]}
-                                    />
-                                </div>
-                                <div className="row">
-                                    <button type="submit" className="button" style={{ width: '100%' }}>
+                                    <button type="submit" className="button m">
                                         Transfer
                                     </button>
                                 </div>
@@ -153,5 +140,5 @@ const CounterPartyTransferBalance = ({ match }) => {
     )
 }
 
-export default CounterPartyTransferBalance;
+export default CounterpartyTransferBalanceActions;
 

@@ -8,7 +8,6 @@ import history from 'matsumoto/src/core/misc/history';
 import AuthCallback from 'matsumoto/src/core/auth/callback';
 import AuthSilent from 'matsumoto/src/core/auth/silent';
 import AuthLogout from 'matsumoto/src/core/auth/logout';
-import Footer from 'matsumoto/src/parts/footer/footer';
 import { Loader } from 'matsumoto/src/components/simple';
 import { Authorized, isPageAvailableAuthorizedOnly } from 'matsumoto/src/core/auth';
 import internationalization from 'core/internationalization';
@@ -46,7 +45,6 @@ const App = () => {
                                             <Routes />
                                         </div>
                                     </div>
-                                    <Route component={ Footer } />
                                 </> :
                                 <Loader page />
                             }

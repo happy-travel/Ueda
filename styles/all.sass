@@ -1,3 +1,5 @@
+$background-color: #F7F8FC
+
 .block
     h1
         margin: 19px 0 30px
@@ -33,8 +35,10 @@
         margin-bottom: 25px
 
 .counterparty-tabs-navigation
-    position: relative
     box-shadow: 0 .5px 0 $color-shadow-border
+
+.counterparty-tabs-navigation, .counterparty-balance-tabs-navigation
+    position: relative
     margin: 15px 0 30px -70px
     display: flex
     justify-content: flex-start
@@ -66,7 +70,7 @@
     width: 17%
     min-width: 329px
     top: 72px
-    background: linear-gradient(180.01deg, rgba(255, 255, 255, 0) 0.62%, #F7F8FC 42.75%)
+    background: linear-gradient(180.01deg, rgba(255, 255, 255, 0) 0.62%, $background-color 42.75%)
 
 .sidebar-item
     display: flex
@@ -81,7 +85,7 @@
 .sidebar-item:hover
     width: 230px
     height: 54px
-    background: #F7F8FC
+    background: $background-color
     border-radius: 40px
 .page-content
     margin-left: 70px
@@ -98,9 +102,32 @@
         margin-right: 20px
 .row.wide
     width: 680px
+.row.middle-wide
+    width: 447px
+.row.slim
+    width: 213px
 .admin-tab-element-wrapper
     .form .row
         margin-bottom: 40px
 .admin-app-header
     display: flex
     justify-content: center
+
+.counterparty-balance-tabs-navigation
+    background-color: $background-color
+    margin-top: -29px
+.button.m
+    width: 320px
+.note-wrapper
+    width: 680px
+    min-height: 80px
+    background-color: #F7F8FC
+    border-radius: 8px
+    .content
+        margin: 20px 26px 20px 26px
+        h3
+            margin-bottom: 10px
+.note-text
+    line-height: 16px
+    font-size: 16px
+    color: #777
