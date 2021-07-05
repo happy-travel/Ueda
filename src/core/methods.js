@@ -43,10 +43,7 @@ const apiMethods = {
     paymentCompleteManually: (bookingId) => `${a}/payments/offline/accommodations/bookings/${bookingId}`,
     paymentConfirm: (bookingId) => `${a}/payments/credit-card/accommodations/bookings/${bookingId}/confirm`,
     accountBalance: (counterpartyId, currency) => `${a}/counterparties/${counterpartyId}/counterparty-accounts/${currency}/balance`,
-    accountPlusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/replenish`,
-    accountMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/subtract`,
-    accountManuallyPlusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/increase-manually`,
-    accountManuallyMinusMoney: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/decrease-manually`,
+    accountOperation: (counterpartyAccountId, operation) => `${a}/counterparty-accounts/${counterpartyAccountId}/${operation}`,
     transferFromCounterpartyToAgency: (counterpartyAccountId) => `${a}/counterparty-accounts/${counterpartyAccountId}/transfer`,
 
     supplierConnectivityReport: (from, end) => `${a}/reports/direct-connectivity-report/supplier-wise?from=${from}&end=${end}`,
