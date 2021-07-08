@@ -77,7 +77,7 @@ const CreatePaymentLinkPage = () => {
                     onSubmit={submit}
                     validationSchema={ValidatorPaymentLink}
                     render={(formik) => (
-                        <div className="form">
+                        <div className="form section-slim">
                             <div className="row">
                                 <FieldText formik={formik} id="amount" label="Amount" numeric required/>
                             </div>

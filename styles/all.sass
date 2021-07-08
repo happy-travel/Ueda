@@ -1,4 +1,5 @@
 $background-color: #F7F8FC
+$primary-color: #FCB700
 
 .block
     h1
@@ -118,9 +119,12 @@ $background-color: #F7F8FC
     margin-top: -29px
 .button.m
     width: 320px
+.button.l
+    width: 400px
 .note-wrapper
-    width: 680px
-    min-height: 80px
+    display: flex
+    //width: 680px
+    min-height: 90px
     background-color: #F7F8FC
     border-radius: 8px
     .content
@@ -131,3 +135,30 @@ $background-color: #F7F8FC
     line-height: 16px
     font-size: 16px
     color: #777
+.note-label
+    font-weight: bold
+.tool-bar
+    padding-top: 40px
+.section-slim
+    width: 400px
+.report-card
+    margin: 0 20px 0 20px
+    width: 300px
+    //height: 380px
+    background: #F7F8FC
+    border-radius: 8px
+    padding: 20px 15px 10px 15px
+.report-header
+    display: flex
+    padding-bottom: 30px
+.report-action
+    font-size: 14px
+    padding: 10px 0 15px 0
+    font-weight: bold
+    color: $primary-color
+.report-period
+    input
+        border: none
+.reports-list
+    display: flex
+    margin-top: 50px
