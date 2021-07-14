@@ -14,8 +14,6 @@ const AgencyHeader = ({ id }) => {
         });
     }, [])
 
-
-
     return (
         <div className="counterparty-header">
         <h1>Agency #{id}</h1>
