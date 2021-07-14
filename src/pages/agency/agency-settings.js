@@ -4,6 +4,7 @@ import SearchOptionsForm from './search-options-form';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
+import AgencyHeader from './agency-header';
 
 const AgencySettings = ({ match }) => {
     const [availabilitySearchOptions, setAvailabilitySearchOptions] = useState(null);
@@ -40,6 +41,7 @@ const AgencySettings = ({ match }) => {
 
     return (
         <div className="page-content">
+            <AgencyHeader id={match.params.id}/>
             <AgencyNavigation match={match}/>
             <section>
                 <SearchOptionsForm

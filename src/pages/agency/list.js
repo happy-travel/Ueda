@@ -1,14 +1,14 @@
 import React from 'react';
 import AgencyNavigation from './agency-navigation';
 import AgentsList from './agents';
+import AgencyHeader from './agency-header';
 
 const AgenciesList = ({ match }) => {
     return (
         <div className="page-content">
+            <AgencyHeader id={match.params.id}/>
             <AgencyNavigation match={match}/>
-            <section>
-                <AgentsList id={match.params.id}/>
-            </section>
+            <AgentsList id={match.params.id}/>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { API, redirect } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Table from 'matsumoto/src/components/table';
 import { remapStatus } from 'matsumoto/src/simple';
+import { Sorters, Searches } from 'matsumoto/src/pages/bookings-management/table-data';
 
 const CounterpartiesList = () => {
 
@@ -58,6 +59,7 @@ const CounterpartiesList = () => {
                         onRowClick={(item) => redirect(`/counterparties/${item.id}`)}
                         textEmptyResult="No counterparties found"
                         textEmptyList="No counterparties found (empty)"
+                        // sorters={Sorters((v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState, v.isActive ? 'Active' : 'Inactive'])}
                         searches={(v) => [String(v.id), v.name, v.city, v.countryName, v.address, v.verificationState, v.isActive ? 'Active' : 'Inactive']}
                     />
                 </div>
