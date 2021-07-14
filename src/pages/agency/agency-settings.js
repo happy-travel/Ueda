@@ -13,12 +13,14 @@ const AgencySettings = ({ match }) => {
         API.get({
             url: apiMethods.availabilitySearchOptions(match.params.id),
             success: (availabilitySearchOptions) => {
-                setAvailabilitySearchOptions({
-                    ...availabilitySearchOptions,
-                    enabledSuppliers: Object.keys(availabilitySearchOptions
-                        .enabledSuppliers)
-                        .reduce(( a, key ) => (a[key] = true, a), {})
-                })
+                if (availabilitySearchOptions) {
+                    return setAvailabilitySearchOptions({
+                        ...availabilitySearchOptions,
+                        enabledSuppliers: Object.keys(availabilitySearchOptions
+                            .enabledSuppliers)
+                            .reduce(( a, key ) => (a[key] = true, a), {})
+                    })
+                }
             },
             error: setAvailabilitySearchOptions(false)
         })
@@ -43,11 +45,9 @@ const AgencySettings = ({ match }) => {
         <div className="page-content">
             <AgencyHeader id={match.params.id}/>
             <AgencyNavigation match={match}/>
-            <section>
                 <SearchOptionsForm
                     id={match.params.id}
                 />
-            </section>
         </div>
     )
 }

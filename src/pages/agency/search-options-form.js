@@ -134,12 +134,11 @@ const SearchOptionsForm = ({ id }) => {
                             style={{
                             marginTop: '50px',
                                 width: '33%',
-                                marginLeft: '25%'
                             }}
                             >
                             <div className="field">
                                 <div className="inner">
-                                    <button type="submit" className="button">
+                                    <button type="submit" className="button m">
                                         Save
                                     </button>
                                 </div>
