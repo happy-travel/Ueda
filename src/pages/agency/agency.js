@@ -3,6 +3,7 @@ import AgencyNavigation from './agency-navigation';
 import { API } from 'matsumoto/src/core';
 import apiMethods from 'core/methods';
 import Notifications from 'matsumoto/src/stores/notifications-store';
+import AgencyHeader from './agency-header';
 
 const AgencyPage = ({ match }) => {
     const [bookings, setBookings] = useState(null);
@@ -77,16 +78,9 @@ const AgencyPage = ({ match }) => {
         });
     }
     return (
-        <div className="settings block page-content">
+        <div className="page-content">
+            <AgencyHeader id={match.params.id}/>
             <AgencyNavigation match={match} />
-            <section>
-                <h1>Agency #{match.params.id}</h1>
-
-                <div className="buttons">
-                    <button className="button" onClick={activate}>Activate</button>
-                    <button className="button" onClick={deactivate}>Deactivate</button>
-                </div>
-            </section>
         </div>
     );
 }

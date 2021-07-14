@@ -16,41 +16,38 @@ const AgentsList = ( { id }) => {
 
     return (
         <div className="block">
-            <section>
-                <h1>Agents list</h1>
-
-                <div style={{ marginTop: '-100px' }}>
-                    <Table
-                        list={list}
-                        columns={ [
-                            {
-                                header: 'ID',
-                                cell: 'agentId',
-                            },
-                            {
-                                header: 'Name',
-                                cell: 'name'
-                            },
-                            {
-                                header: 'Active',
-                                cell: (cell) => cell.isActive ? 'Yes' : 'No'
-                            },
-                            {
-                                header: 'Created',
-                                cell: (cell) => date.format.a(cell.created * 1000)
-                            },
-                            {
-                                header: 'Markup Settings',
-                                cell: 'markupSettings'
-                            }
-                        ]}
-                        onRowClick={(item) => redirect(`/counterparties/agencies/${id}/agents/${item.agentId}`)}
-                        textEmptyResult="No agents found"
-                        textEmptyList="No agents found (empty)"
-                        searches={(v) => [String(v.agentId), v.name]}
-                    />
-                </div>
-            </section>
+            <h1>Agents list</h1>
+            <div style={{ marginTop: '-100px' }}>
+                <Table
+                    list={list}
+                    columns={ [
+                        {
+                            header: 'ID',
+                            cell: 'agentId',
+                        },
+                        {
+                            header: 'Name',
+                            cell: 'name'
+                        },
+                        {
+                            header: 'Active',
+                            cell: (cell) => cell.isActive ? 'Yes' : 'No'
+                        },
+                        {
+                            header: 'Created',
+                            cell: (cell) => date.format.a(cell.created * 1000)
+                        },
+                        {
+                            header: 'Markup Settings',
+                            cell: 'markupSettings'
+                        }
+                    ]}
+                    onRowClick={(item) => redirect(`/counterparties/agencies/${id}/agents/${item.agentId}`)}
+                    textEmptyResult="No agents found"
+                    textEmptyList="No agents found (empty)"
+                    searches={(v) => [String(v.agentId), v.name]}
+                />
+            </div>
         </div>
     );
 }
