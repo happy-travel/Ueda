@@ -104,7 +104,7 @@ const CounterpartyPage = ({ match }) => {
                             Payments
                         </button>
                     </div>}
-                    {counterparty?.verificationState !== "FullAccess" &&
+                    {counterparty?.verificationState !== 'FullAccess' &&
                     <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
                         <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
                     </div>}
