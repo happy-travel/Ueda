@@ -98,11 +98,14 @@ const CounterpartyPage = ({ match }) => {
                     {counterparty?.verificationState === 'ReadOnly' &&
                     <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
                         <button className="button" onClick={() => verify('CashPayments')}>Verify Cash Payments</button>
-В                        <button className="button" onClick={() => verify('CreditPayments')}>Verify Virtual Account Payments
+                        <button className="button" onClick={() => verify('CreditPayments')}>Verify Virtual Account Payments
                         </button>
                         <button className="button" onClick={() => verify('CreditCardPayments')}>Verify Credit Card
                             Payments
                         </button>
+                    </div>}
+                    {counterparty?.verificationState !== 'FullAccess' &&
+                    <div className="verification-toolbar" style={{ margin: '10px 0 10px 0' }}>
                         <button className="button" onClick={verifyReadonly}>Verify Readonly</button>
                     </div>}
                 </div>
