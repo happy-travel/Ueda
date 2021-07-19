@@ -21,9 +21,8 @@ const CounterpartiesList = () => {
     return (
         <div className="block counterparties-list page-content-no-tabs">
             <div>
-                <h1>Counterparties list</h1>
-
-                <div style={{ marginTop: '-90px' }}>
+                <h1>Counterparties</h1>
+                <div className="counterparties-table">
                     <Table
                         list={list}
                         columns={ [
