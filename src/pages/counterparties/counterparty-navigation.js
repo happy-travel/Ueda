@@ -9,6 +9,9 @@ const CounterpartyNavigation = ({ match }) => {
         <div>
             <CounterpartyHeader id={id} />
             <div className="counterparty-tabs-navigation">
+                <NavLink to={`/counterparties/${id}/verification`}>
+                    Verification
+                </NavLink>
                 <NavLink to={`/counterparties/${id}/details`}>
                     Counterparty Details
                 </NavLink>

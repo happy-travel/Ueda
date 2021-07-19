@@ -27,6 +27,7 @@ import counterPartyMarkupManagerPage from 'pages/counterparties/counterparty-mar
 import counterPartyAgenciesPage from 'pages/counterparties/counterparty-agencies';
 import counterpartyDetailsPage from 'pages/counterparties/counterparty-details';
 import counterpartyContractPage from 'pages/counterparties/counterparty-contract';
+import counterpartyVerificationPage from 'pages/counterparties/counterparty-verification';
 
 const Routes = () => (
     <Switch>
@@ -35,6 +36,7 @@ const Routes = () => (
         <Route exact path="/counterparties/:id/transfer-balance/account-operations" component={counterPartyTransferBalanceAccountOperationsPage} />
         <Route exact path="/counterparties/:id/transfer-balance" component={counterPartyTransferBalancePage} />
         <Route exact path="/counterparties/:id/transfer-balance/actions" component={counterPartyTransferBalanceActionsPage} />
+        <Route exact path="/counterparties/:id/verification" component={counterpartyVerificationPage} />
         <Route exact path="/counterparties/:id/markup-manager" component={counterPartyMarkupManagerPage} />
         <Route exact path="/counterparties/:id/agencies" component={counterPartyAgenciesPage} />
         <Route exact path="/counterparties/:id/details" component={ counterpartyDetailsPage} />
