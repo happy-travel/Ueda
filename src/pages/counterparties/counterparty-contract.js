@@ -21,7 +21,7 @@ const CounterpartyContract = ({ match }) => {
         API.put({
             url: apiMethods.contractFile(match.params.id),
             formDataBody: new FormData(document.getElementById('formElem')),
-            success: () => setCounterparty({ ...this.state.counterparty,
+            success: () => setCounterparty({ ...counterparty,
                 isContractUploaded: true })
         });
     }
@@ -57,18 +57,22 @@ const CounterpartyContract = ({ match }) => {
                     ' standard dummy text ever since the 1500s, when an unknown printer took a ' +
                     'galley of type and scrambled it to make a type specime
                     </NoteCard>
-                    <div className="tool-bar">
-                        <form id="formElem" onSubmit={uploadContract}>
-                            <label className="button l file-upload">
-                                {counterparty?.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
-                                <input type="file" name="file" accept="application/pdf"
-                                       onChange={uploadContract}/>
-                            </label>
-                        </form>
-                        {counterparty?.isContractUploaded &&
-                        <button className="button l" onClick={downloadContract}>
-                            Download Contract
-                        </button>}
+                    <div className="buttons tool-bar">
+                        <div className="vertical-toolbar-element">
+                            <form id="formElem" onSubmit={uploadContract}>
+                                <label className="button l file-upload">
+                                    {counterparty?.isContractUploaded ? 'Upload Another Contract' : 'Upload Contract'}
+                                    <input type="file" name="file" accept="application/pdf"
+                                           onChange={uploadContract}/>
+                                </label>
+                            </form>
+                        </div>
+                        <div className="vertical-toolbar-element">
+                            {counterparty?.isContractUploaded &&
+                            <button className="button l file-upload" onClick={downloadContract}>
+                                Download Contract
+                            </button>}
+                        </div>
                     </div>
                 </div>
             </div>
